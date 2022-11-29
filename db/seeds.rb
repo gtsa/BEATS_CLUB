@@ -44,15 +44,86 @@ genres.uniq.each do |genre|
 end
 
 puts "Creating Profiles..."
-names.zip(users).each do |name_user|
+locations = [
+  "Athens, Greece", "Mumbay, India", "Xaxim, Brazil", "Suffolk, UK", "Nottingham, UK",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London"
+]
+names.zip(users, locations).each do |user_name_location|
   Profile.create(
-    user_id: name_user[1].id,
-    first_name: name_user[0][0],
-    last_name: name_user[0][1],
-    nickname: Faker::Internet.username(specifier: name_user[0].join(' '), separators: %w[. _ -]),
+    user_id: user_name_location[1].id,
+    first_name: user_name_location[0][0],
+    last_name: user_name_location[0][1],
+    nickname: Faker::Internet.username(specifier: user_name_location[0].join(' '), separators: %w[. _ -]),
     bio: Faker::Lorem.paragraph(sentence_count: (3..6).to_a.sample),
-    location: Faker::Address.city
+    location: user_name_location[2]
   )
+end
+
+puts "Creating Communities..."
+profiles = Profile.all.to_a
+genres = Genre.all.to_a
+community_local_names_location = [
+  ["Global", nil],
+  ["Global", nil],
+  ["Global", nil],
+  ["Global", nil],
+  ["London", "London NW1"],
+  ["London", "London W1"],
+  ["London", "London N1"],
+  ["London", "London NE1"],
+  ["London", "London E1"],
+  ["London", "London SE1"],
+  ["London", "London S1"],
+  ["Balcanic", "Thessaloniki"],
+  ["Indian", "New Delhi"],
+  ["South-American", "Rio de Janeiro"]
+]
+community_last_names = [
+  "Appreciation Society",
+  "ForEver",
+  "Fan Club",
+  "Ultras",
+  "Underground Club"
+]
+
+40.times do
+  genre = genres.sample.name
+  location = community_local_names_location.sample
+  community_name = "#{location.first} #{genre} #{community_last_names.sample}"
+  community_description = Faker::Lorem.paragraph(sentence_count: (3..6).to_a.sample)
+  community_location = location.last
+  community_genre = Genre.find_by(name: genre).id
+  community_profile = profiles.sample.id
+  Community.create(
+    name: community_name,
+    description: community_description,
+    location: community_location,
+    genre_id: community_genre,
+    profile_id: community_profile
+  )
+end
+
+puts "Adding Profiles to Communities..."
+communities = Community.all.to_a
+profiles.each do |profile|
+  communities_list = communities.shuffle
+  (4..6).to_a.sample.times do
+    JoinCommunity.create(
+      profile_id: profile.id,
+      community_id: communities_list.pop.id
+    )
+  end
+end
+
+puts "Adding favourite Genres to Profiles..."
+profiles.each do |profile|
+  genres_list = genres.shuffle
+  (2..4).to_a.sample.times do
+    JoinGenre.create(
+      profile_id: profile.id,
+      genre_id: genres_list.pop.id
+    )
+  end
 end
 
 puts "Finished seeding successfully"
