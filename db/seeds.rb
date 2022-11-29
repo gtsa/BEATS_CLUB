@@ -1,5 +1,4 @@
-# require "faker"
-
+puts "Starting seeding..."
 names = [
   ["George", "Tsagiannis"],
   ["Rajul", "Nail"],
@@ -10,6 +9,8 @@ names = [
 5.times do
   names << [Faker::Name.first_name, Faker::Name.last_name  ]
 end
+
+puts "Creating Users..."
 
 # user_tester_george
 User.create(email: 'george@email.com', password: '111111')
@@ -31,19 +32,27 @@ end
 
 users = User.all.to_a
 
-30.times do
+puts "Creating Genres..."
+genres = []
+100.times do
+  genres << Faker::Music.genre
+end
+genres.uniq.each do |genre|
   Genre.create(
-    name: Faker::Music.genre
+    name: genre
   )
 end
 
-(0..9).each do |i|
+puts "Creating Profiles..."
+names.zip(users).each do |name_user|
   Profile.create(
-    user_id: users[i].id,
-    first_name: names[i][0],
-    last_name: names[i][1],
-    nickname: Faker::Internet.username(specifier: names[i].join(' '), separators: %w[. _ -]),
+    user_id: name_user[1].id,
+    first_name: name_user[0][0],
+    last_name: name_user[0][1],
+    nickname: Faker::Internet.username(specifier: name_user[0].join(' '), separators: %w[. _ -]),
     bio: Faker::Lorem.paragraph(sentence_count: (3..6).to_a.sample),
     location: Faker::Address.city
   )
 end
+
+puts "Finished seeding successfully"
