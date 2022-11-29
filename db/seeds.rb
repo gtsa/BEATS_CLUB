@@ -2,8 +2,8 @@ puts "Starting seeding..."
 names = [
   ["George", "Tsagiannis"],
   ["Rajul", "Nail"],
-  ["Debora", "Faccinello"],
-  ["Gabriel","Wilkinson"],
+  ["Debora", "Fachinello"],
+  ["Gabriel", "Wilkinson"],
   ["Alex", "McKenzie"]
 ]
 5.times do
@@ -45,7 +45,7 @@ end
 
 puts "Creating Profiles..."
 locations = [
-  "Athens, Greece", "Mumbay, India", "Xaxim, Brazil", "Suffolk, UK", "Nottingham, UK",
+  "Athens, Greece", "Mumbay, India", "Xanxere, Brazil", "Suffolk, UK", "Nottingham, UK",
   "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London"
 ]
 names.zip(users, locations).each do |user_name_location|
