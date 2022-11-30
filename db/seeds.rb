@@ -44,12 +44,6 @@ genres.uniq.each do |genre|
 end
 
 puts "Creating Profiles..."
-p "users"
-p users.first
-p users.length
-p "names"
-p names.first
-p names.length
 locations = [
   "Athens, Greece", "Mumbay, India", "Xanxere, Brazil", "Suffolk, UK", "Nottingham, UK",
   "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
@@ -151,6 +145,7 @@ communities.each do |community|
     Welcome to #{community.name}!\n
     Thank you for sharing your thoughts and other interesting stuff with the memebers of our community",
     likes: 0,
+    profile_id: community.profile_id,
     community_id: community.id
   )
 end

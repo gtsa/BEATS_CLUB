@@ -1,18 +1,20 @@
 class PostsController < ApplicationController
+  # skip_before_action :authenticate_user!
+
   def create
-    @post = Post.new(post_params)
+    @post = Post.new(posts_params)
     @community = Community.find(params[:community_id])
-    @post.community = @communitu
-    if @review.save
-      redirect_to list_path(@list)
+    @post.community = @community
+    @post.profile_id = current_user.profiles.first.id
+    @post.likes = 0
+    if @post.save!
+      redirect_to community_path(@community)
     else
-      bookmarks = Bookmark.where(list_id: @list.id)
-      movies = bookmarks.map do |bookmark|
-        Movie.find(bookmark.movie_id)
-      end
-      @bookmarks_movies = bookmarks.zip(movies)
-      @reviews = Review.where(list_id: @list.id)
-      render 'lists/show', status: :unprocessable_entity
+      render 'communities/show', status: :unprocessable_entity
     end
+  end
+
+  def posts_params
+    params.require(:post).permit(:content)
   end
 end

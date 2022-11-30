@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_30_124833) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_30_154159) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,7 +58,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_30_124833) do
     t.bigint "community_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "profile_id"
     t.index ["community_id"], name: "index_posts_on_community_id"
+    t.index ["profile_id"], name: "index_posts_on_profile_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -93,5 +95,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_30_124833) do
   add_foreign_key "join_genres", "genres"
   add_foreign_key "join_genres", "profiles"
   add_foreign_key "posts", "communities"
+  add_foreign_key "posts", "profiles"
   add_foreign_key "profiles", "users"
 end
