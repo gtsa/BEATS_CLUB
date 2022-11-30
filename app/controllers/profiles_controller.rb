@@ -1,4 +1,11 @@
 class ProfilesController < ApplicationController
+  def show
+    @profile = Profile.find(params[:id])
+    profile_communities_ids = JoinCommunity.where(profile: @profile).pluck(:community_id)
+    @profile_communities = profile_communities_ids.map { |commun_id| Community.find(commun_id) }
+    profile_genres_ids = JoinGenre.where(profile: @profile).pluck(:genre_id)
+    @profile_genres = profile_genres_ids.map { |commun_id| Genre.find(commun_id) }
+  end
 
   def new
     @profile = Profile.new
@@ -20,5 +27,4 @@ class ProfilesController < ApplicationController
   def profile_params
     params.require(:profile).permit(:first_name, :last_name, :bio, :location, :nickname)
   end
-
 end
