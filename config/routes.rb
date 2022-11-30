@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   get '/myprofile', to: 'pages#myprofile'
-  resources :genres, only: %i[index] do
+  resources :genres, only: %i[index show] do
   end
   resources :communities, only: %i[index show new create edit update] do
     resources :posts, only: :create
