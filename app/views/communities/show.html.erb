@@ -1,0 +1,16 @@
+<h1><%= @community %>
+
+<h2> Participating Members <>
+<ol>
+<%= @profiles.each do |profile|%>
+ <li> profile.nickname </li>
+ <% end %>
+</ol>
+
+
+<h2> Posts <>
+<ol>
+<%= @posts.each do |post|%>
+ <li> post.content </li>
+ <% end %>
+</ol>

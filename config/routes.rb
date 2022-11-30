@@ -12,4 +12,6 @@ Rails.application.routes.draw do
 
   resources :profiles, only: %i[new create edit update] do
   end
+  resources :communities do
+  end
 end

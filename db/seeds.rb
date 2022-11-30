@@ -6,7 +6,7 @@ names = [
   ["Gabriel", "Wilkinson"],
   ["Alex", "McKenzie"]
 ]
-5.times do
+100.times do
   names << [Faker::Name.first_name, Faker::Name.last_name  ]
 end
 
@@ -46,6 +46,25 @@ end
 puts "Creating Profiles..."
 locations = [
   "Athens, Greece", "Mumbay, India", "Xanxere, Brazil", "Suffolk, UK", "Nottingham, UK",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
   "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London"
 ]
 names.zip(users, locations).each do |user_name_location|
