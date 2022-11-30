@@ -8,11 +8,11 @@ class CommunitiesController < ApplicationController
   def show
     @community = Community.find(params[:id])
     @posts = Post.where(community_id: @community.id)
-    @profiles = JoinCommunity.where(community_id: @community.id)
-    raise
-    profiles = profiles.map do |profile|
-      Profile.find(id: profile)
+    profile_ids = JoinCommunity.where(community_id: @community.id).pluck(:profile_id)
+    @profiles = profile_ids.map do |profile_id|
+      Profile.find(profile_id)
     end
+    @post = Post.new(community: @community)
   end
 
   def new
