@@ -3,7 +3,7 @@ names = [
   ["George", "Tsagiannis"],
   ["Rajul", "Nail"],
   ["Debora", "Faccinello"],
-  ["Gabriel","Wilkinson"],
+  ["Gabriel", "Wilkinson"],
   ["Alex", "McKenzie"]
 ]
 5.times do
