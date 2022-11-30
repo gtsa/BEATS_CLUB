@@ -5,6 +5,5 @@ class PagesController < ApplicationController
   end
 
   def myprofile
-
   end
 end
