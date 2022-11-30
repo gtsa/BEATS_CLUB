@@ -119,4 +119,15 @@ profiles.each do |profile|
   end
 end
 
+puts "Creating and adding Comments to Communities..."
+communities.each do |community|
+  Post.create(
+    content: "This is the first comment of our group.
+    Welcome to #{community.name}!
+    Thank you for sharing your thoughts and other interesting stuff with the memebers of our community",
+    likes: 0,
+    community_id: community.id
+  )
+end
+
 puts "Finished seeding successfully"
