@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :profiles, only: %i[new create edit update] do
   end
+  resources :communities do
+  end
 end
