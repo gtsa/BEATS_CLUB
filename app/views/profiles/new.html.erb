@@ -1,11 +1,9 @@
-<%= form_with model: @profile do |f| %>
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
-  <%= f.label :bio %>
-  <%= f.text_field :bio %>
-  <%= f.label :location %>
-  <%= f.text_field :location %>
+
+<%= simple_form_for @profile do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :nickname %>
+  <%= f.input :bio %>
+  <%= f.input :location %>
   <%= f.submit %>
 <% end %>
