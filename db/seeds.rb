@@ -63,21 +63,14 @@ puts "Creating Communities..."
 profiles = Profile.all.to_a
 genres = Genre.all.to_a
 community_local_names_location = [
-  ["Global ", nil],
-  ["", nil],
-  ["Global ", nil],
-  ["", nil],
-  ["London ", "London NW1"],
-  ["London ", "London W1"],
-  ["London ", "London N1"],
-  ["London ", "London NE1"],
-  ["London ", "London E1"],
-  ["London ", "London SE1"],
-  ["London ", "London S1"],
-  ["Balcanic ", "Thessaloniki"],
-  ["Indian ", "New Delhi"],
-  ["South-American ", "Rio de Janeiro"]
+  nil, nil, nil, nil,
+  "London NW1", "London W1",
+  "London N1", "London NE1",
+  "London E1", "London SE1",
+  "London S1", "Athens 11143",
+  "New Delhi", "Rio de Janeiro"
 ]
+
 community_last_names = [
   "Appreciation Society",
   "ForEver",
@@ -89,9 +82,9 @@ community_last_names = [
 40.times do
   genre = genres.sample.name
   location = community_local_names_location.sample
-  community_name = "#{location.first}#{genre} #{community_last_names.sample}"
+  community_name = "#{genre} #{community_last_names.sample}"
   community_description = Faker::Lorem.paragraph(sentence_count: (3..6).to_a.sample)
-  community_location = location.last
+  community_location = location
   community_genre = Genre.find_by(name: genre).id
   community_profile = profiles.sample.id
   Community.create(
