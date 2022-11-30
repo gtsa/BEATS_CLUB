@@ -1,0 +1,44 @@
+.banner {
+  background-size: cover;
+  background-position: center;
+  // padding: 150px 0;
+  height: 250px;
+  width: 100%;
+  position: absolute;
+}
+
+.name {
+  margin-top: 260px;
+  // background-color: aqua;
+  padding: 10px;
+  h1 {
+    text-align: center;
+    color: white;
+  }
+
+  p {
+    color: #f2f2f2;
+  }
+}
+
+// .banner h1 {
+//   margin: 0;
+//   color: white;
+//   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+//   font-size: 32px;
+//   font-weight: bold;
+// }
+
+// .banner p {
+//   font-size: 20px;
+//   color: white;
+//   opacity: .7;
+//   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+// }
+
+// .avatar-bordered {
+//   width: 40px;
+//   border-radius: 50%;
+//   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+//   border: white 1px solid;
+// }
