@@ -13,15 +13,19 @@
  <% end %>
 </ol>
 
-
 <h2> Posts </h2>
-<ol>
-<% @posts.each do |post|%>
- <li> <%= post.content %> </li>
+<% @posts_profiles.each do |post_profile|%>
+  <p>
+    <ul>
+      <%= post_profile.first.content %>
+      <li>Posted by <em><%= post_profile.last.nickname %></em> <%= time_ago_in_words(post_profile.first.created_at) %> ago</li>
+      <li><%= pluralize(post_profile.first.likes, 'like') %> </li>
+      <li>Like</li>
+    </ul>
+  </p>
  <% end %>
-</ol>
-<h5>Add your post</h5>
 
+<h5>Add your post</h5>
 <%= simple_form_for [@community, @post] do |f| %>
   <%= f.input :content, placeholder: "Add your post here..." %>
   <%= f.submit class:"btn btn-primary" %>
