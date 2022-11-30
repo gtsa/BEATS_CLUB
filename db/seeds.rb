@@ -6,7 +6,7 @@ names = [
   ["Gabriel", "Wilkinson"],
   ["Alex", "McKenzie"]
 ]
-5.times do
+100.times do
   names << [Faker::Name.first_name, Faker::Name.last_name  ]
 end
 
@@ -44,8 +44,33 @@ genres.uniq.each do |genre|
 end
 
 puts "Creating Profiles..."
+p "users"
+p users.first
+p users.length
+p "names"
+p names.first
+p names.length
 locations = [
   "Athens, Greece", "Mumbay, India", "Xanxere, Brazil", "Suffolk, UK", "Nottingham, UK",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
+  "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
   "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London"
 ]
 names.zip(users, locations).each do |user_name_location|
@@ -117,6 +142,17 @@ profiles.each do |profile|
       genre_id: genres_list.pop.id
     )
   end
+end
+
+puts "Creating and adding Comments to Communities..."
+communities.each do |community|
+  Post.create(
+    content: "This is the first comment of our group.\n
+    Welcome to #{community.name}!\n
+    Thank you for sharing your thoughts and other interesting stuff with the memebers of our community",
+    likes: 0,
+    community_id: community.id
+  )
 end
 
 puts "Finished seeding successfully"

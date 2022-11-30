@@ -1,0 +1,28 @@
+<h1><%= @community.name %> </h1>
+<p>Description:</p>
+<h2><%= @community.description %> </h2>
+<% unless @community.location.nil? %>
+  <p>Location:</p>
+  <h2><%= @community.location %> </h2>
+<% end %>
+<br>
+<h2> Participating Members </h2>
+<ol>
+<% @profiles.each do |profile|%>
+ <li> <%= profile.nickname %> </li>
+ <% end %>
+</ol>
+
+
+<h2> Posts </h2>
+<ol>
+<% @posts.each do |post|%>
+ <li> <%= post.content %> </li>
+ <% end %>
+</ol>
+<h5>Add your post</h5>
+
+<%= simple_form_for [@community, @post] do |f| %>
+  <%= f.input :content, placeholder: "Add your post here..." %>
+  <%= f.submit class:"btn btn-primary" %>
+<% end %>

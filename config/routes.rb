@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   end
   # Defines the root path route ("/")
   # root "articles#index"
+  resources :communities, only: %i[index show new create] do
+    resources :posts, only: :create
+  end
+
   resources :profiles, only: %i[new create edit update] do
   end
 end
