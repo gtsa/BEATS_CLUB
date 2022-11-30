@@ -9,8 +9,10 @@
 <h2> Participating Members </h2>
 <ol>
 <% @profiles.each do |profile|%>
- <li> <%= profile.nickname %> </li>
- <% end %>
+  <li>
+    <%= link_to profile.nickname, profile_path(profile) %>
+  </li>
+<% end %>
 </ol>
 
 <h2> Posts </h2>

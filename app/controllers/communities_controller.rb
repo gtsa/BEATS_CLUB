@@ -7,8 +7,8 @@ class CommunitiesController < ApplicationController
 
   def show
     @community = Community.find(params[:id])
-    posts = Post.where(community_id: @community.id)
-    profiles = posts.pluck(:profile_id).map { |profile_id| Profile.find(profile_id) }
+    posts = @community.posts
+    profiles = posts.map { |post| Profile.find(post.profile_id) }
     @posts_profiles = posts.zip(profiles)
     profile_ids = JoinCommunity.where(community_id: @community.id).pluck(:profile_id)
     @profiles = profile_ids.map do |profile_id|
