@@ -4,6 +4,6 @@ class Profile < ApplicationRecord
   has_many :genres, through: :join_genres
   validates :first_name, presence: true
   validates :first_name, presence: true
-  # validates :nickname, presence: true
+  validates :nickname, presence: true, uniqueness: { case_sensitive: false }
   validates :bio, presence: true
 end

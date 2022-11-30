@@ -1,4 +1,4 @@
-puts "Starting seeding..."
+puts "Seeding started..."
 names = [
   ["George", "Tsagiannis"],
   ["Rajul", "Nail"],
@@ -67,12 +67,14 @@ locations = [
   "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
   "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London"
 ]
-names.zip(users, locations).each do |user_name_location|
+
+user_name_locations = names.zip(users, locations)
+user_name_locations.each do |user_name_location|
   Profile.create(
     user_id: user_name_location[1].id,
     first_name: user_name_location[0][0],
     last_name: user_name_location[0][1],
-    nickname: Faker::Internet.username(specifier: user_name_location[0].join(' '), separators: %w[. _ -]),
+    nickname: [user_name_location[0].map(&:capitalize).join, Faker::Music.chord].join('_'),
     bio: Faker::Lorem.paragraph(sentence_count: (3..6).to_a.sample),
     location: user_name_location[2]
   )
@@ -81,7 +83,7 @@ end
 puts "Creating Communities..."
 profiles = Profile.all.to_a
 genres = Genre.all.to_a
-community_local_names_location = [
+community_locations = [
   nil, nil, nil, nil,
   "London NW1", "London W1",
   "London N1", "London NE1",
@@ -98,20 +100,24 @@ community_last_names = [
   "Underground Club"
 ]
 
+combos = []
 40.times do
   genre = genres.sample.name
-  location = community_local_names_location.sample
-  community_name = "#{genre} #{community_last_names.sample}"
-  community_description = Faker::Lorem.paragraph(sentence_count: (3..6).to_a.sample)
-  community_location = location
-  community_genre = Genre.find_by(name: genre).id
-  community_profile = profiles.sample.id
+  combos << [
+    "#{genre} #{community_last_names.sample}",
+    Faker::Lorem.paragraph(sentence_count: (3..6).to_a.sample),
+    community_locations.sample,
+    Genre.find_by(name: genre).id,
+    profiles.sample.id
+  ]
+end
+combos.uniq.each do |combo|
   Community.create(
-    name: community_name,
-    description: community_description,
-    location: community_location,
-    genre_id: community_genre,
-    profile_id: community_profile
+    name: combo[0],
+    description: combo[1],
+    location: combo[2],
+    genre_id: combo[3],
+    profile_id: combo[4]
   )
 end
 
