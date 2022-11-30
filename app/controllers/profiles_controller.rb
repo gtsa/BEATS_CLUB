@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
     @profile_communities = profile_communities_ids.map { |commun_id| Community.find(commun_id) }
     profile_genres_ids = JoinGenre.where(profile: @profile).pluck(:genre_id)
     @profile_genres = profile_genres_ids.map { |commun_id| Genre.find(commun_id) }
+    @user_check = current_user == @profile.user
   end
 
   def new
