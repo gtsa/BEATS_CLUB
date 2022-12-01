@@ -20,16 +20,24 @@
   &:focus {
     background-color: #1b191f;
     color: white;
+    border-color: #FF6D28 ;
   }
 }
 
-input:focus {
-  background-color: red;
-}
+// input:hover {
+//   background-color: #86feb8;;
+// }
 
-.create-profile-title {
-  color: white;
+h1.create-profile-title {
+  color: #FF6D28 ;
   text-align: center;
   display: flex;
   justify-content: center;
+}
+
+.btn-form {
+  border: 1px solid black !important;
+  color: black !important;
+  background-color: #FF6D28 !important;
+  font-weight: bold !important;
 }
