@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :genres, only: %i[index show] do
   end
   resources :communities, only: %i[index show new create edit update] do
-    resources :posts, only: :create do
+    resources :posts, only: %i[create edit update] do
       member do
         post 'like'
         post 'unlike'

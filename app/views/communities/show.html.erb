@@ -23,7 +23,16 @@
   <p>
     <ul>
       <%= post_profile_likes.first.content %>
-      <li>Posted by <em><%= post_profile_likes[1].nickname %></em> (<%= time_ago_in_words(post_profile_likes[0].created_at) %> ago)</li>
+      <li>Posted by <em><%= post_profile_likes[1].nickname %></em>
+      ( <%= time_ago_in_words(post_profile_likes[0].created_at) %>
+      ago
+      <% if post_profile_likes[0].created_at != post_profile_likes[0].updated_at %>
+        <%= "— edited #{time_ago_in_words(post_profile_likes[0].updated_at)} ago" %>
+      <% end %>
+      )</li>
+      <% if post_profile_likes[1].id == current_user.id %>
+        <%= link_to "Edit Post", edit_community_post_path(@community, post_profile_likes[0])%>
+      <% end %>
       <li><%= pluralize(post_profile_likes[2].length, 'like') %> </li>
       <li>
         <% unless post_profile_likes[2].map(&:profile_id).include? current_user.id %>

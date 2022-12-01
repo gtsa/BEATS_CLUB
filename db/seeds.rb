@@ -169,7 +169,7 @@ communities.each do |community|
   Post.create(
     content: "This is the first comment of our group.\n
     Welcome to #{community.name}!\n
-    Thank you for sharing your thoughts and other interesting stuff with the memebers of our community",
+    Thank you for sharing your thoughts and other interesting stuff with the members of our community",
     profile_id: community.profile_id,
     community_id: community.id
   )

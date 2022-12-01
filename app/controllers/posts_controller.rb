@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   # skip_before_action :authenticate_user!
 
   def create
-    @post = Post.new(posts_params)
+    @post = Post.new(post_params)
     @community = Community.find(params[:community_id])
     @post.community = @community
     @post.profile_id = current_user.profiles.first.id
@@ -11,6 +11,21 @@ class PostsController < ApplicationController
       redirect_to community_path(@community)
     else
       render 'communities/show', status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+    @community = Community.find(params[:community_id])
+  end
+
+  def update
+    @community = Community.find(params[:community_id])
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to community_path(@community)
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -34,7 +49,7 @@ class PostsController < ApplicationController
 
   private
 
-  def posts_params
+  def post_params
     params.require(:post).permit(:content)
   end
 end
