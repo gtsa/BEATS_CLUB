@@ -1,18 +1,30 @@
 class CommunitiesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index show]
+  # skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     @communities = Community.all
+    @joined = @communities.map do |community|
+      JoinCommunity.where(profile_id: current_user.profiles.first.id).include? community
+    end
   end
 
   def show
     @community = Community.find(params[:id])
-    @posts = Post.where(community_id: @community.id)
+    posts = @community.posts
+    profiles = posts.map { |post| Profile.find(post.profile_id) }
+    likes = posts.map { |post| Like.where(post_id: post.id) }
+    @posts_profiles_likes = posts.zip(profiles, likes)
     profile_ids = JoinCommunity.where(community_id: @community.id).pluck(:profile_id)
     @profiles = profile_ids.map do |profile_id|
       Profile.find(profile_id)
     end
+    @posts_likes = @community.posts.map do |post|
+      Like.find_by(post_id: post.id)
+    end
     @post = Post.new(community: @community)
+    @user_check = current_user.id == @community.profile_id
+    # @creator_check = current_user.id == @community.profile_id
+    @joined = JoinCommunity.where(profile_id: current_user.profiles.first.id).include? @community
   end
 
   def new
@@ -26,6 +38,19 @@ class CommunitiesController < ApplicationController
       redirect_to communities_path(@community)
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @community = Community.find(params[:id])
+  end
+
+  def update
+    @community = Community.find(params[:id])
+    if @community.update(community_params)
+      redirect_to community_path(@community)
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 

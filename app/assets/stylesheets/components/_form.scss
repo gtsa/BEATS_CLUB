@@ -1,0 +1,35 @@
+.new_profile {
+  input, textarea {
+    background-color: #1b191f;
+    border: 1px solid white;
+    border-radius: 30px;
+    // margin-left: 5px;
+    // margin-right: 5px;
+  }
+  label {
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.form-control {
+  background-color: #1b191f;
+  color: white;
+  &:focus {
+    background-color: #1b191f;
+    color: white;
+  }
+}
+
+input:focus {
+  background-color: red;
+}
+
+.create-profile-title {
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
