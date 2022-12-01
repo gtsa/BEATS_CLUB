@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   resources :genres, only: %i[index show] do
   end
   resources :communities, only: %i[index show new create edit update] do
-    resources :posts, only: :create
+    resources :posts, only: %i[create edit update] do
+      member do
+        post 'like'
+        post 'unlike'
+      end
+    end
   end
   resources :profiles, only: %i[show new create edit update] do
   end

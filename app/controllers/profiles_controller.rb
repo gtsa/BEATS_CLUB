@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
     @profile_communities = profile_communities_ids.map { |commun_id| Community.find(commun_id) }
     profile_genres_ids = JoinGenre.where(profile: @profile).pluck(:genre_id)
     @profile_genres = profile_genres_ids.map { |commun_id| Genre.find(commun_id) }
+    @user_check = current_user == @profile.user
   end
 
   def new
@@ -19,6 +20,19 @@ class ProfilesController < ApplicationController
       redirect_to myprofile_path
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @profile = Profile.find(params[:id])
+  end
+
+  def update
+    @profile = Profile.find(params[:id])
+    if @profile.update(profile_params)
+      redirect_to profile_path(@profile)
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 

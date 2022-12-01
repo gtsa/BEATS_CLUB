@@ -1,4 +1,4 @@
-puts "Starting seeding..."
+puts "Seeding started..."
 names = [
   ["George", "Tsagiannis"],
   ["Rajul", "Nail"],
@@ -7,7 +7,7 @@ names = [
   ["Alex", "McKenzie"]
 ]
 100.times do
-  names << [Faker::Name.first_name, Faker::Name.last_name  ]
+  names << [Faker::Name.first_name, Faker::Name.last_name]
 end
 
 puts "Creating Users..."
@@ -23,9 +23,9 @@ User.create(email: 'gabriel@email.com', password: '111111')
 # user_tester_alex
 User.create(email: 'alex@email.com', password: '111111')
 
-names[5..].each do |name|
+names[5..].each_with_index do |name, index|
   User.create(
-    email: Faker::Internet.safe_email(name: name[0]),
+    email: "#{Faker::Internet.safe_email(name: name[0])}_#{index}",
     password: Faker::Internet.password(min_length: 8)
   )
 end
@@ -67,21 +67,23 @@ locations = [
   "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London",
   "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London"
 ]
-names.zip(users, locations).each do |user_name_location|
+
+name_user_locations = names.zip(users, locations)
+name_user_locations.each do |name_user_location|
   Profile.create(
-    user_id: user_name_location[1].id,
-    first_name: user_name_location[0][0],
-    last_name: user_name_location[0][1],
-    nickname: Faker::Internet.username(specifier: user_name_location[0].join(' '), separators: %w[. _ -]),
+    user_id: name_user_location[1].id,
+    first_name: name_user_location[0][0],
+    last_name: name_user_location[0][1],
+    nickname: [name_user_location[0].map(&:capitalize).join, Faker::Music.chord].join('_'),
     bio: Faker::Lorem.paragraph(sentence_count: (3..6).to_a.sample),
-    location: user_name_location[2]
+    location: name_user_location[2]
   )
 end
 
 puts "Creating Communities..."
 profiles = Profile.all.to_a
 genres = Genre.all.to_a
-community_local_names_location = [
+community_locations = [
   nil, nil, nil, nil,
   "London NW1", "London W1",
   "London N1", "London NE1",
@@ -98,25 +100,49 @@ community_last_names = [
   "Underground Club"
 ]
 
-40.times do
-  genre = genres.sample.name
-  location = community_local_names_location.sample
-  community_name = "#{genre} #{community_last_names.sample}"
-  community_description = Faker::Lorem.paragraph(sentence_count: (3..6).to_a.sample)
-  community_location = location
-  community_genre = Genre.find_by(name: genre).id
-  community_profile = profiles.sample.id
+community_names_genres = []
+50.times do
+  genre = genres.sample
+  community_names_genres << ["#{genre.name} #{community_last_names.sample}", genre]
+end
+
+community_names_genres = community_names_genres.uniq
+editors = profiles[..4].map(&:id)
+(community_names_genres.length - editors.length).times do
+  editors << profiles.sample.id
+end
+
+community_names_genres_n_editors = community_names_genres.zip(editors)
+combos = []
+# community_names_genres_n_editors.each{|x| p x}
+community_names_genres_n_editors.each do |elem|
+  combos << [
+    elem[0][0],
+    Faker::Lorem.paragraph(sentence_count: (3..6).to_a.sample),
+    community_locations.sample,
+    elem[0][1].id,
+    elem[1]
+  ]
+end
+
+combos.each do |combo|
   Community.create(
-    name: community_name,
-    description: community_description,
-    location: community_location,
-    genre_id: community_genre,
-    profile_id: community_profile
+    name: combo[0],
+    description: combo[1],
+    location: combo[2],
+    genre_id: combo[3],
+    profile_id: combo[4]
   )
 end
 
 puts "Adding Profiles to Communities..."
 communities = Community.all.to_a
+communities.each do |community|
+  JoinCommunity.create(
+    profile_id: community.profile_id,
+    community_id: community.id
+  )
+end
 profiles.each do |profile|
   communities_list = communities.shuffle
   (4..6).to_a.sample.times do
@@ -143,8 +169,7 @@ communities.each do |community|
   Post.create(
     content: "This is the first comment of our group.\n
     Welcome to #{community.name}!\n
-    Thank you for sharing your thoughts and other interesting stuff with the memebers of our community",
-    likes: 0,
+    Thank you for sharing your thoughts and other interesting stuff with the members of our community",
     profile_id: community.profile_id,
     community_id: community.id
   )

@@ -4,12 +4,14 @@
 <h4><%= @profile.location %></h4>
 About:
 <h5><%= @profile.bio %></h5>
+<% if @user_check %>
+  <%= link_to "Edit Profile", edit_profile_path(@profile), class:"btn btn-primary"%>
+<% end %>
 <br>
 <h2><%= "#{@profile.nickname}'s Communities" %></h2>
 <ul>
 <% @profile_communities.each do |community|%>
-
-  <li><%= link_to community.name, community_path(community) %></li>
+  <li><%= link_to "#{community.name}#{community.profile_id == @profile.id ? ' (creator)' : ''}", community_path(community) %></li>
 <% end %>
 </ul>
 
