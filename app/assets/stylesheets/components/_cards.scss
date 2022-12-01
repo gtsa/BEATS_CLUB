@@ -1,15 +1,17 @@
 .cards {
+  padding: 1rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 16px;
   margin-top: 16px;
+
 }
 
 .card-category {
   background-size: cover;
   background-position: top;
   height: 150px;
-  width: 150px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,6 +21,16 @@
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  padding: 8px;
+
+  p {
+    color: white;
+    font-size: 14px;
+    text-align: left;
+    font-weight: normal;
+    position: relative;
+    top: 60px;
+  }
 }
 
 // .row {
