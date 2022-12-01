@@ -3,14 +3,16 @@
 </div>
 
 <div class= "bottom-bar">
-  <%= link_to root_path(@root) do %>
-  <p style="color:#e9eced">
-    <i class="fa-solid fa-house"></i>Home
-  </p>
+  <%= link_to myprofile_path(@profile) do %>
+    <p style="color:#e9eced">
+      <i class="fa-solid fa-house"></i>Home
+    </p>
 <% end %>
-  <p style="color:#e9eced">
-    <i class="fa-solid fa-magnifying-glass"></i>Seach
-  </p>
+  <%= link_to communities_path(@community) do %>
+    <p style="color:#e9eced">
+      <i class="fa-solid fa-magnifying-glass"></i>Search
+    </p>
+  <% end %>
   <p style="color:#e9eced">
     <i class="fa-solid fa-rss"></i>Feed
   </p>
