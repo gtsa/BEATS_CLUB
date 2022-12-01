@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  # skip_before_action :authenticate_user!, only: %i[show]
+  skip_before_action :authenticate_user!, only: %i[new show]
 
   def show
     @profile = Profile.find(params[:id])
