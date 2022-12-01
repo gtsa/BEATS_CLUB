@@ -68,13 +68,13 @@ locations = [
   "London", "London, E2 8DY", "Wembley Stadium", "22 Southwark St, London SE1 0SW", "Le Wagon London"
 ]
 
-user_name_locations = names.zip(users, locations)
-user_name_locations.each do |user_name_location|
+name_user_locations = names.zip(users, locations)
+name_user_locations.each do |name_user_location|
   Profile.create(
-    user_id: user_name_location[1].id,
-    first_name: user_name_location[0][0],
-    last_name: user_name_location[0][1],
-    nickname: [user_name_location[0].map(&:capitalize).join, Faker::Music.chord].join('_'),
+    user_id: name_user_location[1].id,
+    first_name: name_user_location[0][0],
+    last_name: name_user_location[0][1],
+    nickname: [name_user_location[0].map(&:capitalize).join, Faker::Music.chord].join('_'),
     bio: Faker::Lorem.paragraph(sentence_count: (3..6).to_a.sample),
     location: name_user_location[2]
   )
