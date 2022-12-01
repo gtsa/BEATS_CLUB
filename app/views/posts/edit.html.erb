@@ -1,0 +1,5 @@
+<h5>Edit your post</h5>
+<%= simple_form_for [@community, @post] do |f| %>
+  <%= f.input :content %>
+  <%= f.submit class:"btn btn-primary" %>
+<% end %>
