@@ -12,7 +12,20 @@ Created <%= time_ago_in_words(@community.created_at) %> ago
   <%= link_to "Edit Community", edit_community_path(@community), class:"btn btn-primary"%>
 <% end %>
 
-
+<%# JOIN COMMUNITY BUTTON %>
+<% if @user_check  %>
+################## if me
+###################################### if joined
+######################################
+######################################<% else %>
+###################################### not joined
+#####################################
+##################<% else %>
+################## not me
+##################
+<% else %>
+  <%= link_to "Join Community", join_community_path(@community), class:"btn btn-primary"%>
+<% end %>
 
 <br>
 <h2> Participating Members </h2>

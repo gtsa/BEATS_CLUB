@@ -6,7 +6,6 @@ class PostsController < ApplicationController
     @community = Community.find(params[:community_id])
     @post.community = @community
     @post.profile_id = current_user.profiles.first.id
-    @post.likes = 0
     if @post.save!
       redirect_to community_path(@community)
     else
