@@ -3,8 +3,13 @@ class CommunitiesController < ApplicationController
 
   def index
     @communities = Community.all
-    @joined = @communities.map do |community|
-      JoinCommunity.where(profile_id: current_user.profiles.first.id).include? community
+    user_communities = JoinCommunity.where(profile_id: current_user.profiles.first.id)
+    @community_created_joined = @communities.map do |community|
+      [
+        community,
+        current_user.id == community.profile_id,
+        user_communities.map(&:community_id).include?(community.id)
+      ]
     end
   end
 
@@ -24,7 +29,9 @@ class CommunitiesController < ApplicationController
     @post = Post.new(community: @community)
     @user_check = current_user.id == @community.profile_id
     # @creator_check = current_user.id == @community.profile_id
-    @joined = JoinCommunity.where(profile_id: current_user.profiles.first.id).include? @community
+    user_communities = JoinCommunity.where(profile_id: current_user.profiles.first.id)
+    @this_community = user_communities.where(community_id: @community.id).first
+    @joined = user_communities.map(&:community_id).include? @community.id
   end
 
   def new

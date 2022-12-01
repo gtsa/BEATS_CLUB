@@ -2,14 +2,11 @@
   background-size: cover;
   background-position: center;
   // padding: 150px 0;
-  height: 250px;
+  height: 200px;
   width: 100%;
-  position: absolute;
 }
 
 .name {
-  margin-top: 260px;
-  // background-color: aqua;
   padding: 10px;
   h1 {
     text-align: center;
@@ -19,6 +16,8 @@
   p {
     color: #959595;
     margin: 0 20px;
+    font-size: small;
+
   }
 }
 
@@ -57,5 +56,3 @@
     margin-bottom: 2px;
   }
 }
-
-

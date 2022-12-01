@@ -1,0 +1,19 @@
+<div class= "bottom-bar-spacer">
+
+</div>
+
+<div class= "bottom-bar">
+  <%= link_to myprofile_path(@profile) do %>
+    <p style="color:#e9eced">
+      <i class="fa-solid fa-house"></i>Home
+    </p>
+<% end %>
+  <%= link_to communities_path(@community) do %>
+    <p style="color:#e9eced">
+      <i class="fa-solid fa-magnifying-glass"></i>Search
+    </p>
+  <% end %>
+  <p style="color:#e9eced">
+    <i class="fa-solid fa-rss"></i>Feed
+  </p>
+</div>
