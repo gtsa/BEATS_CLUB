@@ -11,8 +11,7 @@ About:
 <h2><%= "#{@profile.nickname}'s Communities" %></h2>
 <ul>
 <% @profile_communities.each do |community|%>
-
-  <li><%= link_to community.name, community_path(community) %></li>
+  <li><%= link_to "#{community.name}#{community.profile_id == @profile.id ? ' (creator)' : ''}", community_path(community) %></li>
 <% end %>
 </ul>
 

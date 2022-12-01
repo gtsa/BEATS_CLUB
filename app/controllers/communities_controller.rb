@@ -15,6 +15,8 @@ class CommunitiesController < ApplicationController
       Profile.find(profile_id)
     end
     @post = Post.new(community: @community)
+    @user_check = current_user.id == @community.profile_id
+    # @creator_check = current_user.id == @community.profile_id
   end
 
   def new
@@ -29,6 +31,12 @@ class CommunitiesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+  end
+
+  def update
   end
 
   private
