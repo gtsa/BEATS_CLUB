@@ -1,12 +1,9 @@
 <div class="container">
-  <div class="search-bar">
-    <%= form_with url: communities_path, method: :get, class: "d-flex" do %>
+  <div class="search-form-control-com form-group">
+    <%= form_with url: communities_path, method: :get, class: "form-control-com string required" do %>
       <%= text_field_tag :query,
-        params[:query]
-        # class: "form-control",
-        # placeholder: "Find your community"
-        %>
-        <%= submit_tag "Search", class: "search-btn" %>
+        params[:query]%>
+        <%= submit_tag "Search", class: "fas fa-search" %>
         <% end %>
   </div>
 <%# <%= simple_form_for :search, url: root_path, method: :get do |f| %>
