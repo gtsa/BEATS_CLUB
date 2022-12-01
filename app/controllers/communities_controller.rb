@@ -9,10 +9,14 @@ class CommunitiesController < ApplicationController
     @community = Community.find(params[:id])
     posts = @community.posts
     profiles = posts.map { |post| Profile.find(post.profile_id) }
-    @posts_profiles = posts.zip(profiles)
+    likes = posts.map { |post| Like.where(post_id: post.id) }
+    @posts_profiles_likes = posts.zip(profiles, likes)
     profile_ids = JoinCommunity.where(community_id: @community.id).pluck(:profile_id)
     @profiles = profile_ids.map do |profile_id|
       Profile.find(profile_id)
+    end
+    @posts_likes = @community.posts.map do |post|
+      Like.find_by(post_id: post.id)
     end
     @post = Post.new(community: @community)
     @user_check = current_user.id == @community.profile_id
@@ -34,9 +38,16 @@ class CommunitiesController < ApplicationController
   end
 
   def edit
+    @community = Community.find(params[:id])
   end
 
   def update
+    @community = Community.find(params[:id])
+    if @community.update(community_params)
+      redirect_to community_path(@community)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
