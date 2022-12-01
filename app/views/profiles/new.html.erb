@@ -1,6 +1,6 @@
 <div class="container">
   <div class="create-profile-title">
-   <h1>Create Your Profile</h1>
+   <h1 class="create-profile-title">Create Your Profile</h1>
   </div>
   <br>
   <div class="profile-form">
@@ -10,7 +10,9 @@
     <%= f.input :nickname, label:false %>
     <%= f.input :location, label:false %>
     <%= f.input :bio, label:false %>
-    <%= f.submit "Create Profile", class: "btn btn-flat", style: "display:block; margin: 0 auto;"%>
+    <div class="wrapper">
+    <%= f.submit "Create Profile", class: "btn btn-flat btn-form", style: "display:block; margin: 0 auto;"%>
+    </div>
   <% end %>
   </div>
 </div>
