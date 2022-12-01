@@ -1,0 +1,43 @@
+.new_profile {
+  input, textarea {
+    background-color: #1b191f;
+    border: 1px solid white;
+    border-radius: 30px;
+    // margin-left: 5px;
+    // margin-right: 5px;
+  }
+  label {
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.form-control {
+  background-color: #1b191f;
+  color: white;
+  &:focus {
+    background-color: #1b191f;
+    color: white;
+    border-color: #FF6D28 ;
+  }
+}
+
+// input:hover {
+//   background-color: #86feb8;;
+// }
+
+h1.create-profile-title {
+  color: #FF6D28 ;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-form {
+  border: 1px solid black !important;
+  color: black !important;
+  background-color: #FF6D28 !important;
+  font-weight: bold !important;
+}

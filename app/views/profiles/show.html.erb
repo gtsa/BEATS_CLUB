@@ -1,0 +1,23 @@
+<h1><%= @profile.nickname %></h1>
+<p>Member since <%= @profile.created_at.strftime("%B  %Y") %><p>
+<h2><%= "#{@profile.first_name} #{@profile.last_name}" %></h2>
+<h4><%= @profile.location %></h4>
+About:
+<h5><%= @profile.bio %></h5>
+<% if @user_check %>
+  <%= link_to "Edit Profile", edit_profile_path(@profile), class:"btn btn-primary"%>
+<% end %>
+<br>
+<h2><%= "#{@profile.nickname}'s Communities" %></h2>
+<ul>
+<% @profile_communities.each do |community|%>
+  <li><%= link_to "#{community.name}#{community.profile_id == @profile.id ? ' (creator)' : ''}", community_path(community) %></li>
+<% end %>
+</ul>
+
+<h2><%= "#{@profile.nickname}'s Favourite Music Genres" %></h2>
+<ul>
+<% @profile_genres.each do |genre|%>
+  <li><%= link_to genre.name, genre_path(genre) %></li>
+<% end %>
+</ul>

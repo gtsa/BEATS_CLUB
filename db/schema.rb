@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_29_125122) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_01_020933) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,7 +22,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_125122) do
     t.bigint "profile_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "post_id"
     t.index ["genre_id"], name: "index_communities_on_genre_id"
+    t.index ["post_id"], name: "index_communities_on_post_id"
     t.index ["profile_id"], name: "index_communities_on_profile_id"
   end
 
@@ -50,6 +52,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_125122) do
     t.index ["profile_id"], name: "index_join_genres_on_profile_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "profile_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["profile_id"], name: "index_likes_on_profile_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.text "content"
+    t.bigint "community_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "profile_id"
+    t.index ["community_id"], name: "index_posts_on_community_id"
+    t.index ["profile_id"], name: "index_posts_on_profile_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -75,10 +96,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_125122) do
   end
 
   add_foreign_key "communities", "genres"
+  add_foreign_key "communities", "posts"
   add_foreign_key "communities", "profiles"
   add_foreign_key "join_communities", "communities"
   add_foreign_key "join_communities", "profiles"
   add_foreign_key "join_genres", "genres"
   add_foreign_key "join_genres", "profiles"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "profiles"
+  add_foreign_key "posts", "communities"
+  add_foreign_key "posts", "profiles"
   add_foreign_key "profiles", "users"
 end

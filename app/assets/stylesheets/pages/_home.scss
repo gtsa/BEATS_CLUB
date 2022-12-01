@@ -1,1 +1,72 @@
 // Specific CSS for your home-page
+// .banner {
+//   background-size: cover;
+//   background-position: center;
+//   padding: 150px 0;
+//   background-image: asset-url('banner.png');
+//   background-color: red;
+// }
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.banner {
+  background-size: contain;
+  background-position: center;
+  margin-top: 100px;
+  padding-left: 50px;
+  background-image: asset-url('banner.png');
+  // width: 100%;
+  // height: 100vh;
+  width: 400px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 32px;
+  font-weight: bold;
+  font-family: Inter;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.btn-flat {
+  color: white;
+  padding: 8px 10px;
+  border-radius: 30px;
+  background-color: #c702a7;
+  transition: background 0.3s ease;
+  position: absolute;
+  font-size: 16px;
+  font-family: inter;
+  // text-transform: uppercase;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  width: 150px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+p {
+  margin: 0;
+  color: rgb(167, 165, 165);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 13px;
+  font-weight: 300;
+  font-family: Inter;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

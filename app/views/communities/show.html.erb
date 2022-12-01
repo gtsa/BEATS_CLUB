@@ -1,0 +1,62 @@
+<h1><%= @community.name %> </h1>
+<p>Description:</p>
+<h2><%= @community.description %> </h2>
+<% unless @community.location.nil? %>
+  <p>Location:</p>
+  <h2><%= @community.location %> </h2>
+<% end %>
+Created <%= time_ago_in_words(@community.created_at) %> ago
+
+<%# EDIT COMMUNITY BUTTON %>
+<% if @user_check %>
+  <%= link_to "Edit Community", edit_community_path(@community), class:"btn btn-primary"%>
+<% end %>
+
+
+
+<br>
+<h2> Participating Members </h2>
+<ol>
+<% @profiles.each do |profile|%>
+  <li>
+    <%= link_to "#{profile.nickname}#{@community.profile_id == profile.id ? ' (creator)' : ''}", profile_path(profile) %>
+  </li>
+<% end %>
+</ol>
+
+<h2> Posts </h2>
+<% @posts_profiles_likes.each do |post_profile_likes|%>
+  <p>
+    <ul>
+      <%= post_profile_likes.first.content %>
+      <li>Posted by <em><%= post_profile_likes[1].nickname %></em>
+      ( <%= time_ago_in_words(post_profile_likes[0].created_at) %>
+      ago
+      <% if post_profile_likes[0].created_at != post_profile_likes[0].updated_at %>
+        <%= "— edited #{time_ago_in_words(post_profile_likes[0].updated_at)} ago" %>
+      <% end %>
+      )</li>
+      <% if post_profile_likes[1].id == current_user.id %>
+        <%= link_to "Edit Post", edit_community_post_path(@community, post_profile_likes[0])%>
+      <% end %>
+      <li><%= pluralize(post_profile_likes[2].length, 'like') %> </li>
+      <li>
+        <% unless post_profile_likes[2].map(&:profile_id).include? current_user.id %>
+          <%= button_to like_community_post_path(post_profile_likes), method: :post do %>
+          <i class="fa-regular fa-heart"></i>
+          <% end %>
+        <% else %>
+          <%= button_to unlike_community_post_path(post_profile_likes), method: :post do %>
+          <i class="fa-solid fa-heart"></i>
+          <% end %>
+        <% end %>
+      </li>
+    </ul>
+  </p>
+ <% end %>
+
+<h5>Add your post</h5>
+<%= simple_form_for [@community, @post] do |f| %>
+  <%= f.input :content, placeholder: "Add your post here..." %>
+  <%= f.submit class:"btn btn-primary" %>
+<% end %>
