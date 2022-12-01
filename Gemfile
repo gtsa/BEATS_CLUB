@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
+#cloudinary gem
+gem "cloudinary"
+
+#dot env so API is not public
 gem "dotenv-rails", groups: [:development, :test]
 
 gem 'faker'
