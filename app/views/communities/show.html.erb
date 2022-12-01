@@ -5,14 +5,26 @@
   <p>Location:</p>
   <h2><%= @community.location %> </h2>
 <% end %>
-Created <%= time_ago_in_words(@community.created_at) %> ago
+<p>Created <%= time_ago_in_words(@community.created_at) %> ago</p>
+<p>Genres: <%= link_to @community.genre.name, genre_path(@community.genre), class:"btn"%></p>
 
 <%# EDIT COMMUNITY BUTTON %>
 <% if @user_check %>
   <%= link_to "Edit Community", edit_community_path(@community), class:"btn btn-primary"%>
 <% end %>
 
-
+<%# JOIN COMMUNITY BUTTON %>
+<% if @user_check && @joined  %>
+<p><%= "You are the creator of this community and have been a member since #{@this_community.created_at.strftime("%B  %Y")}" %></p>
+<% elsif @user_check && !@joined  %>
+<p>You are the creator of this community</p>
+<%= link_to "Join Community", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-primary"%>
+<% elsif !@user_check && @joined  %>
+<p><%= "You have been a member since #{@this_community.created_at.strftime("%B  %Y")}" %></p>
+<%= link_to "Leave Community", community_join_community_path(@community, current_user.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-primary"%>
+<% elsif !@user_check && !@joined  %>
+<%= link_to "Join Community", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-primary"%>
+<% end %>
 
 <br>
 <h2> Participating Members </h2>
