@@ -43,11 +43,11 @@ Created <%= time_ago_in_words(@community.created_at) %> ago
       <li>
         <% unless post_profile_likes[2].map(&:profile_id).include? current_user.id %>
           <%= button_to like_community_post_path(post_profile_likes), method: :post do %>
-          <i class="fa-solid fa-heart"></i>
+          <i class="fa-regular fa-heart"></i>
           <% end %>
         <% else %>
           <%= button_to unlike_community_post_path(post_profile_likes), method: :post do %>
-          <i class="fa-regular fa-heart"></i>
+          <i class="fa-solid fa-heart"></i>
           <% end %>
         <% end %>
       </li>
