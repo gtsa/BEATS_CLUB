@@ -14,6 +14,26 @@ class PostsController < ApplicationController
     end
   end
 
+  def like
+    @post = Post.find(params[:id])
+    @community = Community.find(params[:community_id])
+    @post.likes += 1
+    @post.save
+    @liked = true
+    redirect_to(community_path(@community))
+  end
+
+  def unlike
+    @post = Post.find(params[:id])
+    @community = Community.find(params[:community_id])
+    @post.likes -= 1
+    @post.save
+    @liked = false
+    redirect_to(community_path(@community))
+  end
+
+  private
+
   def posts_params
     params.require(:post).permit(:content)
   end

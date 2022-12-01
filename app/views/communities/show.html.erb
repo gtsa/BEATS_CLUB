@@ -25,7 +25,11 @@
       <%= post_profile.first.content %>
       <li>Posted by <em><%= post_profile.last.nickname %></em> (<%= time_ago_in_words(post_profile.first.created_at) %> ago)</li>
       <li><%= pluralize(post_profile.first.likes, 'like') %> </li>
-      <li>Like</li>
+      <% unless @liked %>
+        <li><%= button_to 'Like', like_community_post_path(post_profile), method: :post %></li>
+      <% else %>
+        <li><%= button_to 'Unlike', unlike_community_post_path(post_profile), method: :post %></li>
+      <% end %>
     </ul>
   </p>
  <% end %>
