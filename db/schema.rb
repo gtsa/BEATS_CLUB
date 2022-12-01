@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_30_154159) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_01_020933) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,9 +52,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_30_154159) do
     t.index ["profile_id"], name: "index_join_genres_on_profile_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "profile_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["profile_id"], name: "index_likes_on_profile_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.text "content"
-    t.integer "likes"
     t.bigint "community_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -94,6 +102,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_30_154159) do
   add_foreign_key "join_communities", "profiles"
   add_foreign_key "join_genres", "genres"
   add_foreign_key "join_genres", "profiles"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "profiles"
   add_foreign_key "posts", "communities"
   add_foreign_key "posts", "profiles"
   add_foreign_key "profiles", "users"

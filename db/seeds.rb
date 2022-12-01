@@ -170,7 +170,6 @@ communities.each do |community|
     content: "This is the first comment of our group.\n
     Welcome to #{community.name}!\n
     Thank you for sharing your thoughts and other interesting stuff with the memebers of our community",
-    likes: 0,
     profile_id: community.profile_id,
     community_id: community.id
   )

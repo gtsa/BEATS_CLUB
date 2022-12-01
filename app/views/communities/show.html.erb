@@ -19,17 +19,23 @@
 </ol>
 
 <h2> Posts </h2>
-<% @posts_profiles.each do |post_profile|%>
+<% @posts_profiles_likes.each do |post_profile_likes|%>
   <p>
     <ul>
-      <%= post_profile.first.content %>
-      <li>Posted by <em><%= post_profile.last.nickname %></em> (<%= time_ago_in_words(post_profile.first.created_at) %> ago)</li>
-      <li><%= pluralize(post_profile.first.likes, 'like') %> </li>
-      <% unless @liked %>
-        <li><%= button_to 'Like', like_community_post_path(post_profile), method: :post %></li>
-      <% else %>
-        <li><%= button_to 'Unlike', unlike_community_post_path(post_profile), method: :post %></li>
-      <% end %>
+      <%= post_profile_likes.first.content %>
+      <li>Posted by <em><%= post_profile_likes[1].nickname %></em> (<%= time_ago_in_words(post_profile_likes[0].created_at) %> ago)</li>
+      <li><%= pluralize(post_profile_likes[2].length, 'like') %> </li>
+      <li>
+        <% unless post_profile_likes[2].map(&:profile_id).include? current_user.id %>
+          <%= button_to like_community_post_path(post_profile_likes), method: :post do %>
+          <i class="fa-solid fa-heart"></i>
+          <% end %>
+        <% else %>
+          <%= button_to unlike_community_post_path(post_profile_likes), method: :post do %>
+          <i class="fa-regular fa-heart"></i>
+          <% end %>
+        <% end %>
+      </li>
     </ul>
   </p>
  <% end %>

@@ -17,18 +17,18 @@ class PostsController < ApplicationController
   def like
     @post = Post.find(params[:id])
     @community = Community.find(params[:community_id])
-    @post.likes += 1
-    @post.save
-    @liked = true
+    Like.create(
+      profile_id: current_user.id,
+      post_id: @post.id
+    )
     redirect_to(community_path(@community))
   end
 
   def unlike
     @post = Post.find(params[:id])
     @community = Community.find(params[:community_id])
-    @post.likes -= 1
-    @post.save
-    @liked = false
+    like = Like.where(profile_id: current_user.id).where(post_id: @post.id).first
+    like.destroy
     redirect_to(community_path(@community))
   end
 
