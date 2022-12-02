@@ -1,17 +1,16 @@
 <%# <%= current_user.profiles[0].location  %>
 
-<%# <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path('profile.jpg') %>)"> %>
+<%# <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path('profile.jpg'))"> %>
 <%# </div> %>
 
 <div class="container">
 
   <div class="name">
-    <%= image_tag "avatar.jpg", class:"avatar-bordered" %>
+    <%= image_tag "profi.jpg", class:"avatar-bordered" %>
 
     <h1><%= current_user.profiles[0].first_name %></h1>
     <p><%= current_user.profiles[0].bio %></p>
 
-    <i class="fa-regular fa-pen-to-square"></i>
   </div>
 
   <div class="info">
@@ -37,7 +36,7 @@
   <div class="cards">
     <% current_user.profiles[0].communities.each do |community| %>
       <%= link_to community_path(community) do %>
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://i.pinimg.com/564x/96/ee/f8/96eef867344f697815074cda268c84a2.jpg)">
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://i.pinimg.com/736x/77/67/5d/77675dfa144fff36f01509ff5d073fc5.jpg)">
           <p><%= community.name.truncate(35) %></p>
         </div>
       <% end %>
