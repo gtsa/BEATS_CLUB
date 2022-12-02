@@ -4,10 +4,9 @@ class PagesController < ApplicationController
   def home
   end
 
-  def about
-  end
-
   def myprofile
-    redirect_to profile_path(current_user.id) if user_signed_in?
+    # redirect_to profile_path(current_user.id) if user_signed_in?
+    @profile = Profile.find_by(user: current_user)
+    @user_check = current_user == @profile.user
   end
 end
