@@ -5,11 +5,24 @@
 <%= cl_image_tag("dumdn6notnhpf24xqycw",
       width: 150, height: 150, crop: :thumb, gravity: :face) %>
 
-<ol>
-<% @communities.each do |community|%>
- <li><%= link_to community.name, community_path(community) %></li>
- <% end %>
-</ol>
-<%=  %>
-<%=  %>
-<%=  %>
+
+<div class="container">
+  <div class="search-form-control-com form-group">
+    <%= form_with url: communities_path, method: :get, class: "form-control-com string required" do %>
+      <%= text_field_tag :query,
+        params[:query]%>
+        <%= submit_tag "Search", class: "fas fa-search" %>
+        <% end %>
+  </div>
+
+ <div class="cards-com">
+      <% @communities.each do |community| %>
+        <%= link_to community_path(community) do  %>
+          <div class="card-category-com" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://i.pinimg.com/474x/f4/65/a2/f465a256777751abf54ff379c6c1cd99.jpg)">
+            <p><%= community.name %></p>
+          </div>
+        <% end %>
+      <% end %>
+  </div>
+</div>
+>>>>>>> master

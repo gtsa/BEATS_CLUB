@@ -2,23 +2,26 @@
   background-size: cover;
   background-position: center;
   // padding: 150px 0;
-  height: 250px;
+  height: 200px;
   width: 100%;
   position: absolute;
 }
 
 .name {
-  margin-top: 260px;
-  // background-color: aqua;
+  text-align: center;
   padding: 10px;
+  // margin-top: 200px;
   h1 {
     text-align: center;
     color: white;
+    padding-top: 5px;
   }
 
   p {
     color: #959595;
     margin: 0 20px;
+    font-size: small;
+
   }
 }
 

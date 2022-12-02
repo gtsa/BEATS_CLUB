@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get '/myprofile', to: 'pages#myprofile'
   resources :genres, only: %i[index show] do
+    resources :join_genres, only: %i[create destroy]
   end
   resources :communities, only: %i[index show new create edit update] do
+    resources :join_communities, only: %i[create destroy]
     resources :posts, only: %i[create edit update] do
       member do
         post 'like'
@@ -12,6 +14,5 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :profiles, only: %i[show new create edit update] do
-  end
+  resources :profiles, only: %i[show new create edit update]
 end

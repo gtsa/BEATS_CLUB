@@ -1,6 +1,7 @@
 class Profile < ApplicationRecord
   belongs_to :user
   has_one_attached :photo
+  has_many :join_communities
   has_many :communities, through: :join_communities
   has_many :genres, through: :join_genres
   has_many :posts, through: :likes

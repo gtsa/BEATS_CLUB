@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  # skip_before_action :authenticate_user!, only: %i[show]
+
   def show
     @profile = Profile.find(params[:id])
     profile_communities_ids = JoinCommunity.where(profile: @profile).pluck(:community_id)
@@ -6,9 +8,6 @@ class ProfilesController < ApplicationController
     profile_genres_ids = JoinGenre.where(profile: @profile).pluck(:genre_id)
     @profile_genres = profile_genres_ids.map { |commun_id| Genre.find(commun_id) }
     @user_check = current_user == @profile.user
-    @joined = @profile_communities.map do |community|
-      JoinCommunity.where(profile_id: current_user.profiles.first.id).include? community
-    end
   end
 
   def new

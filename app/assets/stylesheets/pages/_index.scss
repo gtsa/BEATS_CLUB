@@ -1,3 +1,74 @@
 // Import page-specific CSS files here.
 @import "home";
 @import "profile";
+@import "communities";
+
+
+// Communities index page styling
+
+.search-form-control-com {
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.search-form-control-com .btn {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  right: 8px;
+}
+
+.search-form-control-com .form-control-com {
+  height: 3.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border: 1px solid #E7E7E7;
+  width: 100%;
+  background: none;
+  border-radius:5px;
+  margin-top: 20px;
+  display: flex;
+  padding-left: 20px;
+  height: 40px;
+  padding: 20px;
+  background-color: #E7E7E7;
+}
+
+
+.cards-com {
+  // padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+  margin-top: 16px;
+  // justify-items: center;
+}
+
+.card-category-com {
+  background-size: cover;
+  background-position: top;
+  width: 100%;
+  height: 150px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  padding: 8px;
+
+  p {
+    color: white;
+    font-size: 14px;
+    text-align: left;
+    position: relative;
+    top: 60px;
+    font-weight: 700;
+    font-family: inter;
+  }
+}
+
