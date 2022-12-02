@@ -12,13 +12,6 @@ class CommunitiesController < ApplicationController
     @communitiesr = communities.sort_by { |com| -com[1] }
     @communities = @communitiesr.map(&:first)
     @communities.unshift(*user_communities)
-    # community_created_joined = communities.map do |community|
-    #   [
-    #     community,
-    #     current_user.id == community.profile_id,
-    #     user_communities.map(&:id).include?(community.id)
-    #   ]
-    # end
   end
 
   def show
