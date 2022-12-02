@@ -7,13 +7,15 @@
     <p style="color:#e9eced">
       <i class="fa-solid fa-house"></i>Home
     </p>
-<% end %>
+  <% end %>
   <%= link_to communities_path(@community) do %>
     <p style="color:#e9eced">
       <i class="fa-solid fa-magnifying-glass"></i>Search
     </p>
   <% end %>
-  <p style="color:#e9eced">
-    <i class="fa-solid fa-rss"></i>Feed
-  </p>
+  <%= link_to destroy_user_session_path, data: {turbo_method: :delete} do %>
+    <p style="color:#e9eced">
+      <i class="fa-solid fa-rss"></i>Feed
+    </p>
+  <% end %>
 </div>
