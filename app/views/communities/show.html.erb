@@ -4,7 +4,7 @@
 
 <div class="com-info">
 <h2><%= @community.name %> </h2>
-<p>120 Members</p>
+<p><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %></p>
 <p>Genre: <%= link_to @community.genre.name, genre_path(@community.genre), class:"btn"%></p>
 
 <%# JOIN COMMUNITY BUTTON %>

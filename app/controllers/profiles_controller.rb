@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  # skip_before_action :authenticate_user!, only: %i[show]
+  skip_before_action :authenticate_user!, only: %i[new show]
 
   def show
     @profile = Profile.find(params[:id])
@@ -18,7 +18,6 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
     @profile.user = current_user
     if @profile.save!
-
       redirect_to myprofile_path
     else
       render :new, status: :unprocessable_entity
@@ -32,7 +31,7 @@ class ProfilesController < ApplicationController
   def update
     @profile = Profile.find(params[:id])
     if @profile.update(profile_params)
-      redirect_to profile_path(@profile)
+      redirect_to myprofile_path
     else
       render :edit, status: :unprocessable_entity
     end
