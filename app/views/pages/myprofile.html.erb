@@ -14,8 +14,11 @@
 
     <h1><%= current_user.profiles[0].first_name %></h1>
     <p><%= current_user.profiles[0].bio %></p>
+    <% if @user_check %>
+      <%= link_to "Edit Profile", edit_profile_path(@profile)%>
+      <i class="fa-regular fa-pen-to-square"></i>
+      <% end %>
 
-    <i class="fa-regular fa-pen-to-square"></i>
   </div>
 
   <div class="info">
@@ -46,6 +49,8 @@
         </div>
       <% end %>
     <% end %>
+
+
 
     <%# <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://i.pinimg.com/564x/6b/60/77/6b6077a2ea52b535d2939c3946d84f71.jpg)">
       Jazz
