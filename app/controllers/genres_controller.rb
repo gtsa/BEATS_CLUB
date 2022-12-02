@@ -2,7 +2,11 @@ class GenresController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @genres = Genre.all
+    all_genres = Genre.all
+    user_genres = Genre.where(id: JoinGenre.where(profile_id: Profile.find_by(user_id: current_user.id).id).pluck(:genre_id))
+    genres = all_genres - user_genres
+    genres = genres.sort_by { |elem| -JoinGenre.where(genre_id: elem.id).length }
+    @genres = user_genres + genres
   end
 
   def show

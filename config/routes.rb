@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   get '/myprofile', to: 'pages#myprofile'
+  get '/about', to: 'pages#about'
   resources :genres, only: %i[index show] do
     resources :join_genres, only: %i[create destroy]
   end

@@ -27,7 +27,7 @@
 <% end %>
 
 <br>
-<h2> Participating Members </h2>
+<h2><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %></h2>
 <ol>
 <% @profiles.each do |profile|%>
   <li>

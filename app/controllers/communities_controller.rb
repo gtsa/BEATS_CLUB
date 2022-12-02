@@ -2,36 +2,42 @@ class CommunitiesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @communities = Community.all
-    user_communities = JoinCommunity.where(profile_id: current_user.profiles.first.id)
-    @community_created_joined = @communities.map do |community|
-      [
-        community,
-        current_user.id == community.profile_id,
-        user_communities.map(&:community_id).include?(community.id)
-      ]
+    communities = Community.all.to_a
+    user_communities_ids = JoinCommunity.where(profile_id: current_user.profiles.first.id).pluck(:community_id).to_a
+    user_communities = user_communities_ids.map { |elem| Community.find(elem) }
+    communities -= user_communities
+    communities = communities.map do |commmunity|
+      [commmunity, JoinCommunity.where(community_id: commmunity).length]
     end
+    @communitiesr = communities.sort_by { |com| -com[1] }
+    @communities = @communitiesr.map(&:first)
+    @communities.unshift(*user_communities)
+    # community_created_joined = communities.map do |community|
+    #   [
+    #     community,
+    #     current_user.id == community.profile_id,
+    #     user_communities.map(&:id).include?(community.id)
+    #   ]
+    # end
   end
 
   def show
     @community = Community.find(params[:id])
     posts = @community.posts
-    profiles = posts.map { |post| Profile.find(post.profile_id) }
+    post_profiles = posts.map { |post| Profile.find(post.profile_id) }
     likes = posts.map { |post| Like.where(post_id: post.id) }
-    @posts_profiles_likes = posts.zip(profiles, likes)
+    @posts_profiles_likes = posts.zip(post_profiles, likes)
     profile_ids = JoinCommunity.where(community_id: @community.id).pluck(:profile_id)
-    @profiles = profile_ids.map do |profile_id|
-      Profile.find(profile_id)
-    end
-    @posts_likes = @community.posts.map do |post|
-      Like.find_by(post_id: post.id)
-    end
-    @post = Post.new(community: @community)
+    @profiles = profile_ids.map { |profile_id| Profile.find(profile_id) }
+    actual_profile = Profile.find(@community.profile_id)
+    @profiles.delete(actual_profile)
+    @profiles = @profiles.sort_by(&:nickname)
+    @profiles.unshift(actual_profile)
     @user_check = current_user.id == @community.profile_id
-    # @creator_check = current_user.id == @community.profile_id
     user_communities = JoinCommunity.where(profile_id: current_user.profiles.first.id)
     @this_community = user_communities.where(community_id: @community.id).first
     @joined = user_communities.map(&:community_id).include? @community.id
+    @post = Post.new(community: @community)
   end
 
   def new
