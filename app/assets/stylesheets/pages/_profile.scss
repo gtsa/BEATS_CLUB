@@ -4,13 +4,17 @@
   // padding: 150px 0;
   height: 200px;
   width: 100%;
+  position: absolute;
 }
 
 .name {
+  text-align: center;
   padding: 10px;
+  // margin-top: 200px;
   h1 {
     text-align: center;
     color: white;
+    padding-top: 5px;
   }
 
   p {

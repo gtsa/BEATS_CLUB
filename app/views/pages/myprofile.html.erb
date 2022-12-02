@@ -1,13 +1,7 @@
 <%# <%= current_user.profiles[0].location  %>
 
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path('profile.jpg') %>)">
-  <%# <div class="container">
-    <h1>Le Wagon brings <strong>tech skills</strong> to <strong>creative people</strong>!</h1>
-    <p>Change your life and learn to code at one of our campuses around the world.</p>
-    <a class="btn btn-flat" href="#">Apply now</a>
-  </div> %>
-  <%= image_tag "avatar.jpg", class:"avatar-bordered" %>
-</div>
+<%# <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path('profile.jpg') %>)"> %>
+<%# </div> %>
 
 <% if @user_check %>
   <%= link_to "Edit Profile", edit_profile_path(@profile), class:"btn btn-primary"%>
@@ -16,8 +10,12 @@
 <div class="container">
 
   <div class="name">
+    <%= image_tag "avatar.jpg", class:"avatar-bordered" %>
+
     <h1><%= current_user.profiles[0].first_name %></h1>
     <p><%= current_user.profiles[0].bio %></p>
+
+    <i class="fa-regular fa-pen-to-square"></i>
   </div>
 
   <div class="info">
