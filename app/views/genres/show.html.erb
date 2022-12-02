@@ -1,4 +1,10 @@
 <h1><%= @genre.name %></h1>
+<%# FOLLOW GENRE %>
+<% if !@joined  %>
+<%= link_to "Follow #{@genre.name}", genre_join_genres_path(@genre), data: { turbo_method: :post }, class:"btn btn-primary"%>
+<% else %>
+<%= link_to "Unfollow #{@genre.name}", genre_join_genre_path(@genre, current_user.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-primary"%>
+<% end %>
 <h3><%= "#{@genre.name} Communities" %></h3>
 <ul>
   <% @genre_communities.each do |community|%>

@@ -1,6 +1,4 @@
 class PostsController < ApplicationController
-  # skip_before_action :authenticate_user!
-
   def create
     @post = Post.new(post_params)
     @community = Community.find(params[:community_id])

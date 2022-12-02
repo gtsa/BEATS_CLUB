@@ -1,0 +1,113 @@
+.search-form-control {
+  position: relative;
+}
+
+.search-form-control .btn {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  right: 8px;
+}
+
+.search-form-control .form-control {
+  height: 3.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border: 1px solid #E7E7E7;
+}
+
+.search-form-control .form-control:focus {
+  border: 1px solid #1EDD88;
+  outline: none !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+// Communities Showpage Styling
+
+.banner-com {
+  background-size: cover;
+  background-position: center;
+  // padding: 150px 0;
+  height: 350px;
+  width: 100%;
+}
+
+.com-info h2 {
+  color: white;
+  font-family: inter;
+  font-weight: 500px;
+  font-size: 20px;
+  padding-top: 20px;
+  padding-left: 10px;
+}
+
+.com-info p {
+  font-family: inter;
+  font-size: 17px;
+  color: white;
+  display: block;
+  padding-left: 10px;
+  font-weight: 400px;
+}
+
+.com-info h3 {
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  font-family: inter;
+  font-weight: 200;
+}
+
+.btn {
+  color: pink;
+}
+
+.btn-primary {
+  background-color: #c702a7;
+  margin-left: 10px;
+  margin-top: 10px;
+  height: 50px;
+  width: 150px;
+  font-family: inter;
+  font-size: 15px;
+  font-weight: 400px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post h2 {
+  color: white;
+  font-family: inter;
+  font-weight: 500px;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.post ul {
+  font-family: inter;
+  font-size: 15px;
+  color: white;
+  display: block;
+  padding-left: 10px;
+  font-weight: 200px;
+}
+
+i {
+  font-size: 15px;
+  background: none;
+  color: white;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+.form {
+  color: white;
+  padding-left: 10px;
+  font-family: inter;
+  font-size: 15px;
+}

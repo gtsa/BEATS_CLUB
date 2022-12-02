@@ -1,11 +1,26 @@
-<h1><%= @community.name %> </h1>
-<p>Description:</p>
-<h2><%= @community.description %> </h2>
-<% unless @community.location.nil? %>
-  <p>Location:</p>
-  <h2><%= @community.location %> </h2>
+<div class="banner-com" style="background-image: url('https://i.pinimg.com/474x/f4/65/a2/f465a256777751abf54ff379c6c1cd99.jpg')"></div>
+
+<div class="container">
+
+<div class="com-info">
+<h2><%= @community.name %> </h2>
+<p><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %></p>
+<p>Genre: <%= link_to @community.genre.name, genre_path(@community.genre), class:"btn"%></p>
+
+<%# JOIN COMMUNITY BUTTON %>
+<% if @user_check && @joined  %>
+<p><%= "You are the creator of this community and have been a member since #{@this_community.created_at.strftime("%B  %Y")}" %></p>
+<% elsif @user_check && !@joined  %>
+<p>You are the creator of this community</p>
+<%= link_to "Join Community", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-primary"%>
+<% elsif !@user_check && @joined  %>
+<p><%= "You have been a member since #{@this_community.created_at.strftime("%B  %Y")}" %></p>
+<%= link_to "Leave Community", community_join_community_path(@community, current_user.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-primary"%>
+<% elsif !@user_check && !@joined  %>
+<%= link_to "Join Community", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-primary"%>
 <% end %>
-Created <%= time_ago_in_words(@community.created_at) %> ago
+
+</div>
 
 <%# EDIT COMMUNITY BUTTON %>
 <% if @user_check %>
@@ -15,15 +30,16 @@ Created <%= time_ago_in_words(@community.created_at) %> ago
 
 
 <br>
-<h2> Participating Members </h2>
-<ol>
-<% @profiles.each do |profile|%>
-  <li>
-    <%= link_to "#{profile.nickname}#{@community.profile_id == profile.id ? ' (creator)' : ''}", profile_path(profile) %>
-  </li>
-<% end %>
-</ol>
-
+<%# <h2>Members 30</h2> %>
+<%# <h2> Participating Members </h2> %>
+<%# <ol> %>
+<%# @profiles.each do |profile|%>
+  <%# <li> %>
+    <%#= link_to "#{profile.nickname}#{@community.profile_id == profile.id ? ' (creator)' : ''}", profile_path(profile) %>
+  <%# </li> %>
+<%# end %>
+<%# </ol> %>
+<div class="post">
 <h2> Posts </h2>
 <% @posts_profiles_likes.each do |post_profile_likes|%>
   <p>
@@ -55,8 +71,24 @@ Created <%= time_ago_in_words(@community.created_at) %> ago
   </p>
  <% end %>
 
-<h5>Add your post</h5>
+<div class="form">
+<h3>Add your post</h3>
 <%= simple_form_for [@community, @post] do |f| %>
   <%= f.input :content, placeholder: "Add your post here..." %>
   <%= f.submit class:"btn btn-primary" %>
 <% end %>
+</div>
+</div>
+
+</div>
+
+
+<h3><%#= @community.description %> </h3>
+<%# unless @community.location.nil? %>
+  <%# <p>Location:</p> %>
+  <h3><%#= @community.location %> </h3>
+<%# end %>
+
+<%# <p>Created %>
+<%#= time_ago_in_words(@community.created_at) %>
+<%# ago</p> %>
