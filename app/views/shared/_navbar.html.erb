@@ -16,7 +16,7 @@
             <% if user_signed_in? %>
               <%= link_to "Log out", destroy_user_session_path, class:"nav-link",  style:"float: right; color: #dfdfc9", data: {turbo_method: :delete} %>
             <% else %>
-              <%= link_to "Log out", new_user_session_path, class:"nav-link",  style:"float: right; color: #dfdfc9" %>
+              <%= link_to "Log in", new_user_session_path, class:"nav-link",  style:"float: right; color: #dfdfc9" %>
             <% end %>
           </li>
           <%# <li class="nav-item dropdown">
