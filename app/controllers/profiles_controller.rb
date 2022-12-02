@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  # skip_before_action :authenticate_user!, only: %i[show]
+
   def show
     @profile = Profile.find(params[:id])
     profile_communities_ids = JoinCommunity.where(profile: @profile).pluck(:community_id)

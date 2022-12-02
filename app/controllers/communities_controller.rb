@@ -1,15 +1,19 @@
 class CommunitiesController < ApplicationController
-  # skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @communities = Community.all
-    user_communities = JoinCommunity.where(profile_id: current_user.profiles.first.id)
-    @community_created_joined = @communities.map do |community|
-      [
-        community,
-        current_user.id == community.profile_id,
-        user_communities.map(&:community_id).include?(community.id)
-      ]
+    if params[:query].present?
+      @communities = Community.where("name ILIKE ?", "%#{params[:query]}%")
+    else
+      @communities = Community.all
+      user_communities = JoinCommunity.where(profile_id: current_user.profiles.first.id)
+      @community_created_joined = @communities.map do |community|
+        [
+          community,
+          current_user.id == community.profile_id,
+          user_communities.map(&:community_id).include?(community.id)
+        ]
+      end
     end
   end
 
