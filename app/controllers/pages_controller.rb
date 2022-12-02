@@ -8,6 +8,5 @@ class PagesController < ApplicationController
   def myprofile
     @profile = current_user.profiles.first
     @user_check = current_user == @profile.user
-    raise
   end
 end
