@@ -1,7 +1,10 @@
 <div class="container">
   <div class="search-form-control-com form-group" style="display:flex">
     <%= form_with url: communities_path, method: :get do %>
-      <%= text_field_tag :query, params[:query], class: "form-control-com string required"%>
+      <%= text_field_tag :query,
+      params[:query],
+      class: "form-control-com string required"
+      %>
         <%= button_tag "Search", class: "btn btn-search" do %>
         <i class="fas fa-search"></i> Search
       <% end %>

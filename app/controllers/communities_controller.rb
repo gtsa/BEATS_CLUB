@@ -12,6 +12,7 @@ class CommunitiesController < ApplicationController
     @communitiesr = communities.sort_by { |com| -com[1] }
     @communities = @communitiesr.map(&:first)
     @communities.unshift(*user_communities)
+    @communities = Community.where("name ILIKE?", "%#{params[:query]}%") if params[:query].present?
   end
 
   def show
