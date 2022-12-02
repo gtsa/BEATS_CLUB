@@ -80,6 +80,8 @@ name_user_locations.each do |name_user_location|
   )
 end
 
+
+
 puts "Creating Communities..."
 profiles = Profile.all.to_a
 genres = Genre.all.to_a
