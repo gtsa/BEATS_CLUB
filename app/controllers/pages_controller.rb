@@ -3,12 +3,13 @@ class PagesController < ApplicationController
 
   def home
     @disable_nav = true
+    @disable_bottom = true
   end
 
   def myprofile
     @profile = current_user.profiles.first
     if @profile.nil?
-      redirect_to '/profiles/new', alert: "You haven't yet created your profile!"
+      redirect_to '/profiles/new'
     else
       @user_check = current_user == @profile.user
     end
