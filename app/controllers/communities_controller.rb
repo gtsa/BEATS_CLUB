@@ -2,18 +2,17 @@ class CommunitiesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
+    @communities = Community.all.to_a
     if user_signed_in?
       user_communities_ids = JoinCommunity.where(profile_id: current_user.profiles.first.id).pluck(:community_id).to_a
       user_communities = user_communities_ids.map { |elem| Community.find(elem) }
-      communities -= user_communities
-      communities = communities.map do |commmunity|
+      @communities -= user_communities
+      @communities = @communities.map do |commmunity|
         [commmunity, JoinCommunity.where(community_id: commmunity).length]
       end
-      @communities = communities.sort_by { |com| -com[1] }
+      @communities = @communities.sort_by { |com| -com[1] }
       @communities = @communities.map(&:first)
       @communities.unshift(*user_communities)
-    else
-      @communities = Community.all.to_a
     end
     @communities = Community.where("name ILIKE?", "%#{params[:query]}%") if params[:query].present?
   end
@@ -37,6 +36,7 @@ class CommunitiesController < ApplicationController
       @joined = user_communities.map(&:community_id).include? @community.id
     end
     @post = Post.new(community: @community)
+    @communities_show = user_signed_in? && @joined
   end
 
   def new

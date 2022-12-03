@@ -17,8 +17,7 @@
         <p>You are the creator of this community</p>
         <%= link_to "Rejoin Community", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-primary"%>
       <% elsif !@user_check && @joined  %>
-        <p><%= "You have been a member since #{@this_community.created_at.strftime("%B  %Y")}" %></p>
-        <%= link_to "Leave Community", community_join_community_path(@community, current_user.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-primary"%>
+        <p><%= "You have been a member since #{@community.created_at.strftime("%B  %Y")}" %></p>
       <% elsif !@user_check && !@joined  %>
         <%= link_to "Join Community", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-primary"%>
       <% end %>
