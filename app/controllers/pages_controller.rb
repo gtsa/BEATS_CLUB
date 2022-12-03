@@ -7,6 +7,10 @@ class PagesController < ApplicationController
 
   def myprofile
     @profile = current_user.profiles.first
-    @user_check = current_user == @profile.user
+    if @profile.nil?
+      redirect_to '/profiles/new', alert: "You haven't yet created your profile!"
+    else
+      @user_check = current_user == @profile.user
+    end
   end
 end
