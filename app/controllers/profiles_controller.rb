@@ -9,6 +9,9 @@ class ProfilesController < ApplicationController
   end
 
   def new
+    @disable_bottom = true
+    @disable_nav = true
+    @alt_nav = true
     @profile = Profile.new
   end
 
@@ -16,13 +19,15 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
     @profile.user = current_user
     if @profile.save!
-      redirect_to myprofile_path
+      redirect_to myprofile_path, notice: "#{@profile.first_name}! Welcome to Beats Club!"
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
+    @disable_bottom = true
+    @disable_nav = true
     @profile = Profile.find(params[:id])
   end
 
