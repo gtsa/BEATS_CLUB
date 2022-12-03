@@ -2,16 +2,19 @@ class CommunitiesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    communities = Community.all.to_a
-    user_communities_ids = JoinCommunity.where(profile_id: current_user.profiles.first.id).pluck(:community_id).to_a
-    user_communities = user_communities_ids.map { |elem| Community.find(elem) }
-    communities -= user_communities
-    communities = communities.map do |commmunity|
-      [commmunity, JoinCommunity.where(community_id: commmunity).length]
+    if user_signed_in?
+      user_communities_ids = JoinCommunity.where(profile_id: current_user.profiles.first.id).pluck(:community_id).to_a
+      user_communities = user_communities_ids.map { |elem| Community.find(elem) }
+      communities -= user_communities
+      communities = communities.map do |commmunity|
+        [commmunity, JoinCommunity.where(community_id: commmunity).length]
+      end
+      @communities = communities.sort_by { |com| -com[1] }
+      @communities = @communities.map(&:first)
+      @communities.unshift(*user_communities)
+    else
+      @communities = Community.all.to_a
     end
-    @communitiesr = communities.sort_by { |com| -com[1] }
-    @communities = @communitiesr.map(&:first)
-    @communities.unshift(*user_communities)
     @communities = Community.where("name ILIKE?", "%#{params[:query]}%") if params[:query].present?
   end
 
@@ -27,10 +30,12 @@ class CommunitiesController < ApplicationController
     @profiles.delete(actual_profile)
     @profiles = @profiles.sort_by(&:nickname)
     @profiles.unshift(actual_profile)
-    @user_check = current_user.id == @community.profile_id
-    user_communities = JoinCommunity.where(profile_id: current_user.profiles.first.id)
-    @this_community = user_communities.where(community_id: @community.id).first
-    @joined = user_communities.map(&:community_id).include? @community.id
+    if user_signed_in?
+      @user_check = current_user.id == @community.profile_id
+      user_communities = JoinCommunity.where(profile_id: current_user.profiles.first.id)
+      # @this_community = user_communities.where(community_id: @community.id).first
+      @joined = user_communities.map(&:community_id).include? @community.id
+    end
     @post = Post.new(community: @community)
   end
 
