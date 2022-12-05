@@ -23,23 +23,23 @@
     <div>
       <p>5</p>
       <h5>Clubs</h5>
-      <p>Created</p>
+      <p data-action="click->tabs#displayCreated" data-tabs-target="createdLink">Created</p>
     </div>
 
     <div>
       <p>10</p>
       <h5>Clubs</h5>
-      <p>Joined</p>
+      <p data-action="click->tabs#displayJoined" data-tabs-target="joinedLink">Joined</p>
     </div>
 
   </div>
-
+<%# 
   <div class="toggle">
     <h2>Clubs</h2>
     <h2>Posts</h2>
-  </div>
+  </div> %>
 
-  <div class="cards">
+  <div class="cards" data-tabs-target="created">
     <% current_user.profiles[0].communities.each do |community| %>
       <%= link_to community_path(community) do %>
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://i.pinimg.com/736x/77/67/5d/77675dfa144fff36f01509ff5d073fc5.jpg)">
@@ -47,6 +47,18 @@
         </div>
       <% end %>
     <% end %>
+  </div>
 
+  <div class="cards" data-tabs-target="joined">
+    <%# <h4 style="color:white;">Joined cards</h4> %>
+    <% current_user.profiles[0].join_communities.each do |join_community| %>
+      <%= link_to community_path(join_community.community) do %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://i.pinimg.com/736x/77/67/5d/77675dfa144fff36f01509ff5d073fc5.jpg)">
+          <p><%= join_community.community.name.truncate(35) %></p>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
+
+<%# deb.join_communities.last.community.name %>
