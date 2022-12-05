@@ -46,7 +46,7 @@ class CommunitiesController < ApplicationController
   def create
     @community = Community.new(community_params)
     if @community.save
-      JoinCommunity.create(community_id: @communit.id, profile_id: current_user)
+      JoinCommunity.create(community_id: @community.id, profile_id: current_user)
       redirect_to communities_path(@community)
     else
       render :new, status: :unprocessable_entity
