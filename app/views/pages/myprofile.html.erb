@@ -1,13 +1,15 @@
 <%# <%= current_user.profiles[0].location  %>
 
-<%# <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path('profile.jpg'))"> %>
+
+
+<%# <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path('profile.jpg') %>
 <%# </div> %>
 
 
 <div class="container" data-controller="tabs">
 
   <div class="name">
-    <%= image_tag "profi.jpg", class:"avatar-bordered" %>
+    <%= cl_image_tag @profile.photo.key, class:"avatar-bordered" %>
 
     <h1><%= current_user.profiles[0].first_name %></h1>
     <p><%= current_user.profiles[0].bio %></p>
