@@ -3,17 +3,22 @@
 </div>
 
 <div class= "bottom-bar">
-  <%= link_to myprofile_path(@profile) do %>
+  <%= link_to feeds_path do %>
     <p style="color:#e9eced">
       <i class="fa-solid fa-house"></i>Home
     </p>
   <% end %>
+
   <%= link_to communities_path(@community) do %>
     <p style="color:#e9eced">
-      <i class="fa-solid fa-magnifying-glass"></i>Explore
+      <i class="fa-solid fa-magnifying-glass"></i>Search
     </p>
   <% end %>
+
+  <%= link_to myprofile_path(@profile) do %>
     <p style="color:#e9eced">
-      <i class="fa-solid fa-rss"></i>Feed
+      <i class="fa-solid fa-user"></i>My Profile
     </p>
+  <% end %>
+
 </div>

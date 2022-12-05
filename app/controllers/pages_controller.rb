@@ -6,6 +6,10 @@ class PagesController < ApplicationController
     @disable_bottom = true
   end
 
+  def feeds
+
+  end
+
   def myprofile
     @profile = current_user.profiles.first
     if @profile.nil?
