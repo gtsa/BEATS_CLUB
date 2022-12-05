@@ -21,7 +21,7 @@
 
   <div class="info">
     <div>
-      <p><%= current_user.profiles[0].communities.count %></p>
+      <p><%= Community.where(profile_id: current_user.profiles[0].id).count %></p>
       <p data-action="click->tabs#displayCreated" data-tabs-target="createdLink">Clubs Created</p>
     </div>
 
@@ -33,7 +33,7 @@
   </div>
 
   <div class="cards" data-tabs-target="created">
-    <% current_user.profiles[0].communities.each do |community| %>
+    <%  Community.where(profile_id: current_user.profiles[0].id).each do |community| %>
       <%= link_to community_path(community) do %>
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://i.pinimg.com/736x/77/67/5d/77675dfa144fff36f01509ff5d073fc5.jpg)">
           <p><%= community.name.truncate(35) %></p>
