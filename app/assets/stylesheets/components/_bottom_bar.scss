@@ -29,13 +29,25 @@
     flex-direction: column;
     margin-bottom: 0;
   }
-  i {
-    align-self: center;
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color:#e9eced;
+
+    &.active-link {
+      color: grey;
+      i {
+        color: grey;
+      }
+    }
   }
 }
 
 .bottom-bar-spacer {
   height: 100px;
+
 }
 
 #btn-login {

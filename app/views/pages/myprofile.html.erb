@@ -21,23 +21,16 @@
 
   <div class="info">
     <div>
-      <p>5</p>
-      <h5>Clubs</h5>
-      <p data-action="click->tabs#displayCreated" data-tabs-target="createdLink">Created</p>
+      <p><%= current_user.profiles[0].communities.count %></p>
+      <p data-action="click->tabs#displayCreated" data-tabs-target="createdLink">Clubs Created</p>
     </div>
 
     <div>
-      <p>10</p>
-      <h5>Clubs</h5>
-      <p data-action="click->tabs#displayJoined" data-tabs-target="joinedLink">Joined</p>
+      <p><%= current_user.profiles[0].join_communities.count %></p>
+      <p data-action="click->tabs#displayJoined" data-tabs-target="joinedLink">Clubs Joined</p>
     </div>
 
   </div>
-<%# 
-  <div class="toggle">
-    <h2>Clubs</h2>
-    <h2>Posts</h2>
-  </div> %>
 
   <div class="cards" data-tabs-target="created">
     <% current_user.profiles[0].communities.each do |community| %>
