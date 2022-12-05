@@ -1,17 +1,20 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home]
+  # skip_before_action :authenticate_user!, only: [:home]
 
   def home
     @disable_nav = true
     @disable_bottom = true
   end
 
-  def myprofile
-    @profile = current_user.profiles.first
-    if @profile.nil?
-      redirect_to '/profiles/new'
-    else
-      @user_check = current_user == @profile.user
-    end
+  def feeds
+
   end
+
+  def myprofile
+    # redirect_to profile_path(current_user.id) if user_signed_in?
+    @profile = Profile.find_by(user: current_user)
+    # @user_check = current_user == @profile.user
+  end
+
+
 end
