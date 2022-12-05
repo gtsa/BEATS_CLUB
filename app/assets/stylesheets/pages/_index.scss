@@ -14,7 +14,7 @@
 
 .search-form-control-com .btn {
   position: absolute;
-  top: 8px;
+  top: 4px;
   bottom: 8px;
   right: 8px;
 }
@@ -78,7 +78,7 @@
   // background-color: #c702a7;
   // transition: background 0.3s ease;
   // position: absolute;
-  font-size: 40px;
+  // font-size: 40px;
   // font-family: inter;
   // text-transform: uppercase;
   // box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -87,11 +87,14 @@
   // display: flex;
   // align-items: center;
   // margin-top: 10px;
-  margin-left: -40px;
+  // margin-left: -40px;
   // justify-content: center;
-  margin-bottom: 1px;
+  // margin-bottom: -50px;
 
-  i {
+}
+
+
+.fa-search {
     font-size: 20px;
-  }
+    // margin-bottom: -200px;
 }
