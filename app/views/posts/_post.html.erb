@@ -1,17 +1,18 @@
+
+<div class="container">
+<div class="card">
+<div class="user">
+<img src="https://i.pravatar.cc/40?img=1" alt="user__image" class="user__image">
+<%= post_profile_likes[1].nickname %>
+</div>
+<p>
+<img src="https://i.pinimg.com/474x/8c/3e/ae/8c3eae3f6348d16d454df8084d9dfb68.jpg" alt="card__image" class="card__image" width="600">
+</p>
 <%= post_profile_likes.first.content %>
-<li>Posted by <em><%= post_profile_likes[1].nickname %></em>
-  (
-    <%= time_ago_in_words(post_profile_likes[0].created_at) %>
-    ago
-    <% if post_profile_likes[0].created_at != post_profile_likes[0].updated_at %>
-      <%= "— edited #{time_ago_in_words(post_profile_likes[0].updated_at)} ago" %>
-    <% end %>
-  )
-</li>
+
 <% if user_signed_in? && post_profile_likes[1].id == current_user.id %>
   <%= link_to "Edit Post", edit_community_post_path(@community, post_profile_likes[0])%>
 <% end %>
-<li><%= pluralize(post_profile_likes[2].length, 'like') %> </li>
 <% if user_signed_in? %>
   <li>
     <% unless post_profile_likes[2].map(&:profile_id).include? current_user.id %>
@@ -23,5 +24,14 @@
       <i class="fa-solid fa-heart"></i>
       <% end %>
     <% end %>
-  </li>
+<li><%= pluralize(post_profile_likes[2].length, 'like') %> </li>
 <% end %>
+  </li>
+<%= time_ago_in_words(post_profile_likes[0].created_at) %>
+    ago
+    <% if post_profile_likes[0].created_at != post_profile_likes[0].updated_at %>
+      <%= "— edited #{time_ago_in_words(post_profile_likes[0].updated_at)} ago" %>
+    <% end %>
+</div>
+
+
