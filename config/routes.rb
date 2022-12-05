@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   }
 
   root to: "pages#home"
+  get '/feeds', to: 'pages#feeds'
   get '/myprofile', to: 'pages#myprofile'
   get '/about', to: 'pages#about'
   resources :genres, only: %i[index show] do

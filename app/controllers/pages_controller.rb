@@ -6,6 +6,10 @@ class PagesController < ApplicationController
     @disable_bottom = true
   end
 
+  def feeds
+
+  end
+
   def myprofile
     # redirect_to profile_path(current_user.id) if user_signed_in?
     @profile = Profile.find_by(user: current_user)

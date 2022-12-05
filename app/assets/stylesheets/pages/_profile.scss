@@ -1,11 +1,11 @@
-.banner {
-  background-size: cover;
-  background-position: center;
-  // padding: 150px 0;
-  height: 200px;
-  width: 100%;
-  position: absolute;
-}
+// .banner {
+//   background-size: cover;
+//   background-position: center;
+//   // padding: 150px 0;
+//   height: 200px;
+//   width: 100%;
+//   position: absolute;
+// }
 
 .name {
   text-align: center;
@@ -18,7 +18,7 @@
   }
 
   p {
-    color: #959595;
+    color: white;
     margin: 15px 15px;
     font-size: small;
 
@@ -37,16 +37,18 @@ a {
 }
 
 .info {
-  border: 1px solid #f2f2f2;
+  border: 1px solid white;
   border-radius: 16px;
   display: flex;
   justify-content: space-evenly;
-  padding: 5px;
+  margin-left: 13px;
+  margin-right: 13px;
 
   p {
-    color: #f2f2f2;
+    color: grey;
     text-align: center;
     margin-bottom: 2px;
+        // padding: 5px;
   }
 
   h5 {
@@ -56,18 +58,26 @@ a {
   }
 }
 
-.toggle {
-  border-radius: 16px;
-  border: 1px solid #C702A7;
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 10px;
-  padding: 10px;
+// .toggle {
+//   border-radius: 16px;
+//   border: 1px solid #C702A7;
+//   display: flex;
+//   justify-content: space-evenly;
+//   margin-top: 10px;
+//   padding: 10px;
 
-  h2 {
-    color: #f2f2f2;
-    font-size: 16px;
-    text-align: center;
-    margin-bottom: 2px;
+//   h2 {
+//     color: #f2f2f2;
+//     font-size: 16px;
+//     text-align: center;
+//     margin-bottom: 2px;
+//   }
+// }
+
+.active {
+
+  &:hover {
+    color: white;
   }
+
 }
