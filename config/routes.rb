@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
+
   root to: "pages#home"
   get '/myprofile', to: 'pages#myprofile'
+  get '/about', to: 'pages#about'
   resources :genres, only: %i[index show] do
     resources :join_genres, only: %i[create destroy]
   end

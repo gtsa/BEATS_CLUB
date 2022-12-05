@@ -1,8 +1,18 @@
-<%= simple_form_for @profile do |f| %>
-<%= f.input :nickname %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :bio %>
-  <%= f.input :location %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <div class="create-profile-title">
+   <h1 class="create-profile-title">Edit Your Profile</h1>
+  </div>
+  <br>
+  <div class="profile-form">
+  <%= simple_form_for @profile do |f| %>
+    <%= f.input :nickname, label:false %>
+    <%= f.input :first_name, label: false %>
+    <%= f.input :last_name, label: false %>
+    <%= f.input :location, label:false %>
+    <%= f.input :bio, label:false %>
+    <div class="wrapper">
+    <%= f.submit "Update Profile", class: "btn btn-flat btn-form", style: "display:block; margin: 0 auto;"%>
+    </div>
+  <% end %>
+  </div>
+</div>
