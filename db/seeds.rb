@@ -1,3 +1,12 @@
+require "open-uri"
+
+
+
+file = URI.open("https://upload.wikimedia.org/wikipedia/en/d/dd/David_Brent_111.jpg")
+profile = Profile.new(first_name: "David", last_name: "Brent", nickname: "The Brentmeister", bio: "friend first and a boss second. Probably an entertainer third.")
+profile.photo.attach(io: file, filename: "brent.png", content_type: "image/png")
+profile.save
+
 puts "Seeding started..."
 names = [
   ["George", "Tsagiannis"],
@@ -79,6 +88,8 @@ name_user_locations.each do |name_user_location|
     location: name_user_location[2]
   )
 end
+
+
 
 puts "Creating Communities..."
 profiles = Profile.all.to_a

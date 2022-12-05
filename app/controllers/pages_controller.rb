@@ -7,11 +7,10 @@ class PagesController < ApplicationController
   end
 
   def myprofile
-    @profile = current_user.profiles.first
-    if @profile.nil?
-      redirect_to '/profiles/new'
-    else
-      @user_check = current_user == @profile.user
-    end
+    # redirect_to profile_path(current_user.id) if user_signed_in?
+    @profile = Profile.find_by(user: current_user)
+    # @user_check = current_user == @profile.user
   end
+
+
 end
