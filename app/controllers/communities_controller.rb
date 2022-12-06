@@ -4,7 +4,7 @@ class CommunitiesController < ApplicationController
   def index
     @communities = Community.all.to_a
     if user_signed_in?
-      user_communities_ids = JoinCommunity.where(profile_id: current_user.profiles.first.id).pluck(:community_id).to_a
+      user_communities_ids = JoinCommunity.where(profile_id: current_user.profiles.last.id).pluck(:community_id).to_a
       user_communities = user_communities_ids.map { |elem| Community.find(elem) }
       @communities -= user_communities
       @communities = @communities.map do |commmunity|
@@ -31,8 +31,8 @@ class CommunitiesController < ApplicationController
     @profiles.unshift(actual_profile)
     if user_signed_in?
       @user_check = current_user.id == @community.profile_id
-      user_communities = JoinCommunity.where(profile_id: current_user.profiles.first.id)
-      # @this_community = user_communities.where(community_id: @community.id).first
+      user_communities = JoinCommunity.where(profile_id: current_user.profiles.last.id)
+      # @this_community = user_communities.where(community_id: @community.id).last
       @joined = user_communities.map(&:community_id).include? @community.id
     end
     @post = Post.new(community: @community)

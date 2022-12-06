@@ -3,7 +3,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @community = Community.find(params[:community_id])
     @post.community = @community
-    @post.profile_id = current_user.profiles.first.id
+    @post.profile_id = current_user.profiles.last.id
     if @post.save!
       redirect_to community_path(@community)
     else
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   end
 
   def like
-    @post = Post.find(params[:community_id].split('/').first)
+    @post = Post.find(params[:community_id].split('/').last)
     @community = Community.find(params[:id])
     Like.create(
       profile_id: current_user.id,

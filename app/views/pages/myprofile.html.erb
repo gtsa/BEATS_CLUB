@@ -1,4 +1,4 @@
-<%# <%= current_user.profiles[0].location  %>
+<%# <%= current_user.profiles.last.location  %>
 
 
 
@@ -20,7 +20,7 @@
 
   <div class="info">
     <div>
-      <h5><%= Community.where(profile_id: current_user.profiles[0].id).count %></h5>
+      <h5><%= Community.where(profile_id: current_user.profiles.last.id).count %></h5>
         <p data-action="click->tabs#displayCreated" data-tabs-target="createdLink">Clubs Created</p>
     </div>
     <div>
@@ -30,7 +30,7 @@
   </div>
 
   <div class="cards" data-tabs-target="created">
-    <% Community.where(profile_id: current_user.profiles[0].id).each do |community| %>
+    <% Community.where(profile_id: current_user.profiles.last.id).each do |community| %>
       <%= link_to community_path(community) do %>
         <%= cl_image_tag community.photo.key, class: "card-category" %>
           <p><%= community.name.truncate(35) %></p>
@@ -39,7 +39,7 @@
   </div>
 
   <div class="cards" data-tabs-target="joined">
-    <% current_user.profiles[0].join_communities.each do |join_community| %>
+    <% current_user.profiles.last.join_communities.each do |join_community| %>
       <%= link_to community_path(join_community.community) do %>
         <%= cl_image_tag join_community.community.photo.key, class: "card-category" %>
           <p><%= join_community.community.name %></p>

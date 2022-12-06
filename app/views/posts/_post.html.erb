@@ -3,10 +3,10 @@
   <h2> Posts </h2>
     <img src="https://i.pravatar.cc/40?img=1" alt="user__image" class="user_avatar">
     <p class="name_post"><%= post_profile_likes[1].nickname %></p>
-     <p class="time_post"><%= time_ago_in_words(post_profile_likes[0].created_at) %>
+     <p class="time_post"><%= time_ago_in_words(post_profile_likes.first.created_at) %>
     ago
-   <% if post_profile_likes[0].created_at != post_profile_likes[0].updated_at %>
-      <%= "— edited #{time_ago_in_words(post_profile_likes[0].updated_at)} ago" %>
+   <% if post_profile_likes.first.created_at != post_profile_likes.first.updated_at %>
+      <%= "— edited #{time_ago_in_words(post_profile_likes.first.updated_at)} ago" %>
     <% end %></p>
   </div>
 
@@ -18,7 +18,7 @@
 </div>
 <p>
 
-<%= cl_image_tag post_profile_likes[0].photo.key, alt:"card__image", class:"card__image", width:"600"%>
+<%= cl_image_tag post_profile_likes.first.photo.key, alt:"card__image", class:"card__image", width:"600"%>
 </p>
 <%= post_profile_likes.first.content %>
 
@@ -26,7 +26,7 @@
     <div class="user_post">
     <%= post_profile_likes.first.content %>
     <% if user_signed_in? && @joined && post_profile_likes[1].id == current_user.id %>
-    <p><%= link_to "Edit Post", edit_community_post_path(@community, post_profile_likes[0])%>
+    <p><%= link_to "Edit Post", edit_community_post_path(@community, post_profile_likes.first)%>
     <% end %>
     <div class="post_likes">
     <% if user_signed_in? && @joined%>
