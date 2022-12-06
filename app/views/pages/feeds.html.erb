@@ -1,6 +1,7 @@
 <h1>Your Feed</h1>
-<% if current_user.profiles.empty? %>
+<% if current_user.profiles.last.join_communities.empty? %>
   <h2>Join a community to see your feed...</h2>
+  <%= link_to "communities", communities_path %>
 <% else %>
   <% @posts_author_likes.each do |elem| %>
     <%= link_to community_path(elem[:post].community) do %>
