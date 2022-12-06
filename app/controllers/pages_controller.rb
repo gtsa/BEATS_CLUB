@@ -1,12 +1,12 @@
 class PagesController < ApplicationController
   # skip_before_action :authenticate_user!, only: [:home]
 
-  def home
+  def landing
     @disable_nav = true
     @disable_bottom = true
   end
 
-  def feeds
+  def home
     if current_user.profiles.last
       @profile = current_user.profiles.last
       @posts = @profile.communities.map(&:posts).flatten
