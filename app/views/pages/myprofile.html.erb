@@ -9,10 +9,11 @@
 <div class="container" data-controller="tabs">
 
   <div class="name">
-    <%#= cl_image_tag @profile.photo.key, class:"avatar-bordered" %>
+    <%# #if @profile. %>
+    <%= cl_image_tag current_user.profiles.last.photo.key, class:"avatar-bordered" %>
 
-    <h1><%= current_user.profiles[0].first_name %></h1>
-    <p><%= current_user.profiles[0].bio %></p>
+    <h1><%= current_user.profiles.last.first_name %></h1>
+    <p><%= current_user.profiles.last.bio %></p>
     <% if @user_check %>
       <%= link_to edit_profile_path(@profile) do %>
       Edit Profile <i class="fa-regular fa-pen-to-square"></i>

@@ -11,14 +11,14 @@
 <%#<% end %>
 
 <div class="container">
-  <div class="search-form-control-com form-group" style="display:flex">
+  <div class="search-form-control-com form-group w-100">
     <%= form_with url: communities_path, method: :get do %>
       <%= text_field_tag :query,
-      params[:query],
+      params[:query], placeholder: "Search",
       class: "form-control-com string required"
       %>
         <%= button_tag "Search", class: "btn btn-search" do %>
-        <i class="fas fa-search"></i> Search
+        <i class="fas fa-search"></i>
       <% end %>
     <% end %>
   </div>

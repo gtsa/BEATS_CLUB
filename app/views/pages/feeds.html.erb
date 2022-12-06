@@ -1,1 +1,13 @@
-<h1><%= current_user.profiles[0].first_name %> Feeds</h1>
+<h1><%= @profile.first_name %> Feeds</h1>
+<% @posts_author_likes.each do |elem| %>
+    <%= link_to community_path(elem[:post].community) do %>
+    <div><%= "Community Name: #{elem[:post].community.name}" %></div>
+    <div><%= "Community Picture: #{elem[:post].community.photo.key}" %></div>
+    <div><%= "Post Author: #{elem[:author].nickname}" %></div>
+    <div><%= "Post Author Avatar: #{elem[:author].photo.key}" %></div>
+    <div><%= "Post Content: #{elem[:post].content}" %></div>
+    <div><%= "#{time_ago_in_words(elem[:post].created_at)} ago" %></div>
+    <div><%= "Likes: #{elem[:likes].count}" %></div>
+    <% end %>
+  <br>
+<% end %>

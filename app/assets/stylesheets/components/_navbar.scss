@@ -1,29 +1,22 @@
-.c {
-
-  &:hover {
-    .popup {
-      color: white;
-    }
-    .popup .items {
-      display: block;
-    }
-  }
+.navbar-lewagon {
+  justify-content: space-between;
+  background: #1b191f;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
 }
-
-
 
 .popup {
   position: relative;
   width: 100%;
   line-height: 0.8
+
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
 }
 
-.popup .items {
-  position: absolute;
-  background: #1b191f;
-  color: white;
-  display: none;
-  width: 100%;
+.navbar-lewagon .navbar-brand img {
+  width: 40px;
 }
 
 .nav-link-extra {
@@ -37,7 +30,10 @@
   white-space: nowrap;
   }
 
-.nav-link-extra:hover {
-  color: #dfdfc9;
-  background-color: #222126;
+#btn-login {
+  color: darkgrey;
+}
+
+.dropdown-item {
+  color: gray;
 }
