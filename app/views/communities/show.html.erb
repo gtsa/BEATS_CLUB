@@ -1,17 +1,14 @@
-<div class="banner-com" style="background-image: url('https://i.pinimg.com/564x/b9/94/ee/b994ee33ee04246c85d4e7ca30f93981.jpg')">
+<div class="banner-com">
+<%= cl_image_tag @community.photo.key, class: "background-image" %>
 </div>
-<div class="container-com">
-<%# <div class="card">
-<div class="card-body"> %>
-  <%# <div class="com-info"> %>
-  <div class="club-info">
-  <div class="name-genre">
-    <h6><%= @community.name %> </h6>
-    <h6>Genre: <%= @community.genre.name %></h6>
-    </div>
-     <p class="member"><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %></p>
-    <p><%= @community.description %> </p>
-<%# </div> %>
+  <div class="container-com">
+    <div class="club-info">
+    <div class="name-genre">
+      <h6><%= @community.name %> </h6>
+      <h6>Genre: <%= @community.genre.name %></h6>
+      </div>
+        <p class="member"><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %></p>
+        <p><%= @community.description %> </p>
 
     <% if user_signed_in? %>
       <%# JOIN COMMUNITY BUTTON %>
@@ -79,3 +76,4 @@
 <%# <p>Created %>
 <%#= time_ago_in_words(@community.created_at) %>
 <%# ago</p> %>
+<%# style="background-image: url('https://i.pinimg.com/564x/b9/94/ee/b994ee33ee04246c85d4e7ca30f93981.jpg')"> %>
