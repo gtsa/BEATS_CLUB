@@ -6,7 +6,8 @@
 <%= post_profile_likes[1].nickname %>
 </div>
 <p>
-<img src="https://i.pinimg.com/474x/8c/3e/ae/8c3eae3f6348d16d454df8084d9dfb68.jpg" alt="card__image" class="card__image" width="600">
+
+<%= cl_image_tag post_profile_likes[0].photo.key, alt:"card__image", class:"card__image", width:"600"%>
 </p>
 <%= post_profile_likes.first.content %>
 
@@ -33,5 +34,3 @@
       <%= "— edited #{time_ago_in_words(post_profile_likes[0].updated_at)} ago" %>
     <% end %>
 </div>
-
-
