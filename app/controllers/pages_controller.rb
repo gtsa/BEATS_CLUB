@@ -7,7 +7,12 @@ class PagesController < ApplicationController
   end
 
   def feeds
-
+    @profile = current_user.profiles.first
+    @posts = @profile.communities.map(&:posts).flatten
+    @posts = @posts.sort_by(&:created_at)
+    @posts_author_likes = @posts.map do |post|
+      { post:, author: Profile.find(post.profile_id), likes: Like.where(profile_id: post.profile_id) }
+    end
   end
 
   def myprofile
