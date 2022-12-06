@@ -3,7 +3,7 @@
 </div>
 
 <div class= "bottom-bar">
-  <%= link_to feeds_path do %>
+  <%= link_to(feeds_path(@feed), class: request.env['PATH_INFO'].include?('feeds') ? "active-link" : "") do %>
    <i class="fa-solid fa-house"></i>Home
   <% end %>
 

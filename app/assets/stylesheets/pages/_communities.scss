@@ -1,25 +1,25 @@
-.search-form-control {
-  position: relative;
-}
+// .search-form-control {
+//   position: relative;
+// }
 
-.search-form-control .btn {
-  position: absolute;
-  top: 8px;
-  bottom: 8px;
-  right: 8px;
-}
+// .search-form-control .btn {
+//   position: absolute;
+//   top: 8px;
+//   bottom: 8px;
+//   right: 8px;
+// }
 
-.search-form-control .form-control {
-  height: 3.5rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  border: 1px solid #E7E7E7;
-}
+// .search-form-control .form-control {
+//   height: 3.5rem;
+//   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+//   border: 1px solid #E7E7E7;
+// }
 
-.search-form-control .form-control:focus {
-  border: 1px solid #1EDD88;
-  outline: none !important;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
+// .search-form-control .form-control:focus {
+//   border: 1px solid #1EDD88;
+//   outline: none !important;
+//   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+// }
 
 // Communities Showpage Styling
 
@@ -27,7 +27,20 @@
   background-size: cover;
   background-position: center;
   // padding: 150px 0;
-  height: 350px;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  margin-left: 45px;
+  margin-top: 20px;
+  border: 1px solid white;
+  box-shadow: #E7E7E7;
+}
+
+.post-banner-com {
+  background-size: cover;
+  background-position: center;
+  // padding: 150px 0;
+  height: 200px;
   width: 100%;
 }
 
@@ -35,11 +48,11 @@
   margin: 10px;
 }
 .club-info {
-  padding-right: 12px;
+  // padding-right: 12px;
   .name-genre {
     display: flex;
     justify-content: space-between;
-   margin-right: 8px;
+  //  margin-right: 8px;
   }
 
   h6 {
@@ -64,184 +77,110 @@
   }
 }
 
+img {
+  width: 1000px;
+  height: 100px;
+   display: block;
+   object-fit: cover;
+ }
 
 
 
-// .com-info h2 {
-//   color: white;
-//   font-family: inter;
-//   font-weight: 500px;
-//   font-size: 20px;
-//   padding-top: 20px;
-//   padding-left: 10px;
-// }
+//  .user {
+//    display: flex;
+//    gap: .5rem;
+//    .user__image {
+//      border-radius: 50%;
+//     width: 50px;
+//     height: 50px;
+//    }
+//  }
 
-// .com-info p {
-//   font-family: inter;
-//   font-size: 17px;
-//   color: white;
-//   display: block;
-//   padding-left: 10px;
-//   font-weight: 400px;
-//   margin: 0;
-// }
 
-// .com-info h3 {
-//   color: white;
-//   font-size: 16px;
-//   padding: 10px;
-//   font-family: inter;
-//   font-weight: 200;
-// }
-
-.btn {
-  color: pink;
-}
-
-.btn-primary {
-  background-color: #c51964;
-  margin-left: 10px;
-  margin-top: 10px;
-  height: 50px;
-  width: 150px;
+//  user avatar and name styling start
+.user_info {
   font-family: inter;
-  font-size: 15px;
-  font-weight: 400px;
-  border-radius: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  color: white;
+  margin: 10px;
 
-.post h2 {
+  .user_avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  .name_post {
+    color: rgb(191, 191, 191);
+    margin: 0px;
+    font-size: 18px;
+  }
+
+
+  .time_post{
+    font-size: 13px;
+    color: rgb(189, 187, 187);
+  }
+}
+// /  user avatar and name styling end
+
+
+
+.user_post {
   color: white;
   font-family: inter;
-  font-weight: 500px;
-  font-size: 20px;
-  padding-top: 10px;
-  padding-left: 10px;
+  font-size: 12px;
+  font-weight: 200;
+  margin: 10px;
 }
 
-.post ul {
-  font-family: inter;
-  font-size: 15px;
-  color: rgb(81, 81, 81);
-  display: block;
-  padding-left: 10px;
-  font-weight: 200px;
-  list-style: none;
+.post_likes {
+  color: white;
+  font-size: 13px;
+  i {
+    font-size: 20px;
+  }
 }
 
-// .fa-heart {
 
+// .btn {
+//   color: pink;
+// }
+
+// .btn-primary {
+//   background-color: #c51964;
+//   margin-left: 10px;
+//   margin-top: 10px;
+//   height: 50px;
+//   width: 150px;
+//   font-family: inter;
+//   font-size: 15px;
+//   font-weight: 400px;
+//   border-radius: 30px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
 // }
 
 i {
   font-size: 15px;
   background: none;
   color: rgb(118, 117, 117);
+
+  .fa-solid fa-heart {
+   color: #c51964;
+  }
 }
+
 
 button {
   background: none;
   border: none;
 }
+// like heart styling end
 
-.form {
-  color: white;
-  padding-left: 10px;
+.post-form {
+  padding-left: 20px;
   font-family: inter;
   font-size: 15px;
-  width: 100%;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-body {
-  font-family: "Quicksand", sans-serif;
-  display: grid;
-  place-items: center;
-  height: 100vh;
-  // background: #7f7fd5;
-  // background: linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5);
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 1200px;
-  margin-block: 2rem;
-  gap: 2rem;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-  object-fit: cover;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  width: clamp(20rem, calc(20rem + 2vw), 22rem);
-  overflow: hidden;
-  box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
-  border-radius: 1em;
-  background: #ECE9E6;
-background: linear-gradient(to right, #FFFFFF, #ECE9E6);
-
-}
-
-
-
-.card__body {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-}
-
-
-.tag {
-  align-self: flex-start;
-  padding: .25em .75em;
-  border-radius: 1em;
-  font-size: .75rem;
-}
-
-.tag + .tag {
-  margin-left: .5em;
-}
-
-
-.card__body h4 {
-  font-size: 1.5rem;
-  text-transform: capitalize;
-}
-
-.card__footer {
-  display: flex;
-  padding: 1rem;
-  margin-top: auto;
-}
-
-.user {
-  display: flex;
-  gap: .5rem;
-}
-
-.user__image {
-  border-radius: 50%;
-  width: 50px;
-}
-
-.user__info > small {
-  color: #666;
+  width: 95%;
+  // margin: 10px;
 }

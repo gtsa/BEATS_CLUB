@@ -24,12 +24,12 @@
 
   <div class="info">
     <div>
-      <p><%= Community.where(profile_id: current_user.profiles[0].id).count %></p>
+      <h5><%= Community.where(profile_id: current_user.profiles[0].id).count %></h5>
       <p data-action="click->tabs#displayCreated" data-tabs-target="createdLink">Clubs Created</p>
     </div>
 
     <div>
-      <p><%= current_user.profiles[0].join_communities.count %></p>
+      <h5 class="num-circle"><%= current_user.profiles.last.join_communities.count %></h5>
       <p data-action="click->tabs#displayJoined" data-tabs-target="joinedLink">Clubs Joined</p>
     </div>
 
