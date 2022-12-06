@@ -3,7 +3,7 @@ class JoinCommunitiesController < ApplicationController
     @community = Community.find(params[:community_id])
     @join_community = JoinCommunity.new
     @join_community.community_id = @community.id
-    @join_community.profile_id = current_user.id
+    @join_community.profile_id = current_user.profiles.last.id
     if @join_community.save
       redirect_to community_path(@community)
     else
