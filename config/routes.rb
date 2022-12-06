@@ -4,8 +4,8 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  root to: "pages#home"
-  get '/feeds', to: 'pages#feeds'
+  root to: "pages#landing"
+  get '/home', to: 'pages#home'
   get '/myprofile', to: 'pages#myprofile'
   get '/about', to: 'pages#about'
   resources :genres, only: %i[index show] do

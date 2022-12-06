@@ -1,17 +1,18 @@
-
-<div class="banner-home mt-5" class="col-sm-6">
-</div>
-<div class="container">
-  <div class="row">
-    <h1>BEATS CLUB</h1>
-    <p>Building bonds around music</p>
-    <div class="wrapper">
-      <%= link_to "Create Profile", new_profile_path, class: "btn btn-flat" %>
-      <%# <a class="btn btn-flat" href="#">Create Profile</a> %>
-      <%# <div style= "color: white; position: absolute; margin-top: 100px;"> %>
-        <%# <p>Already member?</p>
-        <%= link_to "Log in to your profile", new_user_session_path, style:"font-size:16px; color: #c702a7"%>
-      <%# </div> %>
-    </div>
-  </div>
-</div>
+<h1>Your Feed</h1>
+<% if current_user.profiles.last.join_communities.empty? %>
+  <h2>Join a community to see your feed...</h2>
+  <%= link_to "communities", communities_path %>
+<% else %>
+  <% @posts_author_likes.each do |elem| %>
+    <%= link_to community_path(elem[:post].community) do %>
+      <div><%= "Community Name: #{elem[:post].community.name}" %></div>
+      <div><%= cl_image_tag elem[:post].community.photo.key %></div>
+      <div><%= "Post Author: #{elem[:author].nickname}" %></div>
+      <div><%= cl_image_tag elem[:author].photo.key, class: "user_avatar" %></div>
+      <div><%= "Post Content: #{elem[:post].content}" %></div>
+      <div><%= "#{time_ago_in_words(elem[:post].created_at)} ago" %></div>
+      <div><%= "Likes: #{elem[:likes].count}" %></div>
+    <% end %>
+    <br>
+  <% end %>
+<% end %>
