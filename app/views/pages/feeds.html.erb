@@ -1,4 +1,7 @@
 <h1>Your Feed</h1>
+<% if current_user.profiles.empty? %>
+  <h2>Join a community to see your feed...</h2>
+<% else %>
   <% @posts_author_likes.each do |elem| %>
     <%= link_to community_path(elem[:post].community) do %>
       <div><%= "Community Name: #{elem[:post].community.name}" %></div>
@@ -9,5 +12,6 @@
       <div><%= "#{time_ago_in_words(elem[:post].created_at)} ago" %></div>
       <div><%= "Likes: #{elem[:likes].count}" %></div>
     <% end %>
-  <br>
+    <br>
+  <% end %>
 <% end %>
