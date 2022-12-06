@@ -22,14 +22,19 @@
       <% end %>
     <% end %>
   </div>
+  <div class="btn-index">
 
- <div class="cards-com">
-    <% @communities.each do |community| %>
-      <%= link_to community_path(community) do  %>
-        <div class="card-category-com" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://i.pinimg.com/564x/46/5a/fa/465afafa6e00ea4615fd7e723b381c8e.jpg)">
-          <p><%= community.name %></p>
-        </div>
-      <% end %>
-    <% end %>
+
+
+    <div class="cards-com">
+    <%= link_to "Create Club", new_community_path, class: "card-category-com-add"%>
+        <% @communities.each do |community| %>
+          <%= link_to community_path(community) do  %>
+            <div class="card-category-com" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://i.pinimg.com/564x/46/5a/fa/465afafa6e00ea4615fd7e723b381c8e.jpg)">
+              <p><%= community.name %></p>
+            </div>
+          <% end %>
+        <% end %>
+    </div>
   </div>
 </div>
