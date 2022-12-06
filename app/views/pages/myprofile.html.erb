@@ -1,4 +1,4 @@
-<%# <%= current_user.profiles[0].location  %>
+<%# <%= current_user.profiles.last.location  %>
 
 
 
@@ -21,8 +21,8 @@
 
   <div class="info">
     <div>
-      <h5><%= Community.where(profile_id: current_user.profiles[0].id).count %></h5>
-      <p data-action="click->tabs#displayCreated" data-tabs-target="createdLink">Clubs Created</p>
+      <h5><%= Community.where(profile_id: current_user.profiles.last.id).count %></h5>
+        <p data-action="click->tabs#displayCreated" data-tabs-target="createdLink">Clubs Created</p>
     </div>
 
     <div>

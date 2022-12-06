@@ -11,7 +11,7 @@ class GenresController < ApplicationController
     @genre_profiles = profile_ids.map { |profile_id| Profile.find(profile_id) }
     @genre_communities = Community.where(genre: @genre)
     if user_signed_in?
-      user_genres = JoinGenre.where(profile_id: current_user.profiles.first.id)
+      user_genres = JoinGenre.where(profile_id: current_user.profiles.last.id)
       @joined = user_genres.map(&:genre_id).include? @genre.id
     end
   end
