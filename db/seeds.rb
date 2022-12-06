@@ -1,11 +1,9 @@
 require "open-uri"
 
-
-
-file = URI.open("https://upload.wikimedia.org/wikipedia/en/d/dd/David_Brent_111.jpg")
-profile = Profile.new(first_name: "David", last_name: "Brent", nickname: "The Brentmeister", bio: "friend first and a boss second. Probably an entertainer third.")
-profile.photo.attach(io: file, filename: "brent.png", content_type: "image/png")
-profile.save
+# file = URI.open("https://upload.wikimedia.org/wikipedia/en/d/dd/David_Brent_111.jpg")
+# profile = Profile.new(first_name: "David", last_name: "Brent", nickname: "The Brentmeister", bio: "friend first and a boss second. Probably an entertainer third.")
+# profile.photo.attach(io: file, filename: "brent.png", content_type: "image/png")
+# profile.save
 
 puts "Seeding started..."
 
@@ -431,7 +429,7 @@ communities_names.each_with_index do |name, index|
     genre: Genre.find_by(name: name.split.first),
     profile_id: index + 1
   )
-  community.photo.attach(io: file, filename: "name.split.join('_').png", content_type: "image/png")
+  community.photo.attach(io: file, filename: "#{name.split.join('_')}.png", content_type: "image/png")
   community.save
 end
 
@@ -443,6 +441,7 @@ communities.each do |community|
     community_id: community.id
   )
 end
+
 profiles = Profile.all
 profiles.each do |profile|
   communities_list = communities.shuffle
@@ -466,15 +465,20 @@ profiles.each do |profile|
   end
 end
 
-puts "Creating and adding Comments to Communities..."
-communities.each do |community|
-  Post.create(
-    content: "This is the first comment of our group.\n
-    Welcome to #{community.name}!\n
-    Thank you for sharing your thoughts and other interesting stuff with the members of our community",
+# Posts
+puts "Creating and adding Posts to Communities..."
+communities = Community.all
+communities.each_with_index do |community, index|
+  file = URI.open(commmunities_photo_url[index])
+  post = Post.new(
+    content: "Welcome to #{community.name}!\n
+    Thank you for sharing your thoughts and other interesting stuff with the members of our club",
     profile_id: community.profile_id,
-    community_id: community.id
+    community_id: community.id,
+    title: "The first comment of our club"
   )
+  post.photo.attach(io: file, filename: "#{[communities_names[index].split, '1st_post'].join('_')}.png", content_type: "image/png")
+  post.save
 end
 
 puts "Finished seeding successfully"
