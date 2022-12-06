@@ -30,7 +30,7 @@ class CommunitiesController < ApplicationController
     @profiles = @profiles.sort_by(&:nickname)
     @profiles.unshift(actual_profile)
     if user_signed_in?
-      @user_check = current_user.id == @community.profile_id
+      @user_check = current_user.profiles.last.id == @community.profile_id
       user_communities = JoinCommunity.where(profile_id: current_user.profiles.last.id)
       # @this_community = user_communities.where(community_id: @community.id).last
       @joined = user_communities.map(&:community_id).include? @community.id
@@ -47,7 +47,7 @@ class CommunitiesController < ApplicationController
     @community = Community.new(community_params)
     @community.profile_id = current_user.profiles.last.id
     if @community.save
-      JoinCommunity.create(community_id: @community.id, profile_id: current_user)
+      JoinCommunity.create(community_id: @community.id, profile_id: current_user.profiles.last.id)
       redirect_to communities_path(@community)
     else
       render :new, status: :unprocessable_entity

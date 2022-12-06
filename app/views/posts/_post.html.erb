@@ -25,12 +25,12 @@
   <div class="post-banner-com" style="background-image: url('https://images.unsplash.com/photo-1556317192-e8f4637c83a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80')"></div>
     <div class="user_post">
     <%= post_profile_likes.first.content %>
-    <% if user_signed_in? && @joined && post_profile_likes[1].id == current_user.id %>
+    <% if user_signed_in? && @joined && post_profile_likes[1].id == current_user.profiles.last.id %>
     <p><%= link_to "Edit Post", edit_community_post_path(@community, post_profile_likes.first)%>
     <% end %>
     <div class="post_likes">
     <% if user_signed_in? && @joined%>
-      <% unless post_profile_likes[2].map(&:profile_id).include? current_user.id %>
+      <% unless post_profile_likes[2].map(&:profile_id).include? current_user.profiles.last.id %>
       <%= button_to like_community_post_path(post_profile_likes), {post_id: @post.id}, method: :post do %>
       <i class="fa-regular fa-heart"></i>
       <% end %>
