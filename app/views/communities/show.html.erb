@@ -53,7 +53,7 @@
   </div>
 
 <div class="post-form">
-    <% if user_signed_in? %>
+    <% if user_signed_in? && @joined %>
         <%= render 'posts/form', community: @community, post: @post %>
       </div>
     <% end %>
