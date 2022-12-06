@@ -3,17 +3,18 @@
 </div>
 
 <div class= "bottom-bar">
-  <%= link_to myprofile_path(@profile) do %>
-    <p style="color:#e9eced">
-      <i class="fa-solid fa-house"></i>Home
-    </p>
+  <%= link_to(feeds_path(@feed), class: request.env['PATH_INFO'].include?('feeds') ? "active-link" : "") do %>
+   <i class="fa-solid fa-house"></i>Home
   <% end %>
-  <%= link_to communities_path(@community) do %>
-    <p style="color:#e9eced">
-      <i class="fa-solid fa-magnifying-glass"></i>Explore
-    </p>
+
+  <%= link_to(communities_path(@community), class: request.env['PATH_INFO'].include?('communities') ? "active-link" : "")  do %>
+    <i class="fa-solid fa-magnifying-glass"></i>Search
   <% end %>
-    <p style="color:#e9eced">
-      <i class="fa-solid fa-rss"></i>Feed
-    </p>
+
+  <%= link_to(myprofile_path(@profile), class: request.env['PATH_INFO'].include?('myprofile') ? "active-link" : "")  do %>
+      <i class="fa-solid fa-user"></i>My Profile
+  <% end %>
+
 </div>
+
+    <%# <p style="color:#e9eced"> %>

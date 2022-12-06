@@ -1,13 +1,10 @@
-.c {
-
-  &:hover {
-    .popup {
-      color: white;
-    }
-    .popup .items {
-      display: block;
-    }
-  }
+.navbar-lewagon {
+  justify-content: space-between;
+  background: #1b191f;
+  position: sticky;
+  width: 100%;
+  top: 0px;
+  z-index: 1;
 }
 
 .popup {
@@ -16,17 +13,17 @@
   line-height: 0.8
 }
 
-.popup .items {
-  position: absolute;
-  background: #1b191f;
-  color: white;
-  display: none;
-  width: 100%;
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-lewagon .navbar-brand img {
+  width: 40px;
 }
 
 .nav-link-extra {
   float: right;
-  background-color: #1b191f;
+  background-color: #c702a7;
   color: #dfdfc9;
   white-space: nowrap;
   border-bottom: 2px solid #222126;
@@ -35,7 +32,10 @@
   white-space: nowrap;
   }
 
-.nav-link-extra:hover {
-  color: #dfdfc9;
-  background-color: #222126;
+#btn-login {
+  color: darkgrey;
+}
+
+.dropdown-item {
+  color: gray;
 }

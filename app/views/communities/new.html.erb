@@ -7,6 +7,7 @@
   <%= simple_form_for @community do |f| %>
     <%= f.input :name, label:false %>
     <%= f.input :location, label: false %>
+    <%= f.association :genre, label: false %>
     <%= f.input :description, label: false %>
     <%= f.input :photo, as: :file, label: false %>
     <div class="wrapper">

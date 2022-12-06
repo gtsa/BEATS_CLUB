@@ -10,6 +10,17 @@
     <% end %></p>
   </div>
 
+<div class="container">
+<div class="card">
+<div class="user">
+<img src="https://i.pravatar.cc/40?img=1" alt="user__image" class="user__image">
+<%= post_profile_likes[1].nickname %>
+</div>
+<p>
+
+<%= cl_image_tag post_profile_likes[0].photo.key, alt:"card__image", class:"card__image", width:"600"%>
+</p>
+<%= post_profile_likes.first.content %>
 
   <div class="post-banner-com" style="background-image: url('https://images.unsplash.com/photo-1556317192-e8f4637c83a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80')"></div>
     <div class="user_post">

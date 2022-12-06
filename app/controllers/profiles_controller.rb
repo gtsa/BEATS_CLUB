@@ -19,7 +19,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
     @profile.user = current_user
     if @profile.save!
-      redirect_to myprofile_path, notice: "#{@profile.first_name}! Welcome to Beats Club!"
+      redirect_to feeds_path, notice: "#{@profile.first_name}! Welcome to Beats Club!"
     else
       render :new, status: :unprocessable_entity
     end
@@ -43,6 +43,6 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:first_name, :last_name, :bio, :location, :nickname)
+    params.require(:profile).permit(:first_name, :last_name, :bio, :location, :nickname, :photo)
   end
 end
