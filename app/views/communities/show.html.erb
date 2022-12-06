@@ -1,35 +1,34 @@
 <div class="banner-com">
-<%= cl_image_tag @community.photo.key, class: "background-image" %>
-</div>
-  <div class="container-com">
-    <div class="club-info">
-    <div class="name-genre">
-      <h6><%= @community.name %> </h6>
-      <h6>Genre: <%= @community.genre.name %></h6>
-      </div>
-        <p class="member"><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %></p>
-        <p><%= @community.description %> </p>
-
-    <% if user_signed_in? %>
-      <%# JOIN COMMUNITY BUTTON %>
-      <% if @user_check && @joined  %>
-        <p><%= "You are the creator of this community and have been a member since #{@community.created_at.strftime("%B  %Y")}" %></p>
-      <% elsif @user_check && !@joined  %>
-        <p>You are the creator of this community</p>
-        <%= link_to "Rejoin Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-primary"%>
-      <% elsif !@user_check && @joined  %>
-        <p><%= "You have been a member since #{@community.created_at.strftime("%B  %Y")}" %></p>
-      <% elsif !@user_check && !@joined  %>
-        <%= link_to "Join Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-primary"%>
-      <% end %>
-      <%# EDIT COMMUNITY BUTTON %>
-      <% if @user_check %>
-        <%= link_to edit_community_path(@community) do%>
-        Edit Community <i class="fa-regular fa-pen-to-square"></i>
+  <%= cl_image_tag @community.photo.key, class: "background-image" %>
+  </div>
+    <div class="container-com">
+      <div class="club-info">
+        <div class="name-genre">
+          <h6><%= @community.name %> </h6>
+          <h6>Genre: <%= @community.genre.name %></h6>
+        </div>
+          <p class="member"><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %></p>
+          <p><%= @community.description %> </p>
+        <% if user_signed_in? %>
+        <%# JOIN COMMUNITY BUTTON %>
+        <% if @user_check && @joined  %>
+          <p><%= "You are the creator of this community and have been a member since #{@community.created_at.strftime("%B  %Y")}" %></p>
+        <% elsif @user_check && !@joined  %>
+          <p>You are the creator of this community</p>
+          <%= link_to "Rejoin Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-primary"%>
+        <% elsif !@user_check && @joined  %>
+          <p><%= "You have been a member since #{@community.created_at.strftime("%B  %Y")}" %></p>
+        <% elsif !@user_check && !@joined  %>
+          <%= link_to "Join Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-primary"%>
         <% end %>
-      <% end %>
-      <%# </div> %>
-      </div>
+        <%# EDIT COMMUNITY BUTTON %>
+        <% if @user_check %>
+          <%= link_to edit_community_path(@community) do%>
+          Edit Community <i class="fa-regular fa-pen-to-square"></i>
+          <% end %>
+        <% end %>
+        <%# </div> %>
+    </div>
   </div>
 
 
@@ -50,26 +49,26 @@
   </div>
 
 <div class="post-form">
+  <div>
     <% if user_signed_in? %>
-        <%= render 'posts/form', community: @community, post: @post %>
-      </div>
+      <%= render 'posts/form', community: @community, post: @post %>
+  </div>
     <% end %>
-
-  <div data-controller="test">
+  </div>
+</div>
+<div data-controller="test">
     <%# <h2> Posts </h2> %>
 
-    <div>
-      <% @posts_profiles_likes.each do |post_profile_likes|%>
-        <p>
-          <div>
-            <%= render "posts/post", post_profile_likes: post_profile_likes %>
-          </div>
-        </p>
-      <% end %>
-    </div>
-
-
+  <div>
+    <% @posts_profiles_likes.each do |post_profile_likes|%>
+      <p>
+        <div>
+          <%= render "posts/post", post_profile_likes: post_profile_likes %>
+        </div>
+      </p>
+    <% end %>
   </div>
+</div>
 
 
 
