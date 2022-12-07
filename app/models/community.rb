@@ -4,5 +4,5 @@ class Community < ApplicationRecord
   has_many :profiles, through: :join_communities
   has_many :posts
   validates :name, presence: true, length: { minimum: 6 }, uniqueness: { case_sensitive: false }
-  validates :description, presence: true, length: { minimum: 25 }
+  validates :description, presence: true
 end
