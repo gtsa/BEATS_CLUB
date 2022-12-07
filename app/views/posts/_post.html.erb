@@ -1,46 +1,31 @@
-<div class="container-post">
-  <div class="user_info">
-  <h2> Posts </h2>
-    <img src="https://i.pravatar.cc/40?img=1" alt="user__image" class="user_avatar">
-    <p class="name_post"><%= post_profile_likes[1].nickname %></p>
-     <p class="time_post"><%= time_ago_in_words(post_profile_likes.first.created_at) %>
-    ago
-   <% if post_profile_likes.first.created_at != post_profile_likes.first.updated_at %>
-      <%= "— edited #{time_ago_in_words(post_profile_likes.first.updated_at)} ago" %>
-    <% end %></p>
+<div class="card-trip">
+  <div class="club-post-infos">
+    <p><%= cl_image_tag post_profile_likes[1].photo.key, alt:"card__image", class:"card-user-avatar"%></p>
+     <p class="nick-name"><%= post_profile_likes[1].nickname %>
+     </p>
+      <p> posted <%= time_ago_in_words(post_profile_likes.first.created_at)%> ago</p>
   </div>
-
-<div class="container">
-<div class="card">
-<div class="user">
-<img src="https://i.pravatar.cc/40?img=1" alt="user__image" class="user__image">
-<%= post_profile_likes[1].nickname %>
-</div>
-<p>
-
-<%= cl_image_tag post_profile_likes.first.photo.key, alt:"card__image", class:"card__image", width:"600"%>
-</p>
-<%= post_profile_likes.first.content %>
-
-  <div class="post-banner-com" style="background-image: url('https://images.unsplash.com/photo-1556317192-e8f4637c83a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80')"></div>
-    <div class="user_post">
-    <%= post_profile_likes.first.content %>
-    <% if user_signed_in? && @joined && post_profile_likes[1].id == current_user.profiles.last.id %>
-    <p><%= link_to "Edit Post", edit_community_post_path(@community, post_profile_likes.first)%>
-    <% end %>
-    <div class="post_likes">
-    <% if user_signed_in? && @joined%>
-      <% unless post_profile_likes[2].map(&:profile_id).include? current_user.profiles.last.id %>
-      <%= button_to like_community_post_path(post_profile_likes), {post_id: @post.id}, method: :post do %>
-      <i class="fa-regular fa-heart"></i>
-      <% end %>
-         <% else %>
-      <%= button_to unlike_community_post_path(post_profile_likes), {post_id: @post.id}, method: :post do %>
-      <i class="fa-solid fa-heart"></i>
-      <% end %>
-    <% end %>
-    <p><%= pluralize(post_profile_likes[2].length, 'like') %></p>
-    <% end %>
-   </div>
-</div>
+   <div> <%= cl_image_tag post_profile_likes[0].photo.key, alt:"card__image", class:"post-banner-com"%></div>
+   <div class="post-like-edit">
+    <% if user_signed_in? %>
+          <% unless post_profile_likes[2].map(&:profile_id).include? current_user.id %>
+          <%= button_to like_community_post_path(post_profile_likes), {post_id: @post.id}, method: :post do %>
+          <i class="fa-regular fa-heart"></i>
+          <% end %>
+            <% else %>
+          <%= button_to unlike_community_post_path(post_profile_likes), {post_id: @post.id}, method: :post do %>
+          <i class="fa-solid fa-heart"></i>
+          <% end %>
+        <% end %>
+        <p><%= pluralize(post_profile_likes[2].length, 'like') %></p>
+        <% end %>
+    <div>
+        <% if user_signed_in? && post_profile_likes[1].id == current_user.id %>
+        <p><%= link_to "Edit Post", edit_community_post_path(@community, post_profile_likes[0])%>
+        <% end %>
+      </div>
+      <div class="post-content">
+      <%= post_profile_likes.first.content %>
+      </div>
+  </div>
 </div>

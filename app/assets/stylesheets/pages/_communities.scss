@@ -23,30 +23,55 @@
 
 // Communities Showpage Styling
 
-.banner-com {
-  background-size: cover;
-  background-position: center;
-  // padding: 150px 0;
-  height: 300px;
-  width: 300px;
-  border-radius: 50%;
-  margin-left: 45px;
-  margin-top: 20px;
-  border: 1px solid white;
-  box-shadow: #E7E7E7;
-}
 
-.post-banner-com {
+.background-image-show {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
   background-size: cover;
   background-position: center;
-  // padding: 150px 0;
-  height: 200px;
-  width: 100%;
+  margin-left: 45px;
+  margin-top: 50px;
+  border: 1px solid #f2f2f2;
+  box-shadow: #E7E7E7;
+  box-shadow: 2px 2px rgb(168, 168, 168);
+}
+// .banner-com {
+//   background-size: cover;
+//   background-position: center;
+//   // padding: 150px 0;
+//   height: 300px;
+//   width: 300px;
+//   border-radius: 50%;
+//   margin-left: 45px;
+//   margin-top: 20px;
+//   border: 1px solid white;
+//   box-shadow: #E7E7E7;
+// }
+
+// .post-banner-com {
+//   background-size: cover;
+//   background-position: center;
+//   // padding: 150px 0;
+//   height: 200px;
+//   width: 100%;
+// }
+
+.card-trip .club-post-infos {
+  padding: 10px;
+  position: relative;
+  color: #f2f2f2;
+
+  .nick-name{
+    font-size: 15px;
+    color: #f2f2f2;
+  }
 }
 
 .container-com {
   margin: 10px;
 }
+
 .club-info {
   // padding-right: 12px;
   .name-genre {
@@ -56,7 +81,7 @@
   }
 
   h6 {
-    color: #E7E7E7;
+    color: #d4d4d2;
     display: inline;
     font-weight: bold;
     font-size: 13px;
@@ -64,14 +89,14 @@
   }
 
  p.member {
-    color: #E7E7E7;
+    color: #d4d4d2;
     display: inline;
     font-size: 13px;
     font-weight: bold;
   }
 
   p {
-    color: #E7E7E7;
+    color: #d4d4d2;
     font-size: small;
     margin-bottom: .2rem;
     margin-top: .5rem;
@@ -81,7 +106,7 @@
 
 img {
   width: 1000px;
-  height: 100px;
+  height: 200px;
    display: block;
    object-fit: cover;
  }
@@ -102,7 +127,7 @@ img {
 //  user avatar and name styling start
 .user_info {
   font-family: inter;
-  color: white;
+  color: #f2f2f2;
   margin: 10px;
 
   .user_avatar {
@@ -119,7 +144,7 @@ img {
 
   .time_post{
     font-size: 13px;
-    color: rgb(189, 187, 187);
+    color: #f2f2f2;
   }
 }
 // /  user avatar and name styling end
@@ -127,7 +152,7 @@ img {
 
 
 .user_post {
-  color: white;
+  color: #f2f2f2;
   font-family: inter;
   font-size: 12px;
   font-weight: 200;
@@ -135,14 +160,19 @@ img {
 }
 
 .post_likes {
-  color: white;
+  color: #f2f2f2;
   font-size: 13px;
   i {
     font-size: 20px;
   }
+
 }
 
+.flex-like-edit{
+  display: flex;
+  justify-content: space-between;
 
+}
 // .btn {
 //   color: pink;
 // }
@@ -165,7 +195,7 @@ img {
 i {
   font-size: 15px;
   background: none;
-  color: rgb(118, 117, 117);
+  color: #f2f2f2;
 
   .fa-solid fa-heart {
    color: #c51964;
@@ -193,11 +223,32 @@ button {
 }
 
 .btn-primary {
-  color: #c702a7;;
+  color: #df05bb;;
   background: none;
   border: none;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 500;
   padding-left: 0;
   text-decoration: underline;
+}
+
+.post-content {
+  color: #f2f2f2;
+  font-family: inter;
+  font-size: 13px;
+  font-weight: 300;
+  // padding: 10px;
+}
+
+.post-like-edit {
+  padding: 10px;
+}
+
+#post_photo {
+  color: #ced4da6b;
+  font-size: 15px;
+}
+
+.btn btn-search {
+  color: red;
 }

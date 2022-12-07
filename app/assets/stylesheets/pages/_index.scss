@@ -59,7 +59,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: #f2f2f2;
   font-size: 24px;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
@@ -68,7 +68,7 @@
   padding: 8px;
 
   p {
-    color: white;
+    color: #f2f2f2;
     font-size: 14px;
     text-align: left;
     position: relative;
@@ -92,16 +92,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
-  font-size: 15px;
+  color: #f2f2f2;
+  font-size: 14px;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   padding: 8px;
+  padding-top: 130px;
 
   p {
-    color: white;
+    color: #f2f2f2;
     font-size: 14px;
     text-align: left;
     position: relative;
@@ -111,5 +112,6 @@
   }
     background-image: url("create_club2.png");
     background-position: center;
+    border: 1px solid #c702a7;
 
 }
