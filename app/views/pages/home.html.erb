@@ -5,7 +5,7 @@
   <%= link_to "communities", communities_path %>
 <% else %>
 
-  <% @posts_author_likes.each do |elem| %>
+  <% @posts_author_likes.reverse.each do |elem| %>
 
     <div class="card-trip">
 
