@@ -8,7 +8,7 @@
         <p> posted <%= time_ago_in_words(post_profile_likes.first.created_at)%> ago</p>
     </div>
   </div>
-   <div> <%= cl_image_tag post_profile_likes[0].photo.key, alt:"card__image", class:"post-banner-com"%></div>
+   <div> <%= cl_image_tag post_profile_likes[0].photo.key, alt:"card__image", class:"post-banner-com" if post_profile_likes[0].photo.attached? %></div>
    <div class="post-like-edit">
     <% if user_signed_in? %>
           <% unless post_profile_likes[2].map(&:profile_id).include? current_user.id %>
