@@ -69,7 +69,7 @@
     <%# <h2> Posts </h2> %>
 
   <div>
-    <% @posts_profiles_likes.each do |post_profile_likes|%>
+    <% @posts_profiles_likes.reverse.each do |post_profile_likes|%>
       <p>
         <div>
           <%= render "posts/post", post_profile_likes: post_profile_likes %>
