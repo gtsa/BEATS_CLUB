@@ -343,7 +343,7 @@ post = Post.new(
 post.photo.attach(io: file, filename: "post.png", content_type: "image/png")
 post.save
 
-file = URI.open("https://media.pitchfork.com/photos/62dd3b7e4e5e79e85598914b/1:1/w_320,c_limit/Red-Hot-Chili-Peppers-Return-of-the-Dream-Canteen.jpg")
+file = URI.open("https://i1.sndcdn.com/avatars-wJw5PgqacM7DDwjz-5HjJVg-t500x500.jpg")
 post = Post.new(
   content: "I found out who that amazing band are who were playing in the Shacklewell arms! Here is some more info on them! https://www.wearepalace.com/",
   profile_id: 8,
@@ -355,7 +355,7 @@ post.save
 
 file = URI.open("https://louderthanwar.com/wp-content/uploads/2022/10/King-Gizzard-The-Lizard-Wizard-scaled.jpg")
 post = Post.new(
-  content: "Has anyone listened to the new RHCP album? I personally love the song Bella!",
+  content: "Is anyone going to the King Gizzard and the Lizard Wizard gig at 02 Academy, Brixton next Tuesday? My mate can't go anymore :(",
   profile_id: 7,
   community_id: 2
 )
