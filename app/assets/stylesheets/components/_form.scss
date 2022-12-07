@@ -15,31 +15,50 @@
 }
 
 .form-control {
+  // width: 90%;
   background-color: #1b191f;
-  color: white;
+  color: #ced4da;
   border-radius: 10px;
   &:focus {
     background-color: #1b191f;
     color: white;
-    border-color: #FF6D28 ;
   }
 }
 
+.form-select {
+  // width: 90%;
+  border-radius: 10px;
+  background-color: #1b191f;
+  color: #ced4da6b
+}
 // input:hover {
 //   background-color: #86feb8;;
 // }
 
+.profile-form {
+  // margin-left: 16px;
+}
+
+
 h1.create-profile-title {
-  color: #FF6D28 ;
+  color: #c702a7;
   text-align: center;
   display: flex;
   justify-content: center;
+  padding-bottom: 20px;
 }
 
 .btn-form {
   border: 1px solid black !important;
-  color: black !important;
-  background-color: #FF6D28 !important;
-  font-weight: bold !important;
+  color: white !important;
+  background-color: #c702a7 !important;
+  // font-weight: bold !important;
 }
 
+#new_community {
+  padding: 0 5%;
+}
+
+#community_photo {
+  color: #ced4da6b;
+}
