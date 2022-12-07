@@ -1,16 +1,12 @@
 <div class="card-trip">
-  <div class="card-trip-infos">
-    <div><img src="https://i.pravatar.cc/40?img=1" alt="user__image" class="card-user-avatar">
-      <%= post_profile_likes[1].nickname %>
+  <div class="club-post-infos">
+    <p><img src="https://i.pravatar.cc/40?img=1" alt="user__image" class="card-user-avatar"></p>
+     <p class="nick-name"><%= post_profile_likes[1].nickname %></p>
       <p><%= "posted 4 mins ago" %></p>
-    </div>
   </div>
-  <div> <%= cl_image_tag post_profile_likes[0].photo.key, alt:"card__image", class:"post-banner-com"%>
-  </div>
-  <div>
-    <div class="flex-like-edit">
-      <div class="post_likes">
-        <% if user_signed_in? %>
+   <div> <%= cl_image_tag post_profile_likes[0].photo.key, alt:"card__image", class:"post-banner-com"%></div>
+   <div class="post-like-edit">
+    <% if user_signed_in? %>
           <% unless post_profile_likes[2].map(&:profile_id).include? current_user.id %>
           <%= button_to like_community_post_path(post_profile_likes), {post_id: @post.id}, method: :post do %>
           <i class="fa-regular fa-heart"></i>
@@ -22,13 +18,13 @@
         <% end %>
         <p><%= pluralize(post_profile_likes[2].length, 'like') %></p>
         <% end %>
-      </div>
-      <div>
+    <div>
         <% if user_signed_in? && post_profile_likes[1].id == current_user.id %>
         <p><%= link_to "Edit Post", edit_community_post_path(@community, post_profile_likes[0])%>
         <% end %>
       </div>
-    </div>
+      <div class="post-content">
       <%= post_profile_likes.first.content %>
+      </div>
   </div>
 </div>
