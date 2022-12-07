@@ -10,7 +10,7 @@
 
   <div class="name">
     <%= cl_image_tag current_user.profiles.last.photo.key, class:"avatar-bordered" %>
-      <h1><%= current_user.profiles.last.first_name %></h1>
+      <h1><%= current_user.profiles.last.nickname %></h1>
       <p><%= current_user.profiles.last.bio %></p>
       <% if @user_check %>
         <%= link_to edit_profile_path(@profile) do %>
