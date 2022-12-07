@@ -51,13 +51,23 @@
       <%# </ol> %>
     <% end %>
   </div>
+<div>
+      <div class="post-form">
+          <% if user_signed_in? %>
+              <%= render 'posts/form', community: @community, post: @post %>
+            </div>
+          <% end %>
+</div>
 
-<div class="post-form">
-    <% if user_signed_in? %>
-        <%= render 'posts/form', community: @community, post: @post %>
-      </div>
-    <% end %>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
   <div data-controller="test">
     <%# <h2> Posts </h2> %>
 

@@ -1,18 +1,38 @@
-<h1>Your Feed</h1>
+
+<%# <h3>Your Feed</h3> %>
 <% if current_user.profiles.last.join_communities.empty? %>
   <h2>Join a community to see your feed...</h2>
   <%= link_to "communities", communities_path %>
 <% else %>
+
   <% @posts_author_likes.each do |elem| %>
-    <%= link_to community_path(elem[:post].community) do %>
-      <div><%= "Community Name: #{elem[:post].community.name}" %></div>
-      <div><%= cl_image_tag elem[:post].community.photo.key %></div>
-      <div><%= "Post Author: #{elem[:author].nickname}" %></div>
-      <div><%= cl_image_tag elem[:author].photo.key, class: "user_avatar" %></div>
-      <div><%= "Post Content: #{elem[:post].content}" %></div>
-      <div><%= "#{time_ago_in_words(elem[:post].created_at)} ago" %></div>
-      <div><%= "Likes: #{elem[:likes].count}" %></div>
-    <% end %>
-    <br>
+
+    <div class="card-trip">
+
+      <%= link_to community_path(elem[:post].community) do %>
+          <div class="card-trip-infos">
+            <div><%= cl_image_tag elem[:author].photo.key, class: "card-user-avatar" %>
+              <%= "#{elem[:author].nickname}" %>
+              <p><%= "#{time_ago_in_words(elem[:post].created_at)} ago" %></p>
+            </div>
+            <div><%= "Club: #{elem[:post].community.name}" %>
+            </div>
+          </div>
+          <div class="card-image"><%= cl_image_tag elem[:post].community.photo.key %>
+          </div>
+          <div class="likes_count">
+          <%= "Likes: #{elem[:likes].count}" %>
+          </div>
+          <div class="content">
+            <%= "#{elem[:post].content}" %>
+          </div>
+      <% end %>
+
+      <br>
+      <%# <hr> %>
+
+    </div>
+
+
   <% end %>
 <% end %>
