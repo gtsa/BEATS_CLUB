@@ -15,29 +15,29 @@
 }
 
 .form-control {
-  width: 90%;
+  // width: 90%;
   background-color: #1b191f;
   color: #ced4da;
   border-radius: 10px;
   &:focus {
     background-color: #1b191f;
     color: white;
-    border-color: #FF6D28 ;
   }
 }
 
 .form-select {
-  width: 90%;
+  // width: 90%;
   border-radius: 10px;
+  background-color: #1b191f;
+  color: #ced4da6b
 }
 // input:hover {
 //   background-color: #86feb8;;
 // }
 
 .profile-form {
-  margin-left: 16px;
+  // margin-left: 16px;
 }
-
 
 
 h1.create-profile-title {
@@ -45,7 +45,7 @@ h1.create-profile-title {
   text-align: center;
   display: flex;
   justify-content: center;
-  padding-bottom: 20px;;
+  padding-bottom: 20px;
 }
 
 .btn-form {
@@ -53,4 +53,12 @@ h1.create-profile-title {
   color: white !important;
   background-color: #c702a7 !important;
   // font-weight: bold !important;
+}
+
+#new_community {
+  padding: 0 5%;
+}
+
+#community_photo {
+  color: #ced4da6b;
 }
