@@ -36,17 +36,18 @@
   box-shadow: #E7E7E7;
 }
 
-.post-banner-com {
-  background-size: cover;
-  background-position: center;
-  // padding: 150px 0;
-  height: 200px;
-  width: 100%;
-}
+// .post-banner-com {
+//   background-size: cover;
+//   background-position: center;
+//   // padding: 150px 0;
+//   height: 200px;
+//   width: 100%;
+// }
 
 .container-com {
   margin: 10px;
 }
+
 .club-info {
   // padding-right: 12px;
   .name-genre {
@@ -56,7 +57,7 @@
   }
 
   h6 {
-    color: #E7E7E7;
+    color: #d4d4d2;
     display: inline;
     font-weight: bold;
     font-size: 13px;
@@ -64,14 +65,14 @@
   }
 
  p.member {
-    color: #E7E7E7;
+    color: #d4d4d2;
     display: inline;
     font-size: 13px;
     font-weight: bold;
   }
 
   p {
-    color: #E7E7E7;
+    color: #d4d4d2;
     font-size: small;
     margin-bottom: .2rem;
     margin-top: .5rem;
@@ -81,7 +82,7 @@
 
 img {
   width: 1000px;
-  height: 100px;
+  height: 200px;
    display: block;
    object-fit: cover;
  }
@@ -140,9 +141,14 @@ img {
   i {
     font-size: 20px;
   }
+
 }
 
+.flex-like-edit{
+  display: flex;
+  justify-content: space-between;
 
+}
 // .btn {
 //   color: pink;
 // }
