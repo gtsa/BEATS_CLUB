@@ -3,7 +3,7 @@ class JoinGenresController < ApplicationController
     @genre = Genre.find(params[:genre_id])
     @join_genre = JoinGenre.new
     @join_genre.genre_id = @genre.id
-    @join_genre.profile_id = current_user.id
+    @join_genre.profile_id = current_user.profiles.last.id
     if @join_genre.save
       redirect_to genre_path(@genre)
     else

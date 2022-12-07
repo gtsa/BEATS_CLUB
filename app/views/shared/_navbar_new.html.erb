@@ -27,7 +27,7 @@
                     </div>
                     <div class="nav-item">
                       <% if @communities_show %>
-                        <%= link_to "Leave Community", community_join_community_path(@community, current_user.id), class:"nav-link nav-link-extra",
+                        <%= link_to "Leave Community", community_join_community_path(@community, current_user.profiles.last), class:"nav-link nav-link-extra",
                         data: {turbo_method: :delete, turbo_condirm: "Are you sure?"} %>
                       <% end %>
                     </div>
