@@ -1,7 +1,9 @@
 <%= simple_form_for [community, post],
     data: {test_target: "form"} do |f| %>
   <%#= f.input :title, label: false, placeholder: "Your Title..." %>
-  <%= f.input :content, label: false, placeholder: "Add your post here...", class: "form-control-com" %>
   <%= f.input :photo, label: false, as: :file, placeholder: "Add your photo here..." %>
-  <%= f.submit "Create Post", class:"btn btn-primary" %>
+  <div  style="position: relative;">
+    <%= f.input :content, label: false, placeholder: "Add your post here...", class: "form-control-com" %>
+    <%= f.submit "Post", class:"btn btn-primary", style: "position: absolute; top: 0px; right: 0px; height: 100%; text-decoration: none" %>
+  </div>
 <% end %>
