@@ -1,29 +1,16 @@
-<%#<% @community_created_joined.each do |community_created_joined|%>
-<%#<div>
-<%#   <%= link_to community_created_joined.first.name, community_path(community_created_joined.first) %>
-<%#   <%# JOIN COMMUNITY BUTTON %>
-<%#   <% if user_signed_in? %>
-<%#     <% if !community_created_joined[2]  %>
-<%#     <%= link_to "Join", community_join_communities_path(community_created_joined.first), data: { turbo_method: :post }, class:"btn" %>
-<%#     <% end %>
-<%#   <% end %>
-<%#</div>
-<%#<% end %>
-
 <div class="container">
-  <div class="search-form-control-com form-group w-100">
-    <%= form_with url: communities_path, method: :get do %>
-      <%= text_field_tag :query,
-      params[:query], placeholder: "Search",
-      class: "form-control-com string required"
-      %>
-        <%= button_tag "Search", class: "btn btn-search" do %>
-        <i class="fas fa-search"></i>
+  <h1 class="hazy-glow">Find your club!</h1>
+    <div class="search-form-control-com form-group w-100">
+      <%= form_with url: communities_path, method: :get do %>
+        <%= text_field_tag :query,
+        params[:query], placeholder: "Search",
+        class: "form-control-com string required"
+        %>
+          <%= button_tag "Search", class: "btn btn-search" do %>
+          <i class="fas fa-search"></i>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-
-
+    </div>
 
     <div class="cards-com">
       <%= link_to "Create Club", new_community_path, class: "card-category-com-add"%>
@@ -43,6 +30,4 @@
         <% end %>
       <% end %>
     </div>
-
-
 </div>
