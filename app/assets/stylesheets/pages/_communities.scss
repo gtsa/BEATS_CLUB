@@ -78,7 +78,7 @@
 // }
 
 .club-info {
-  padding: 15px;
+  padding: 0px 15px;
   // padding-right: 12px;
   .name-genre {
     display: flex;
@@ -216,7 +216,7 @@ button {
 // like heart styling end
 
 .post-form {
-  padding: 5px 10px;
+  padding: 0px 10px;
   font-family: inter;
   font-size: 15px;
   width: 100%
@@ -227,25 +227,31 @@ button {
 }
 
 .btn-primary {
-  color: #a9a9a8;;
-  background: none;
+  color: #f2f2f2;;
+  background-color: #c702a7;
   border: none;
+  width: 100%;
   font-size: 18px;
   font-weight: 500;
   padding-left: 0;
-  text-decoration: underline;
+  text-decoration: none;
+  border-radius: 8px;
+  height: 45px;
 }
 
 .btn-primary :hover {
   color: #c51964;
 }
 
-.post-content {
+#post_content {
   color: #f2f2f2;
   font-family: inter;
   font-size: 13px;
   font-weight: 300;
   // padding: 10px;
+  height: 70px;
+  text-align: left;
+  align-items: center;
 }
 
 .post-like-edit {
