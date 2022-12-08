@@ -29,10 +29,18 @@
     <div class="cards-com">
       <%= link_to "Create Club", new_community_path, class: "card-category-com-add"%>
       <% @communities.each do |community| %>
-        <%= link_to community_path(community) do  %>
-          <div class="card-category-com" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path community.photo.key %>')">
-            <p><%= community.name %></p>
-          </div>
+        <% if community.photo.key? %>
+          <%= link_to community_path(community) do  %>
+            <div class="card-category-com" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path community.photo.key %>')">
+              <p><%= community.name %></p>
+            </div>
+          <% end %>
+        <% else %>
+          <%= link_to community_path(community) do  %>
+            <div class="card-category-com" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://source.unsplash.com/random/?event')">
+              <p><%= community.name %></p>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
     </div>

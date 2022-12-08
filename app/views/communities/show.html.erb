@@ -1,5 +1,9 @@
 <div class="banner-com">
-  <%= cl_image_tag @community.photo.key, class: "background-image-show" %>
+  <% if @community.photo.key? %>
+    <%= cl_image_tag @community.photo.key, class: "background-image-show" %>
+  <% else %>
+    <img class="background-image-show" src="https://source.unsplash.com/random/?event" alt="event-background-image">
+  <% end %>
   </div>
     <div class="container-com">
       <div class="club-info">

@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = ["created", "joined", "createdLink", "joinedLink"]
   connect() {
     console.log(this.createdTarget)
+    this.displayJoined()
   }
 
   displayCreated() {
