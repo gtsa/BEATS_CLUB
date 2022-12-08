@@ -84,7 +84,7 @@
     <% @posts_profiles_likes.reverse.each do |post_profile_likes|%>
       <p>
         <div>
-          <%= render "posts/post", post_profile_likes: post_profile_likes %>
+          <%= render "posts/post", post_profile_likes: post_profile_likes, community: @community %>
         </div>
       </p>
     <% end %>

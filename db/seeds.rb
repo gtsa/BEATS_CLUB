@@ -21,7 +21,6 @@ puts "Creating Users..."
 names = [
   ["George", "Tsagiannis"],
   ["Rajul", "Nail"],
-  ["Debora", "Fachinello"],
   ["Gabriel", "Wilkinson"],
   ["Alex", "McKenzie"]
 ]
@@ -29,18 +28,18 @@ names = [
   names << [Faker::Name.first_name, Faker::Name.last_name]
 end
 
+# user_tester_debora
+User.create(email: 'debora@email.com', password: '111111')
 # user_tester_george
 User.create(email: 'george@email.com', password: '111111')
 # user_tester_rajul
 User.create(email: 'rajul@email.com', password: '111111')
-# user_tester_debora
-User.create(email: 'debora@email.com', password: '111111')
 # user_tester_gabriel
 User.create(email: 'gabriel@email.com', password: '111111')
 # user_tester_alex
 User.create(email: 'alex@email.com', password: '111111')
 
-names[5..].each_with_index do |name, index|
+names[4..].each_with_index do |name, index|
   User.create(
     email: "#{Faker::Internet.safe_email(name: name[0])}_#{index}",
     password: Faker::Internet.password(min_length: 8)
@@ -63,7 +62,7 @@ genre_names = [
   "Jazz",
   "Rock",
   "Reggae",
-  "Latin"
+  "World"
 ]
 
 genre_names.each { |name| Genre.create(name: name) }
@@ -83,6 +82,19 @@ avatars = [
   "https://64.media.tumblr.com/55a961641399929069ca594fd0bfd331/tumblr_ploof2Cw4z1qds0n0o1_1280.jpg",
   "https://i.pinimg.com/564x/93/51/8e/93518e3b2ec04aaeab316a6a16242c86.jpg"
 ]
+
+file = URI.open("https://cdna.artstation.com/p/assets/images/images/022/267/356/large/blaine-lafont-rolling-stones-pop-art.jpg")
+profile = Profile.new(
+  first_name: 'Debora',
+  last_name: 'Fachinello',
+  nickname: 'debora',
+  bio: "Music is a huge part of my life and I'm excited to share my love for it with others. I can't go a day without listening to music! I'm looking forward to connect with other music lovers",
+  location: "London, UK",
+  user_id: 1
+)
+profile.photo.attach(io: file, filename: "avatar.png", content_type: "image/png")
+profile.save
+
 names.each_with_index do |name, index|
   file = URI.open(avatars[index])
   profile = Profile.new(
@@ -91,7 +103,7 @@ names.each_with_index do |name, index|
     nickname: [name.map(&:capitalize).join, Faker::Music.chord].join,
     bio: "Hi I'm #{name.first}. I love music. I prefer Rock music. My favourite artist is David Bowie",
     location: "London, UK",
-    user_id: index + 1
+    user_id: index + 2
   )
   profile.photo.attach(io: file, filename: "avatar.png", content_type: "image/png")
   profile.save
@@ -100,7 +112,7 @@ end
 # Communities
 puts "Creating Communities..."
 
-t = 0
+
 # Community 01
 file = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Transmission_Prague_2018.jpg/1200px-Transmission_Prague_2018.jpg")
 community = Community.new(
@@ -167,7 +179,7 @@ community = Community.new(
   name: "Latin Fan Club",
   description:"placeholder",
   location: "792 Alexander Road London WC61 3MG",
-  genre: Genre.find_by(name: "Latin"),
+  genre: Genre.find_by(name: "World"),
   profile_id: 6
 )
 community.photo.attach(io: file, filename: "club.png", content_type: "image/png")
@@ -225,7 +237,7 @@ community.save
 file = URI.open("https://www.pngitem.com/pimgs/m/63-637683_banner-transparent-orchestra-conductor-dance-silhouette-jazz-big.png")
 community = Community.new(
   name: "Jazz Appreciation Society",
-  description: "Welcome to the Jazz Appreciation Society - bio tbc",
+  description: "Created as a lockdown project, Jazz Appreciation Society has since become the most active jazz community worldwide! Welcome and enjoy good jazz!",
   location: "W91 1ZC",
   genre: Genre.find_by(name: "Jazz"),
   profile_id: 1
