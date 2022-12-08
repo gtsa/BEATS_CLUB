@@ -1,25 +1,52 @@
-<h2>Sign Up</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { data: { turbo: false} } ) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+<div class="container m-3">
+  <div class="create-profile-title">
+    <h1 class="create-profile-title", style= "width:91%">Sign Up</h1>
+  </div>
+  <br>
+  <div class="profile-form">
+    <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name), html: { data: { turbo: false} }  do |f| %>
+      <%= f.error_notification %>
+      <div class="form-inputs", style= "width:91%">
+        <%= f.input :email, label: false, style:"padding-right: 30px", required: true, autofocus: true, input_html: { autocomplete: "email" }, placeholder: "Email" %>
+        <%= f.input :password, required: true, label: false,
+                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                    input_html: { autocomplete: "new-password"},
+                    placeholder: "Password"%>
+        <%= f.input :password_confirmation, required: true, label: false,
+                    input_html: { autocomplete: "new-password" },
+                    placeholder: "Confirm Password" %>
+      </div>
+      <div class="wrapper">
+        <div class="form-actions">
+          <%= f.button :submit, "Submit", class: "btn btn-flat btn-form", style: "left:30%", id: 'round-btn' %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Next" %>
-  </div>
-<% end %>
-
+  <div style="position: absolute; left:175px; bottom:40%; color: #C702A7">
 <%= render "devise/shared/links" %>
+</div>
+
+</div>
+
+
+<%#<div class="container">
+  <div class="create-profile-title">
+   <h1 class="create-profile-title">Create Your Profile</h1>
+  </div>
+  <br>
+  <div class="profile-form">
+    <%= simple_form_for @profile do |f| %>
+   <%#   <%= f.input :nickname, label:false %>
+      <%# <%= f.input :first_name, label: false %>
+      <%# <%= f.input :last_name, label: false %>
+   <%#   <%= f.input :location, label:false %>
+   <%#   <%= f.input :bio, label:false %>
+   <%#   <%= f.input :photo, as: :file, label: false %>
+   <%#   <div class="wrapper">
+      <%= f.submit "Create Profile", class: "btn btn-flat btn-form", id: 'round-btn' %>
+   <%#   </div>
+    <% end %>
+<%#  </div>
+<%#</div>
