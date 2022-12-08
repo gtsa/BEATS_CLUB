@@ -12,7 +12,7 @@
     <% if current_user.profiles.last.photo.key? %>
       <%= cl_image_tag current_user.profiles.last.photo.key, class:"avatar-bordered" %>
     <% else %>
-      <img class="background-image-show" src="https://source.unsplash.com/random/?event" alt="event-background-image">
+      <img class="avatar-bordered" src="https://source.unsplash.com/random/?event" alt="event-background-image">
     <% end %>
       <h1><%= current_user.profiles.last.nickname %></h1>
       <p><%= current_user.profiles.last.bio %></p>

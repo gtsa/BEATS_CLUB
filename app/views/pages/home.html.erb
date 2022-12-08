@@ -11,14 +11,22 @@
 
       <%= link_to community_path(elem[:post].community) do %>
           <div class="card-trip-infos">
+          <% if elem[:author].photo.key %>
             <div><%= cl_image_tag elem[:author].photo.key, class: "card-user-avatar" %>
+          <% else %>
+            <img class="card-user-avatar" src="https://source.unsplash.com/random/?event" alt="event-background-image">
+          <% end %>
               <%= "#{elem[:author].nickname}" %>
               <p><%= "#{time_ago_in_words(elem[:post].created_at)} ago" %></p>
             </div>
             <div><%= "Club: #{elem[:post].community.name}" %>
             </div>
           </div>
-          <div class="card-image"><%= cl_image_tag elem[:post].photo.key, gravity: :auto%>
+          <% if elem[:post].photo.key %>
+            <div class="card-image"><%= cl_image_tag elem[:post].photo.key, gravity: :auto%>
+          <% else %>
+            <img class="card-image" src="https://source.unsplash.com/random/?event" alt="event-background-image">
+          <% end %>
           </div>
           <div class="likes_count">
           <%= "Likes: #{elem[:likes].count}" %>
