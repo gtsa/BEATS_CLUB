@@ -1,20 +1,29 @@
-<h2>Log in</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { data: { turbo: false} } ) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+<div class="container m-3">
+  <div class="create-profile-title">
+    <h1 class="create-profile-title", style= "width:91%">Log in</h1>
+  </div>
+  <br>
+  <div class="profile-form">
+    <%= simple_form_for resource, as: resource_name, url: session_path(resource_name), html: { data: { turbo: false} }  do |f| %>
+      <div class="form-inputs", style= "width:91%">
+        <%= f.input :email, label: false, style:"padding-right: 30px", required: true, autofocus: true, input_html: { autocomplete: "email" }, placeholder: "Email" %>
+        <%= f.input :password, required: false, label: false,
+                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                    input_html: { autocomplete: "current-password"},
+                    placeholder: "Password"%>
+        <%= f.input :remember_me, style:"color:white", as: :boolean if devise_mapping.rememberable? %>
+      </div>
+      <div class="wrapper">
+        <div class="form-actions">
+          <%= f.button :submit, "Login", class: "btn btn-flat btn-form", style: "left:30%", id: 'round-btn' %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
+  <div style="position: absolute; left:175px; bottom:40%; color: #C702A7">
 <%= render "devise/shared/links" %>
+</div>
+
+</div>
