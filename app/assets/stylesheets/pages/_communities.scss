@@ -31,7 +31,7 @@
   background-size: cover;
   background-position: center;
   margin-left: 45px;
-  margin-top: 50px;
+  margin-top: 30px;
   border: 1px solid #f2f2f2;
   box-shadow: #E7E7E7;
   box-shadow: 2px 2px rgb(168, 168, 168);
@@ -58,7 +58,9 @@
 // }
 
 .card-trip .club-post-infos {
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 5px;
   position: relative;
   color: #f2f2f2;
   display: flex;
@@ -71,11 +73,12 @@
 
 
 
-.container-com {
-  margin: 10px;
-}
+// .container-com {
+//   // margin: 10px;
+// }
 
 .club-info {
+  padding: 15px;
   // padding-right: 12px;
   .name-genre {
     display: flex;
@@ -83,23 +86,23 @@
   //  margin-right: 8px;
   }
 
-  h6 {
+  h5 {
     color: #d4d4d2;
     display: inline;
-    font-weight: bold;
-    font-size: 13px;
+    font-weight: 500;
+    font-size: 17px;
     font-family: inter;
   }
 
  p.member {
-    color: #d4d4d2;
+    color: #a9a9a8;
     display: inline;
-    font-size: 13px;
-    font-weight: bold;
+    font-size: 15px;
+    font-weight: 300;
   }
 
   p {
-    color: #d4d4d2;
+    color: #939393;
     font-size: small;
     margin-bottom: .2rem;
     margin-top: .5rem;
@@ -213,12 +216,10 @@ button {
 // like heart styling end
 
 .post-form {
-  padding-left: 20px;
+  padding: 5px 10px;
   font-family: inter;
   font-size: 15px;
-  width: 95%;
-  height: 30px;
-  // margin: 10px;
+  width: 100%
 }
 
 .btn-post-form {
@@ -226,13 +227,17 @@ button {
 }
 
 .btn-primary {
-  color: #df05bb;;
+  color: #a9a9a8;;
   background: none;
   border: none;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 500;
   padding-left: 0;
   text-decoration: underline;
+}
+
+.btn-primary :hover {
+  color: #c51964;
 }
 
 .post-content {
@@ -254,4 +259,8 @@ button {
 
 .fa-search {
   color: #2b2b2b6b;
+}
+
+hr {
+  color: #636363;
 }
