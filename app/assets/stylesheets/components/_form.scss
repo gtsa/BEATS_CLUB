@@ -1,17 +1,23 @@
 .new_profile {
   input, textarea {
     background-color: #1b191f;
-    border: 1px solid white;
-    border-radius: 30px;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
     // margin-left: 5px;
     // margin-right: 5px;
   }
+
   label {
     color: white;
     text-align: center;
     display: flex;
     justify-content: center;
   }
+}
+
+#round-btn{
+  border-radius: 30px;
+  margin-top: 30px;
 }
 
 .form-control {
@@ -21,7 +27,7 @@
   border-radius: 10px;
   &:focus {
     background-color: #1b191f;
-    color: white;
+    color: #ced4da;
   }
 }
 
@@ -29,7 +35,7 @@
   // width: 90%;
   border-radius: 10px;
   background-color: #1b191f;
-  color: #ced4da6b
+  color: #ced4da6b;
 }
 // input:hover {
 //   background-color: #86feb8;;
@@ -37,6 +43,11 @@
 
 .profile-form {
   // margin-left: 16px;
+  // border-radius: 10px;
+}
+
+#profile_photo {
+  color: #ced4da6b;
 }
 
 
@@ -46,6 +57,10 @@ h1.create-profile-title {
   display: flex;
   justify-content: center;
   padding-bottom: 20px;
+}
+
+#new_profile {
+  padding: 0 5%;
 }
 
 .btn-form {

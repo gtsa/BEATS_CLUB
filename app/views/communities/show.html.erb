@@ -1,11 +1,15 @@
 <div class="banner-com">
-  <%= cl_image_tag @community.photo.key, class: "background-image-show" %>
+  <% if @community.photo.key? %>
+    <%= cl_image_tag @community.photo.key, class: "background-image-show" %>
+  <% else %>
+    <img class="background-image-show" src="https://source.unsplash.com/random/?event" alt="event-background-image">
+  <% end %>
   </div>
     <div class="container-com">
       <div class="club-info">
         <div class="name-genre">
-          <h6><%= @community.name %> </h6>
-          <h6>Genre: <%= @community.genre.name %></h6>
+          <h5><%= @community.name %> </h5>
+          <h5>Genre: <%= @community.genre.name %></h5>
         </div>
 
     <p><%= @community.description %> </p>
@@ -41,12 +45,12 @@
         <%# EDIT COMMUNITY BUTTON %>
         <% if @user_check %>
           <%= link_to edit_community_path(@community) do%>
-          Edit Community <i class="fa-regular fa-pen-to-square"></i>
+           <i class="fa-regular fa-pen-to-square"></i>
           <% end %>
         <% end %>
         <%# </div> %>
     </div>
-  </div>
+  <%# </div> %>
 
 
 <%#= link_to @community.genre.name, genre_path(@community.genre), class:"btn"%>
@@ -63,7 +67,7 @@
       <%# <% end %>
       <%# </ol> %>
     <% end %>
-  </div>
+  <%# </div> %>
 <div>
       <div class="post-form">
           <% if user_signed_in? %>
@@ -72,12 +76,6 @@
           <% end %>
 </div>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
   <div data-controller="test">
 
     <%# <h2> Posts </h2> %>

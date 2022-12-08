@@ -3,8 +3,8 @@
 </div>
 
 <div class= "bottom-bar">
-  <%= link_to(home_path(@feed), class: request.env['PATH_INFO'].include?('feeds') ? "active-link" : "") do %>
-   <i class="fa-solid fa-house"></i>Home
+  <%= link_to(home_path(@feed), class: request.env['PATH_INFO'].include?('home') ? "active-link" : "") do %>
+   <i class="fa-solid fa-rss"></i>Feed
   <% end %>
 
   <%= link_to(communities_path(@community), class: request.env['PATH_INFO'].include?('communities') ? "active-link" : "")  do %>
@@ -12,7 +12,7 @@
   <% end %>
 
   <%= link_to(myprofile_path(@profile), class: request.env['PATH_INFO'].include?('myprofile') ? "active-link" : "")  do %>
-      <i class="fa-solid fa-user"></i>My Profile
+    <i class="fa-solid fa-user"></i>My Profile
   <% end %>
 
 </div>

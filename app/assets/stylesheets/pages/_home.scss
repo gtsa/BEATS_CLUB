@@ -64,7 +64,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 10px;
+  padding-top: 5px;
 }
 
 
@@ -144,4 +144,8 @@ h1 {
 .likes_count {
   color: #d4d2d2;
   padding: 10px 10px;
+}
+
+.hazy-glow {
+  text-shadow: 0 0 10px rgba(138, 137, 137, 0.5);
 }
