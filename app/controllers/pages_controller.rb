@@ -20,7 +20,7 @@ class PagesController < ApplicationController
   def myprofile
     # redirect_to profile_path(current_user.profiles.last.id) if user_signed_in?
     @profile = Profile.find_by(user: current_user)
-    # @user_check = current_user == @profile.user
+    @user_check = current_user.profiles.last == @profile
   end
 
 
