@@ -262,5 +262,84 @@ button {
 }
 
 hr {
-  color: #636363;
+  border: 0px;
+  border-top: 1px solid #818080;
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+// members_show styling
+
+.container-mb {
+  padding-top: 30px;
+}
+.mb-show {
+padding-top: 20px;
+text-align: center;
+font-family: inter;
+p {
+  color: #818080;
+}
+.mb-name {
+  font-size: 18px;
+  color: #f2f2f2;
+}
+h2 {
+  color: #f2f2f2;
+}
+h4 {
+  color: #818080;
+}
+h5 {
+  color: #818080;
+}
+.mb-nck-name {
+  color: #818080;
+  padding: 0;
+}
+
+}
+
+.mb-com {
+  h3 {
+    color: #f2f2f2;
+    text-align: center;
+    padding-top: 30px;
+    font-family: inter;
+  }
+}
+
+.card-product {
+  overflow: hidden;
+  height: 120px;
+  width: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+}
+
+.card-product img {
+  height: 120px;
+  width: 102px;
+  object-fit: cover;
+}
+
+.card-product h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-product p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .card-product-infos {
+  padding: 16px;
 }
