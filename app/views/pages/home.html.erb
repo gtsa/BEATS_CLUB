@@ -18,7 +18,7 @@
             <div><%= "Club: #{elem[:post].community.name}" %>
             </div>
           </div>
-          <div class="card-image"><%= cl_image_tag elem[:post].community.photo.key %>
+          <div class="card-image"><%= cl_image_tag elem[:post].photo.key %>
           </div>
           <div class="likes_count">
           <%= "Likes: #{elem[:likes].count}" %>
