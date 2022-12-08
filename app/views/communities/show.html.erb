@@ -40,7 +40,7 @@
         <% elsif !@user_check && @joined  %>
           <p><%= "You have been a member since #{@community.created_at.strftime("%B  %Y")}" %></p>
         <% elsif !@user_check && !@joined  %>
-          <%= link_to "Join Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-primary"%>
+          <%= link_to "Join Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn", id:"btn-show"%>
         <% end %>
         <%# EDIT COMMUNITY BUTTON %>
         <% if @user_check %>
@@ -84,7 +84,7 @@
     <% @posts_profiles_likes.reverse.each do |post_profile_likes|%>
       <p>
         <div>
-          <%= render "posts/post", post_profile_likes: post_profile_likes %>
+          <%= render "posts/post", post_profile_likes: post_profile_likes, community: @community %>
         </div>
       </p>
     <% end %>
