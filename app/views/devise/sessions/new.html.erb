@@ -12,7 +12,6 @@
                     hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                     input_html: { autocomplete: "current-password"},
                     placeholder: "Password"%>
-        <%= f.input :remember_me, style:"color: #f2f2f2f2 as: :boolean if devise_mapping.rememberable?" %>
       </div>
       <div class="wrapper">
         <div class="form-actions">
@@ -22,7 +21,7 @@
     <% end %>
   </div>
 
-  <div style="position: absolute; left:175px; bottom:40%; color: #C702A7">
+  <div style="position: absolute; left:150px; bottom:50%; color: #C702A7">
 <%= render "devise/shared/links" %>
 </div>
 
