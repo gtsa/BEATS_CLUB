@@ -7,8 +7,25 @@
           <h6><%= @community.name %> </h6>
           <h6>Genre: <%= @community.genre.name %></h6>
         </div>
-          <p class="member"><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %></p>
-          <p><%= @community.description %> </p>
+
+    <p><%= @community.description %> </p>
+
+    <button id="btn-login" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#friendsSupportedContent" aria-controls="friendsSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <p class="member"><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %></p>
+    </button>
+    <div class="collapse navbar-collapse" id="friendsSupportedContent">
+      <% @profiles.each do |profile| %>
+        <p>
+          <%= link_to profile.nickname, profile_path(profile) %>
+        </p>
+      <% end %>
+      <hr width="100%" size="5">
+    </div>
+
+
+
+
+
         <% if user_signed_in? %>
         <%# JOIN COMMUNITY BUTTON %>
         <% if @user_check && @joined  %>

@@ -89,8 +89,8 @@ names.each_with_index do |name, index|
     first_name: name.first,
     last_name: name.last,
     nickname: [name.map(&:capitalize).join, Faker::Music.chord].join,
-    bio: "placeholder",
-    location: "placeholder",
+    bio: "Hi I'm #{name.first}. I love music. I prefer Rock music. My favourite artist is David Bowie",
+    location: "London, UK",
     user_id: index + 1
   )
   profile.photo.attach(io: file, filename: "avatar.png", content_type: "image/png")
