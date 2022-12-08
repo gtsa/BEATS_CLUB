@@ -6,7 +6,11 @@
     <div>
       <br>
       <p class="nick-name"><%= post_profile_likes[1].nickname %> </p>
-      <p> posted <%= time_ago_in_words(post_profile_likes.first.created_at)%> ago</p>
+      <p> posted <%= time_ago_in_words(post_profile_likes.first.created_at)%> ago
+      <% if post_profile_likes.first.updated_at != post_profile_likes.first.created_at %>
+         (edited <%= time_ago_in_words(post_profile_likes.first.updated_at)%> ago)
+      <% end %>
+      </p>
     </div>
   </div>
   <div>
@@ -14,20 +18,20 @@
   </div>
   <div class="post-like-edit">
     <% if user_signed_in? %>
-          <% unless post_profile_likes[2].map(&:profile_id).include? current_user.profiles.last.id %>
-            <%= button_to like_community_post_path(post_profile_likes), {post_id: @post.id}, method: :post do %>
-            <i class="fa-regular fa-heart"></i>
-            <% end %>
-          <% else %>
-            <%= button_to unlike_community_post_path(post_profile_likes), {post_id: @post.id}, method: :post do %>
-            <i class="fa-solid fa-heart"></i>
-            <% end %>
-          <% end %>
+      <% unless post_profile_likes[2].map(&:profile_id).include? current_user.profiles.last.id %>
+        <%= button_to like_community_post_path(post_profile_likes), {post_id: @post.id}, method: :post do %>
+        <i class="fa-regular fa-heart"></i>
+        <% end %>
+      <% else %>
+        <%= button_to unlike_community_post_path(post_profile_likes), {post_id: @post.id}, method: :post do %>
+        <i class="fa-solid fa-heart"></i>
+        <% end %>
+      <% end %>
       <p><%= pluralize(post_profile_likes[2].length, 'like') %></p>
     <% end %>
     <div>
       <% if user_signed_in? && post_profile_likes[1].id == current_user.profiles.last.id %>
-        <p><%= link_to "Edit Post", edit_community_post_path(@community, post_profile_likes[0])%></p>
+          <p><%= link_to "Edit Post", edit_community_post_path(@community, post_profile_likes[0])%></p>
       <% end %>
     </div>
     <div class="post-content">
