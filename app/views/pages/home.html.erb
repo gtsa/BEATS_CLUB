@@ -1,8 +1,10 @@
 
 <%# <h3>Your Feed</h3> %>
 <% if current_user.profiles.last.join_communities.empty? %>
-  <h2>Join a community to see your feed...</h2>
-  <%= link_to "communities", communities_path %>
+  <h2> <center>Join a Club to see your feed...</center> </h2>
+  <div>
+  <%= link_to "Explore Clubs", communities_path, id:"btn-show-home"%>
+  </div>
 <% else %>
 
   <% @posts_author_likes.reverse.each do |elem| %>
