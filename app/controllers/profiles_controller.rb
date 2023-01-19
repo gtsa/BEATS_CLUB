@@ -11,7 +11,6 @@ class ProfilesController < ApplicationController
   def new
     @disable_bottom = true
     @disable_nav = true
-    @alt_nav = true
     @profile = Profile.new
   end
 
