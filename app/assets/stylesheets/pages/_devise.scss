@@ -7,14 +7,13 @@ a:hover {
   color: #c574b8;
 }
 
-.container_non_responsive {
-  max-width: 448px;
+.extra-margin-top {
   margin-top: 10vh
 }
 
 .form-control,
 .form-text {
-  max-width: 300px;
+  max-width: 448px;
   margin-left: auto;
   margin-right: auto;
 }

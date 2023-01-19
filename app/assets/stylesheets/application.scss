@@ -26,3 +26,15 @@ body {
 a {
   text-decoration: none;
 }
+
+.container_non_responsive {
+  max-width: 448px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.posts-separator {
+  width: 100vw;
+  position: absolute;
+  left: 0px;
+}
