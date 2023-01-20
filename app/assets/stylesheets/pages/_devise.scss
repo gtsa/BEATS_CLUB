@@ -3,16 +3,13 @@
   font-size:16px;
 }
 
-a:hover {
-  color: #c574b8;
-}
-
 .extra-margin-top {
   margin-top: 10vh
 }
 
 .form-control,
-.form-text {
+.form-text,
+.form-select {
   max-width: 448px;
   margin-left: auto;
   margin-right: auto;

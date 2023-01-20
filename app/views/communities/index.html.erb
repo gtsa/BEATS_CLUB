@@ -1,5 +1,6 @@
-<div class="container">
-  <h1 class="hazy-glow">Find your club!</h1>
+<div class="container_non_responsive">
+  <div class="container">
+    <h1 class="hazy-glow">Find your club!</h1>
     <div class="search-form-control-com form-group w-100">
       <%= form_with url: communities_path, method: :get do %>
         <%= text_field_tag :query,
@@ -11,23 +12,30 @@
         <% end %>
       <% end %>
     </div>
-
-    <div class="cards-com">
-      <%= link_to "Create Club", new_community_path, class: "card-category-com-add"%>
-      <% @communities.each do |community| %>
-        <% if community.photo.key? %>
-          <%= link_to community_path(community) do  %>
-            <div class="card-category-com" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path community.photo.key %>')">
-              <p><%= community.name %></p>
-            </div>
-          <% end %>
-        <% else %>
-          <%= link_to community_path(community) do  %>
-            <div class="card-category-com" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://source.unsplash.com/random/?event')">
-              <p><%= community.name %></p>
-            </div>
-          <% end %>
+  </div>
+</div>
+<div class="container">
+  <div class="cards-com">
+    <%= link_to new_community_path do%>
+      <div class="card-category-com card-add">
+        <p id="card-add-plus">+</p>
+        <p>Create Club</p>
+      </div>
+    <% end %>
+    <% @communities.each do |community| %>
+      <% if community.photo.key? %>
+        <%= link_to community_path(community) do  %>
+          <div class="card-category-com" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path community.photo.key %>')">
+            <p><%= community.name %></p>
+          </div>
+        <% end %>
+      <% else %>
+        <%= link_to community_path(community) do  %>
+          <div class="card-category-com" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://source.unsplash.com/random/?event')">
+            <p><%= community.name %></p>
+          </div>
         <% end %>
       <% end %>
-    </div>
+    <% end %>
+  </div>
 </div>
