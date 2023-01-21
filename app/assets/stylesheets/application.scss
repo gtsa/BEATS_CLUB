@@ -8,16 +8,41 @@
 @import "font-awesome";
 
 // Your CSS partials
-@import "components/index";
+
 @import "pages/index";
+@import "components/index";
 @import "pages/communities";
+@import "pages/devise";
 
 
 body {
   background-color: #1b191f;
   font-family: inter;
+  // max-width: 800px;
+  // margin-left: auto;
+  // margin-right: auto;
 }
 
 a {
   text-decoration: none;
+}
+
+.container_non_responsive {
+  max-width: 448px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.posts-separator {
+  width: 100vw;
+  position: absolute;
+  left: 0px;
+}
+
+.card-trip a {
+  color: #c574b8;
+}
+
+.card-trip a:hover {
+  color: #c702a7;
 }

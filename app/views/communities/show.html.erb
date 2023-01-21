@@ -1,36 +1,31 @@
-<div class="banner-com">
-  <% if @community.photo.key? %>
-    <%= cl_image_tag @community.photo.key, class: "background-image-show" %>
-  <% else %>
-    <img class="background-image-show" src="https://source.unsplash.com/random/?event" alt="event-background-image">
-  <% end %>
+<div class="container_non_responsive">
+  <div class="banner-com">
+    <% if @community.photo.key? %>
+      <%= cl_image_tag @community.photo.key, class: "background-image-show" %>
+    <% else %>
+      <img class="background-image-show" src="https://source.unsplash.com/random/?event" alt="event-background-image">
+    <% end %>
   </div>
-    <div class="container-com">
-      <div class="club-info">
-        <div class="name-genre">
-          <h5><%= @community.name %> </h5>
-          <h5>Genre: <%= @community.genre.name %></h5>
-        </div>
+  <div class="container-com">
+    <div class="club-info">
+      <div class="name-genre">
+        <h5><%= @community.name %> </h5>
+        <h5>Genre: <%= @community.genre.name %></h5>
+      </div>
 
-    <p><%= @community.description %> </p>
-
-    <button id="btn-login" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#friendsSupportedContent" aria-controls="friendsSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <p class="member"><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %></p>
-    </button>
-    <div class="collapse navbar-collapse" id="friendsSupportedContent">
-      <% @profiles.each do |profile| %>
-        <p>
-          <%= link_to profile.nickname, profile_path(profile) %>
-        </p>
-      <% end %>
-      <hr width="100%" size="5">
-    </div>
-
-
-
-
-
-        <% if user_signed_in? %>
+      <p><%= @community.description %> </p>
+      <button id="btn-login" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#friendsSupportedContent" aria-controls="friendsSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <p class="member"><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %></p>
+      </button>
+      <div class="collapse navbar-collapse" id="friendsSupportedContent">
+        <% @profiles.each do |profile| %>
+          <p>
+            <%= link_to profile.nickname, profile_path(profile) %>
+          </p>
+        <% end %>
+        <hr width="100%" size="5">
+      </div>
+      <% if user_signed_in? %>
         <%# JOIN COMMUNITY BUTTON %>
         <% if @user_check && @joined  %>
           <p><%= "You are the creator of this community and have been a member since #{@community.created_at.strftime("%B  %Y")}" %></p>
@@ -43,57 +38,34 @@
           <%= link_to "Join Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn", id:"btn-show"%>
         <% end %>
         <%# EDIT COMMUNITY BUTTON %>
-        <% if @user_check %>
+        <% if @user_check && @joined %>
           <%= link_to edit_community_path(@community) do%>
-           <i class="fa-regular fa-pen-to-square"></i>
+            <i class="fa-regular fa-pen-to-square"></i>
           <% end %>
         <% end %>
-        <%# </div> %>
+        <br>
+      <% end %>
     </div>
-  <%# </div> %>
-
-
-<%#= link_to @community.genre.name, genre_path(@community.genre), class:"btn"%>
-
-
-      <br>
-      <%# <h2><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %>
-      <%# </h2>
-      <%# <ol>
-      <%# <% @profiles.each do |profile|%>
-      <%#   <li>
-      <%#     <%= link_to "#{profile.nickname}#{@community.profile_id == profile.id ? ' (creator)' : ''}", profile_path(profile) %>
-      <%#   </li>
-      <%# <% end %>
-      <%# </ol> %>
-    <% end %>
-  <%# </div> %>
-<div>
-      <div class="post-form">
-          <% if user_signed_in? %>
-              <%= render 'posts/form', community: @community, post: @post %>
-            </div>
-          <% end %>
-</div>
+  </div>
+  <div>
+    <div class="post-form">
+      <% if user_signed_in? %>
+        <%= render 'posts/form', community: @community, post: @post %>
+      <% end %>
+    </div>
+  </div>
 
   <div data-controller="test">
 
-    <%# <h2> Posts </h2> %>
-
-  <div>
-    <% @posts_profiles_likes.reverse.each do |post_profile_likes|%>
-      <p>
-        <div>
-          <%= render "posts/post", post_profile_likes: post_profile_likes, community: @community %>
-        </div>
-      </p>
-    <% end %>
+    <div>
+      <% @posts_profiles_likes.reverse.each do |post_profile_likes|%>
+        <p>
+          <div>
+            <%= render "posts/post", post_profile_likes: post_profile_likes, community: @community %>
+          </div>
+        </p>
+      <% end %>
+    </div>
   </div>
+
 </div>
-
-
-
-<%# <p>Created %>
-<%#= time_ago_in_words(@community.created_at) %>
-<%# ago</p> %>
-<%# style="background-image: url('https://i.pinimg.com/564x/b9/94/ee/b994ee33ee04246c85d4e7ca30f93981.jpg')"> %>

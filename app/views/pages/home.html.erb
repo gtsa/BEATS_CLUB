@@ -1,48 +1,58 @@
-
 <%# <h3>Your Feed</h3> %>
-<% if current_user.profiles.last.join_communities.empty? %>
-  <h2> <center>Join a Club to see your feed...</center> </h2>
-  <div>
-  <%= link_to "Explore Clubs", communities_path, id:"btn-show-home"%>
-  </div>
-<% else %>
-
-  <% @posts_author_likes.reverse.each do |elem| %>
-
-    <div class="card-trip">
-
-      <%= link_to community_path(elem[:post].community) do %>
-          <div class="card-trip-infos">
-          <% if elem[:author].photo.key %>
-            <div><%= cl_image_tag elem[:author].photo.key, class: "card-user-avatar" %>
-          <% else %>
-            <img class="card-user-avatar" src="https://source.unsplash.com/random/?event" alt="event-background-image">
-          <% end %>
-              <%= "#{elem[:author].nickname}" %>
-              <p><%= "#{time_ago_in_words(elem[:post].created_at)} ago" %></p>
-            </div>
-            <div><%= "Club: #{elem[:post].community.name}" %>
-            </div>
-          </div>
-          <% if elem[:post].photo.key %>
-            <div class="card-image"><%= cl_image_tag elem[:post].photo.key, gravity: :auto%>
-          <% else %>
-            <img class="card-image" src="https://source.unsplash.com/random/?event" alt="event-background-image">
-          <% end %>
-          </div>
-          <div class="likes_count">
-          <%= "Likes: #{elem[:likes].count}" %>
-          </div>
-          <div class="content">
-            <%= "#{elem[:post].content}" %>
-          </div>
-      <% end %>
-
-      <br>
-      <hr>
-
+<div class="container_non_responsive">
+  <% if current_user.profiles.last.join_communities.empty? %>
+    <h2 class="feed-heading">Join a Club to see your feed...</h2>
+    <div>
+    <%= link_to "Explore Clubs", communities_path, id:"btn-show-home"%>
     </div>
+  <% else %>
+
+    <h2 class="feed-heading">My Feed</h2>
+    <h5 class="feed-desc">Recent joined club posts</h5>
+
+    <hr class= "posts-separator" style="margin-top:0px">
+
+
+
+
+
+
+
+
+    <% @posts_author_likes.reverse.each do |elem| %>
+      <div class="card-trip feed-post-link">
+        <%= link_to community_path(elem[:post].community) do %>
+
+            <div class="card-trip-infos">
+              <div>
+                <% if elem[:author].photo.key %>
+                  <%= cl_image_tag elem[:author].photo.key, class: "card-user-avatar" %>
+                <% else %>
+                  <img class="card-user-avatar" src="https://source.unsplash.com/random/?event" alt="event-background-image">
+                <% end %>
+                <%= "#{elem[:author].nickname}" %>
+                <p><%= "#{time_ago_in_words(elem[:post].created_at)} ago" %></p>
+              </div>
+              <div><%= "Club: #{elem[:post].community.name}" %></div>
+            </div>
+            <% if elem[:post].photo.key %>
+              <div class="card-image"><%= cl_image_tag elem[:post].photo.key, gravity: :auto%></div>
+            <% end %>
+            <div class="content"><%= "#{elem[:post].content}" %></div>
+            <div class="likes_count"><%= "Likes: #{elem[:likes].count}" %></div>
+
+        <% end %>
+        <br>
+        <hr class= "posts-separator">
+      </div>
+    <% end %>
+
+
+
+
+
+
 
 
   <% end %>
-<% end %>
+</div>

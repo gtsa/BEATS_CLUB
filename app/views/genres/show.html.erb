@@ -1,23 +1,21 @@
-<h1><%= @genre.name %></h1>
-<%# FOLLOW GENRE %>
-<% if user_signed_in?  %>
-  <% if !@joined  %>
-  <%= link_to "Follow #{@genre.name}", genre_join_genres_path(@genre), data: { turbo_method: :post }, class:"btn btn-primary"%>
-  <% else %>
-  <%= link_to "Unfollow #{@genre.name}", genre_join_genre_path(@genre, current_user.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-primary"%>
-  <% end %>
-<% end %>
-<h3><%= "#{@genre.name} Communities" %></h3>
-<ul>
-  <% @genre_communities.each do |community|%>
-  <li><%= link_to community.name, community_path(community) %></li>
-  <% end %>
-</ul>
-<% if user_signed_in?  %>
-  <h3><%= "Friends of #{@genre.name}" %></h3>
-  <ul>
-    <% @genre_profiles.each do |profile|%>
-    <li><%= link_to profile.nickname, profile_path(profile) %></li>
+<div class="container_non_responsive genre">
+  <h1><%= @genre.name %></h1>
+  <%# FOLLOW GENRE %>
+  <% if user_signed_in?  %>
+    <% if !@joined  %>
+    <%= link_to "Follow #{@genre.name}", genre_join_genres_path(@genre), data: { turbo_method: :post }, class:"btn btn-primary"%>
+    <% else %>
+    <%= link_to "Unfollow #{@genre.name}", genre_join_genre_path(@genre, current_user.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-primary"%>
     <% end %>
-  </ul>
-<% end %>
+  <% end %>
+  <h3><%= "#{@genre.name} Clubs" %></h3>
+    <% @genre_communities.each do |community|%>
+      <p class="members"><%= link_to community.name, community_path(community) %></p>
+    <% end %>
+  <% if user_signed_in?  %>
+    <h3><%= "Friends of #{@genre.name}" %></h3>
+    <% @genre_profiles.each do |profile|%>
+      <p><%= link_to profile.nickname, profile_path(profile), class:"members" %></p>
+    <% end %>
+  <% end %>
+</div>

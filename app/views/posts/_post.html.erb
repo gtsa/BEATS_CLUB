@@ -1,11 +1,13 @@
 <div class="card-trip">
   <div class="club-post-infos">
     <div id="header-content">
-      <p><%= cl_image_tag post_profile_likes[1].photo.key, alt:"card__image", class:"card-user-avatar"%></p>
+      <%= link_to profile_path(post_profile_likes[1]) do  %>
+        <p><%= cl_image_tag post_profile_likes[1].photo.key, alt:"card__image", class:"card-user-avatar"%></p>
+      <% end %>
     </div>
     <div>
       <br>
-      <p class="nick-name"><%= post_profile_likes[1].nickname %> </p>
+      <%= link_to "#{post_profile_likes[1].nickname}", profile_path(post_profile_likes[1]), class: "nick-name"%>
       <p> posted <%= time_ago_in_words(post_profile_likes.first.created_at)%> ago
       <%= post_profile_likes[0].created_at.round %>
       <% if post_profile_likes.first.updated_at.round != post_profile_likes.first.created_at.round %>
@@ -25,7 +27,7 @@
         <% end %>
       <% else %>
         <%= button_to unlike_community_post_path(post_profile_likes.first), {post_id: post_profile_likes[0].id}, method: :post do %>
-        <i class="fa-solid fa-heart"></i>
+        <i class="fa-solid fa-heart" style="color: #c702a7"></i>
         <% end %>
       <% end %>
       <p><%= pluralize(post_profile_likes[2].length, 'like') %></p>
@@ -36,7 +38,8 @@
       <% end %>
     </div>
     <div class="post-content">
-      <%= post_profile_likes.first.content %>
+      <%= truncate(post_profile_likes.first.content, length: 1000).gsub(URI.regexp, '<a class="post-link" href="\0">\0</a>').html_safe %>
     </div>
   </div>
-<hr>
+  <hr class= "posts-separator">
+</div>

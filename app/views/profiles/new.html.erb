@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container container_non_responsive extra-margin-top">
   <div class="create-profile-title">
    <h1 class="create-profile-title">Create Your Profile</h1>
   </div>
@@ -9,10 +9,10 @@
       <%# <%= f.input :first_name, label: false %>
       <%# <%= f.input :last_name, label: false %>
       <%= f.input :location, label:false %>
-      <%= f.input :bio, label:false %>
+      <%= f.input :bio, label:false, input_html: {style: "min-height: calc(2.5em + 3.75rem + 2px)"} %>
       <%= f.input :photo, as: :file, label: false %>
       <div class="wrapper">
-      <%= f.submit "Create Profile", class: "btn btn-flat btn-form", id: 'round-btn' %>
+      <%= f.submit "Create Profile", class: "btn btn-flat btn-form round-btn" %>
       </div>
     <% end %>
   </div>
