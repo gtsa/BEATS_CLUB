@@ -11,14 +11,6 @@
     <h5 class="feed-desc">Recent joined club posts</h5>
 
     <hr class= "posts-separator" style="margin-top:0px">
-
-
-
-
-
-
-
-
     <% @posts_author_likes.reverse.each do |elem| %>
       <div class="card-trip feed-post-link">
         <%= link_to community_path(elem[:post].community) do %>
@@ -46,13 +38,5 @@
         <hr class= "posts-separator">
       </div>
     <% end %>
-
-
-
-
-
-
-
-
   <% end %>
 </div>
