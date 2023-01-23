@@ -1,8 +1,8 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <%= link_to communities_path, class:"navbar-brand" do %>
       <%= image_tag "Logo1@4x.png", class: "logo-image" %>
-    </a>
+    <% end %>
     <button id="btn-login" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fa-solid fa-bars"></i>
     </button>
@@ -29,7 +29,7 @@
           </li>
           <li class="nav-item">
             <% if user_signed_in? %>
-              <%= link_to "Sign out", destroy_user_session_path, class:"nav-link",  style:"float: right; color: #dfdfc9; line-height: 0.4 ", data: {turbo_method: :delete} %>
+              <%= link_to "Sign out", href='/users/sign_out', class:"nav-link",  style:"float: right; color: #dfdfc9; line-height: 0.4 " %>
             <% else %>
               <%= link_to "Sign in", new_user_session_path, class:"nav-link",  style:"float: right; color: #dfdfc9; line-height: 0.4 " %>
             <% end %>

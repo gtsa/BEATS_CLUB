@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
+  devise_scope :user do
+    get '/users/sign_out' => 'users/sessions#destroy'
+  end
+
   root to: "pages#landing"
   get '/home', to: 'pages#home'
   get '/myprofile', to: 'pages#myprofile'

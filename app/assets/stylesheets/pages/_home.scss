@@ -95,6 +95,17 @@ h1 {
   justify-content: center;
   font-weight: 700;
   font-family: inter;
+
+  &:hover {
+    background-color: #c702a6cb;
+    color: white
+  }
+}
+
+.btn-flat:active {
+  background-color: blue;
+  border: 2px solid #ffffff5f;
+  color: white
 }
 
 .row p {

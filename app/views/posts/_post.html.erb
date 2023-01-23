@@ -20,7 +20,16 @@
     <%= cl_image_tag post_profile_likes[0].photo.key, alt:"card__image", class:"post-banner-com" if post_profile_likes[0].photo.attached? %>
   </div>
   <div class="post-like-edit">
+    <div>
+      <% if user_signed_in? && post_profile_likes[1].id == current_user.profiles.last.id %>
+          <p><%= link_to "Edit Post", edit_community_post_path(@community, post_profile_likes[0])%></p>
+      <% end %>
+    </div>
+    <div class="post-content">
+      <%= truncate(post_profile_likes.first.content, length: 1000).gsub(URI.regexp, '<a class="post-link" href="\0">\0</a>').html_safe %>
+    </div>
     <% if user_signed_in? %>
+      <br>
       <% unless post_profile_likes[2].map(&:profile_id).include? current_user.profiles.last.id %>
         <%= button_to like_community_post_path(post_profile_likes.first), {post_id: post_profile_likes[0].id}, method: :post do %>
         <i class="fa-regular fa-heart"></i>
@@ -32,14 +41,6 @@
       <% end %>
       <p><%= pluralize(post_profile_likes[2].length, 'like') %></p>
     <% end %>
-    <div>
-      <% if user_signed_in? && post_profile_likes[1].id == current_user.profiles.last.id %>
-          <p><%= link_to "Edit Post", edit_community_post_path(@community, post_profile_likes[0])%></p>
-      <% end %>
-    </div>
-    <div class="post-content">
-      <%= truncate(post_profile_likes.first.content, length: 1000).gsub(URI.regexp, '<a class="post-link" href="\0">\0</a>').html_safe %>
-    </div>
   </div>
   <hr class= "posts-separator">
 </div>
