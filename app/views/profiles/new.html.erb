@@ -1,19 +1,25 @@
 <div class="container container_non_responsive extra-margin-top">
-  <div class="create-profile-title">
-   <h1 class="create-profile-title">Create Your Profile</h1>
-  </div>
-  <br>
-  <div class="profile-form">
-    <%= simple_form_for @profile do |f| %>
-      <%= f.input :nickname, label:false %>
-      <%# <%= f.input :first_name, label: false %>
-      <%# <%= f.input :last_name, label: false %>
-      <%= f.input :location, label:false %>
-      <%= f.input :bio, label:false, input_html: {style: "min-height: calc(2.5em + 3.75rem + 2px)"} %>
-      <%= f.input :photo, as: :file, label: false %>
-      <div class="wrapper">
-      <%= f.submit "Create Profile", class: "btn btn-flat btn-form round-btn" %>
-      </div>
-    <% end %>
-  </div>
+  <% if @profile_existing.nil? %>
+    <div class="create-profile-title">
+    <h1 class="create-profile-title">Create Your Profile</h1>
+    </div>
+    <br>
+    <div class="profile-form">
+      <%= simple_form_for @profile do |f| %>
+        <%= f.input :nickname, label:false %>
+        <%# <%= f.input :first_name, label: false %>
+        <%# <%= f.input :last_name, label: false %>
+        <%= f.input :location, label:false %>
+        <%= f.input :bio, label:false, input_html: {style: "min-height: calc(2.5em + 3.75rem + 2px)"} %>
+        <%= f.input :photo, as: :file, label: false %>
+        <div class="wrapper">
+        <%= f.submit "Create Profile", class: "btn btn-flat btn-form round-btn" %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <h3 class="create-profile-title"><%= @profile_existing.first_name %>, you have already created your profile</h3>
+    <h5 style="color: grey; text-align: center;">You are being redirected to your Home page</h5>
+    <script>window.setTimeout(function() {window.location.href = '/home';}, 1000);</script>
+  <% end %>
 </div>
