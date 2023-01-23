@@ -11,6 +11,7 @@ class ProfilesController < ApplicationController
   def new
     @disable_bottom = true
     @disable_nav = true
+    @profile_existing = Profile.find_by(user_id: current_user)
     @profile = Profile.new
   end
 

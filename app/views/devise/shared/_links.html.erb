@@ -1,5 +1,6 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Sign in", new_session_path(resource_name), class:"sign_in_up_option" %><br />
+  <p class="already_member">Already a member?<p>
+  <%= link_to "Sign in Here", new_session_path(resource_name), class:"sign_in_up_option" %><br />
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>

@@ -21,12 +21,12 @@
           <li class="nav-item">
             <%= link_to "Create Club", new_community_path, class:"nav-link",  style:"float: right; color: #dfdfc9; line-height: 0.4 " %>
           </li>
-          <li class="nav-item">
-            <% if @communities_show %>
+          <% if @communities_show %>
+            <li class="nav-item">
               <%= link_to "Leave Club", community_join_community_path(@community, current_user.profiles.last), class:"nav-link",
               data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},  style:"float: right; color: #dfdfc9; line-height: 0.4 " %>
-            <% end %>
-          </li>
+            </li>
+          <% end %>
           <li class="nav-item">
             <% if user_signed_in? %>
               <%= link_to "Sign out", href='/users/sign_out', class:"nav-link",  style:"float: right; color: #dfdfc9; line-height: 0.4 " %>
