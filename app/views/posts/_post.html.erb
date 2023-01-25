@@ -1,46 +1,57 @@
 <div class="card-trip">
   <div class="club-post-infos">
-    <div id="header-content">
+    <div class="header-content">
       <%= link_to profile_path(post_profile_likes[1]) do  %>
-        <p><%= cl_image_tag post_profile_likes[1].photo.key, alt:"card__image", class:"card-user-avatar"%></p>
+        <%= cl_image_tag post_profile_likes[1].photo.key, alt:"card__image", class:"card-user-avatar"%>
       <% end %>
     </div>
-    <div>
-      <br>
-      <%= link_to "#{post_profile_likes[1].nickname}", profile_path(post_profile_likes[1]), class: "nick-name"%>
-      <p> posted <%= time_ago_in_words(post_profile_likes.first.created_at)%> ago
-      <%= post_profile_likes[0].created_at.round %>
-      <% if post_profile_likes.first.updated_at.round != post_profile_likes.first.created_at.round %>
-         (edited <%= time_ago_in_words(post_profile_likes.first.updated_at)%> ago)
-      <% end %>
-      </p>
+    <div style="align-items: center; margin-left: 0.2em; margin-top: 0.1em;">
+      <div>
+        <%= link_to "#{post_profile_likes[1].nickname}", profile_path(post_profile_likes[1]), class: "nick-name"%>
+      </div>
+      <div>
+        <p> posted <%= time_ago_in_words(post_profile_likes.first.created_at)%> ago
+        <%= post_profile_likes[0].created_at.round %>
+        <% if post_profile_likes.first.updated_at.round != post_profile_likes.first.created_at.round %>
+          (edited <%= time_ago_in_words(post_profile_likes.first.updated_at)%> ago)
+        <% end %>
+        <% if user_signed_in? && post_profile_likes[1].id == current_user.profiles.last.id %>
+            <%= link_to 'Edit&nbsp;Post'.html_safe, edit_community_post_path(@community, post_profile_likes[0])%>
+        <% end %>
+        </p>
+      </div>
     </div>
   </div>
   <div>
     <%= cl_image_tag post_profile_likes[0].photo.key, alt:"card__image", class:"post-banner-com" if post_profile_likes[0].photo.attached? %>
   </div>
-  <div class="post-like-edit">
-    <div>
-      <% if user_signed_in? && post_profile_likes[1].id == current_user.profiles.last.id %>
-          <p><%= link_to "Edit Post", edit_community_post_path(@community, post_profile_likes[0])%></p>
-      <% end %>
-    </div>
+  <div class="post-like">
     <div class="post-content">
-      <%= truncate(post_profile_likes.first.content, length: 1000).gsub(URI.regexp, '<a class="post-link" href="\0">\0</a>').html_safe %>
+      <%= truncate(post_profile_likes.first.content, length: 1000).gsub(URI.regexp, '<a class="post-link" href="\0">\0</a>').gsub(/(.{1,#{42}})( +|$\n?)|(.{1,#{42}})/,
+    "\\1\\3\n") .html_safe %>
     </div>
-    <% if user_signed_in? %>
-      <br>
-      <% unless post_profile_likes[2].map(&:profile_id).include? current_user.profiles.last.id %>
-        <%= button_to like_community_post_path(post_profile_likes.first), {post_id: post_profile_likes[0].id}, method: :post do %>
-        <i class="fa-regular fa-heart"></i>
-        <% end %>
-      <% else %>
-        <%= button_to unlike_community_post_path(post_profile_likes.first), {post_id: post_profile_likes[0].id}, method: :post do %>
-        <i class="fa-solid fa-heart" style="color: #c702a7"></i>
+    <div class="likes-content">
+      <% if user_signed_in? %>
+        <% unless post_profile_likes[2].map(&:profile_id).include? current_user.profiles.last.id %>
+          <% begin %>
+            <%= button_to like_community_post_path(post_profile_likes.first), {post_id: post_profile_likes[0].id}, method: :post do %>
+              <i class="fa-regular fa-heart"></i>
+            <% end %>
+          <% rescue %>
+            <i class="fa-regular fa-heart"></i>
+          <% end %>
+        <% else %>
+          <% begin %>
+            <%= button_to unlike_community_post_path(post_profile_likes.first), {post_id: post_profile_likes[0].id}, method: :post do %>
+              <i class="fa-solid fa-heart" style="color: #c702a7"></i>
+            <% end %>
+          <% rescue %>
+            <i class="fa-regular fa-heart"></i>
+          <% end %>
         <% end %>
       <% end %>
-      <p><%= pluralize(post_profile_likes[2].length, 'like') %></p>
-    <% end %>
+      <span class="likes-number"><%= pluralize(post_profile_likes[2].length, 'like') %></span>
+    </div>
   </div>
   <hr class= "posts-separator">
 </div>

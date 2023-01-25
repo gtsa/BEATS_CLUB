@@ -1,30 +1,31 @@
-<div class="container_non_responsive">
-  <div class="container-mb" data-controller="tabs">
-    <%= cl_image_tag @profile.photo.key, class:"avatar-bordered" %>
-    <div class="mb-show">
-      <h2><%= "#{@profile.first_name} #{@profile.last_name}" %></h2>
-      <p class="mb-nck-name"><%= @profile.nickname %></p>
-      <p>Member since <%= @profile.created_at.strftime("%B  %Y") %><p>
-      <h4><%= @profile.location %></h4>
-      <%# About: %>
-      <h5><%= @profile.bio %></h5>
-      <% if @user_check %>
-        <%= link_to "Edit Profile", edit_profile_path(@profile), class:"btn btn-primary"%>
-      <% end %>
+<% if @user_check %>
+  <script>window.location.href = '/myprofile'</script>
+<% else %>
+  <div class="container_non_responsive">
+    <div class="container-mb" data-controller="tabs">
+      <%= cl_image_tag @profile.photo.key, class:"avatar-bordered" %>
+      <div class="mb-show">
+        <h2><%= "#{@profile.first_name} #{@profile.last_name}" %></h2>
+        <p class="mb-nck-name"><%= @profile.nickname %></p>
+        <p>Member since <%= @profile.created_at.strftime("%B  %Y") %><p>
+        <h4><%= @profile.location %></h4>
+        <%# About: %>
+        <h5><%= @profile.bio %></h5>
+      </div>
     </div>
-  </div>
 
-  <div class="mb-com">
-    <h3><%= "#{@profile.first_name}'s Clubs" %></h3>
-    <div class="cards">
-      <% @profile_communities.each do |community|%>
-        <%= link_to community_path(community) do %>
-          <%#= cl_image_tag join_community.community.photo.key, class: "card-category" %>
-          <div class="card-category-com" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path community.photo.key %>')">
-            <p><%= "#{community.name}#{community.profile_id == @profile.id ? ' (creator)' : ''}" %></p>
-          </div>
+    <div class="mb-com">
+      <h3><%= "#{@profile.first_name}'s Clubs" %></h3>
+      <div class="cards">
+        <% @profile_communities.each do |community|%>
+          <%= link_to community_path(community) do %>
+            <%#= cl_image_tag join_community.community.photo.key, class: "card-category" %>
+            <div class="card-category-com" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path community.photo.key %>')">
+              <p><%= "#{community.name}#{community.profile_id == @profile.id ? ' (creator)' : ''}" %></p>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>

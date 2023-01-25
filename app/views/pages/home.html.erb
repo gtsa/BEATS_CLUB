@@ -18,7 +18,7 @@
             <div class="card-trip-infos">
               <div>
                 <% if elem[:author].photo.key %>
-                  <%= cl_image_tag elem[:author].photo.key, class: "card-user-avatar" %>
+                  <%= cl_image_tag elem[:author].photo.key, class: "card-user-avatar avatar-feed" %>
                 <% else %>
                   <img class="card-user-avatar" src="https://source.unsplash.com/random/?event" alt="event-background-image">
                 <% end %>
