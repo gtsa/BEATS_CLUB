@@ -1,0 +1,32 @@
+<% if user_signed_in? %>
+  <% unless post_profile_likes[2].map(&:profile_id).include? current_user.profiles.last.id %>
+    <% begin %>
+      <%= button_to like_community_post_path(post_profile_likes.first),
+          {post_id: post_profile_likes[0].id,
+            data: {like_without_reload_target: "likeButton",
+                  action:"click->like-without-reload#like"
+                  }},
+            method: :post do %>
+        <i class="fa-regular fa-heart"></i>
+      <% end %>
+    <% rescue %>
+      <i class="fa-regular fa-heart"></i>
+    <% end %>
+  <% else %>
+    <% begin %>
+      <%= button_to unlike_community_post_path(post_profile_likes.first),
+          {post_id: post_profile_likes[0].id,
+            data: {like_without_reload_target: "likeButton",
+                  action:"click->like-without-reload#unlike"
+                  }},
+            method: :post do %>
+        <i class="fa-solid fa-heart liked-heart"></i>
+      <% end %>
+    <% rescue %>
+      <i class="fa-solid fa-heart liked-heart"></i>
+    <% end %>
+  <% end %>
+<% end %>
+<span class="likes-number" data-like-without-reload-target="likesNumber">
+  <%= pluralize(post_profile_likes[2].length, 'like') %>
+</span>

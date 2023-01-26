@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  <div data-controller="test">
+  <div data-controller="insert-post">
 
     <%# POST FORM %>
     <%# If user is member, show Post Form %>
@@ -63,13 +63,13 @@
     <%# POSTS %>
     <%# If user is signed in the app (in general), show Post Form %>
     <% if user_signed_in? %>
-    <div data-test-target="items">
-      <% @posts_profiles_likes.reverse.each do |post_profile_likes|%>
-        <p>
-          <%= render "posts/post", post_profile_likes: post_profile_likes, community: @community %>
-        </p>
-      <% end %>
-    </div>
+      <div data-insert-post-target="items">
+        <% @posts_profiles_likes.reverse.each do |post_profile_likes|%>
+          <p>
+            <%= render "posts/post", post_profile_likes: post_profile_likes, community: @community %>
+          </p>
+        <% end %>
+      </div>
     <% end %>
 
   </div>

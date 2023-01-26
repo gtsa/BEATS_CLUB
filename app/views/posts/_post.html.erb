@@ -30,27 +30,8 @@
       <%= truncate(post_profile_likes.first.content, length: 1000).gsub(URI.regexp, '<a class="post-link" href="\0">\0</a>').gsub(/(.{1,#{42}})( +|$\n?)|(.{1,#{42}})/,
     "\\1\\3\n") .html_safe %>
     </div>
-    <div class="likes-content">
-      <% if user_signed_in? %>
-        <% unless post_profile_likes[2].map(&:profile_id).include? current_user.profiles.last.id %>
-          <% begin %>
-            <%= button_to like_community_post_path(post_profile_likes.first), {post_id: post_profile_likes[0].id}, method: :post do %>
-              <i class="fa-regular fa-heart"></i>
-            <% end %>
-          <% rescue %>
-            <i class="fa-regular fa-heart"></i>
-          <% end %>
-        <% else %>
-          <% begin %>
-            <%= button_to unlike_community_post_path(post_profile_likes.first), {post_id: post_profile_likes[0].id}, method: :post do %>
-              <i class="fa-solid fa-heart" style="color: #c702a7"></i>
-            <% end %>
-          <% rescue %>
-            <i class="fa-regular fa-heart"></i>
-          <% end %>
-        <% end %>
-      <% end %>
-      <span class="likes-number"><%= pluralize(post_profile_likes[2].length, 'like') %></span>
+    <div class="likes-content" data-controller="like-without-reload">
+      <%= render "posts/likes", post_profile_likes: post_profile_likes %>
     </div>
   </div>
   <hr class= "posts-separator">
