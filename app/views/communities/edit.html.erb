@@ -1,7 +1,21 @@
-
-<%= simple_form_for @community do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :location %>
-  <%= f.submit %>
-<% end %>
+<%- title "Edit Club" %>
+<div class="container_non_responsive">
+  <div class="container">
+    <div class="create-profile-title">
+    <h1 class="create-profile-title">Edit Club</h1>
+    </div>
+    <br>
+    <div class="profile-form">
+    <%= simple_form_for @community do |f| %>
+      <%= f.input :name, label:false %>
+      <%= f.input :location, label: false %>
+      <%= f.association :genre, label: false, prompt: "Genre" %>
+      <%= f.input :description, label: false %>
+      <%= f.input :photo, as: :file, label: false %>
+      <div class="wrapper">
+      <%= f.submit "Submit Changes", class: "btn btn-flat btn-form", style: "display:block;"%>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>

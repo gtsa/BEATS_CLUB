@@ -1,5 +1,17 @@
-<h5>Edit your post</h5>
-<%= simple_form_for [@community, @post] do |f| %>
-  <%= f.input :content %>
-  <%= f.submit class:"btn btn-primary" %>
-<% end %>
+<%- title "Edit Post" %>
+<div class="container_non_responsive">
+  <div class="container">
+    <div class="create-profile-title">
+    <h1 class="create-profile-title">Edit your post</h1>
+    </div>
+    <br>
+    <div class="profile-form">
+    <%= simple_form_for [@community, @post] do |f| %>
+      <%= f.input :content, label:false, input_html: {style: "min-height: calc(#{@post.content.length/60}em)"} %>
+      <div class="wrapper">
+      <%= f.submit "Submit Changes", class: "btn btn-flat btn-form", style: "display:block; margin: 0 auto;"%>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>

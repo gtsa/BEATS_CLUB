@@ -1,99 +1,77 @@
-<div class="banner-com">
-  <% if @community.photo.key? %>
-    <%= cl_image_tag @community.photo.key, class: "background-image-show" %>
-  <% else %>
-    <img class="background-image-show" src="https://source.unsplash.com/random/?event" alt="event-background-image">
-  <% end %>
+<%- title @community.name %>
+<div class="container_non_responsive">
+  <div class="banner-com">
+    <% if @community.photo.key? %>
+      <%= cl_image_tag @community.photo.key, class: "background-image-show" %>
+    <% else %>
+      <img class="background-image-show" src="https://source.unsplash.com/random/?event" alt="event-background-image">
+    <% end %>
   </div>
-    <div class="container-com">
-      <div class="club-info">
-        <div class="name-genre">
-          <h5><%= @community.name %> </h5>
-          <h5>Genre: <%= @community.genre.name %></h5>
-        </div>
-
-    <p><%= @community.description %> </p>
-
-    <button id="btn-login" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#friendsSupportedContent" aria-controls="friendsSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <p class="member"><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %></p>
-    </button>
-    <div class="collapse navbar-collapse" id="friendsSupportedContent">
-      <% @profiles.each do |profile| %>
-        <p>
-          <%= link_to profile.nickname, profile_path(profile) %>
-        </p>
-      <% end %>
-      <hr width="100%" size="5">
-    </div>
-
-
-
-
-
-        <% if user_signed_in? %>
-        <%# JOIN COMMUNITY BUTTON %>
+  <div class="container-com">
+    <%# BASIC DESCRIPTION %>
+    <div class="club-info">
+      <%# NAME - GENRE %>
+      <div class="name-genre">
+        <h5><%= @community.name %> </h5>
+        <h5>Genre: <%= link_to @community.genre.name, genre_path(@community.genre), class:"community-genre-link" %></h5>
+      </div>
+      <%# DESCRIPTION %>
+      <p><%= @community.description %> </p>
+      <%# MEMBERS BURGER %>
+      <button id="btn-login" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#friendsSupportedContent" aria-controls="friendsSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <p class="member"><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %><span id="accordion-symbol">+</span></p>
+      </button>
+      <div class="collapse navbar-collapse" id="friendsSupportedContent">
+        <% @profiles.each do |profile| %>
+          <p>
+            <%= link_to profile.nickname, profile_path(profile) %>
+          </p>
+        <% end %>
+        <hr width="100%" size="5">
+      </div>
+      <%# JOIN COMMUNITY BUTTON %>
+      <% if user_signed_in? %>
         <% if @user_check && @joined  %>
           <p><%= "You are the creator of this community and have been a member since #{@community.created_at.strftime("%B  %Y")}" %></p>
+          <%# EDIT COMMUNITY BUTTON %>
+          <%# If user is club's creator and is still member, show edit button %>
+          <%= link_to edit_community_path(@community) do%>
+            <i class="fa-regular fa-pen-to-square"></i>
+          <% end %>
         <% elsif @user_check && !@joined  %>
           <p>You are the creator of this community</p>
-          <%= link_to "Rejoin Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-primary"%>
+          <%= link_to "Rejoin Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-show"%>
         <% elsif !@user_check && @joined  %>
           <p><%= "You have been a member since #{@community.created_at.strftime("%B  %Y")}" %></p>
         <% elsif !@user_check && !@joined  %>
-          <%= link_to "Join Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn", id:"btn-show"%>
+          <%= link_to "Join Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-show"%>
         <% end %>
-        <%# EDIT COMMUNITY BUTTON %>
-        <% if @user_check %>
-          <%= link_to edit_community_path(@community) do%>
-           <i class="fa-regular fa-pen-to-square"></i>
-          <% end %>
-        <% end %>
-        <%# </div> %>
+      <% end %>
     </div>
-  <%# </div> %>
-
-
-<%#= link_to @community.genre.name, genre_path(@community.genre), class:"btn"%>
-
-
-      <br>
-      <%# <h2><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %>
-      <%# </h2>
-      <%# <ol>
-      <%# <% @profiles.each do |profile|%>
-      <%#   <li>
-      <%#     <%= link_to "#{profile.nickname}#{@community.profile_id == profile.id ? ' (creator)' : ''}", profile_path(profile) %>
-      <%#   </li>
-      <%# <% end %>
-      <%# </ol> %>
-    <% end %>
-  <%# </div> %>
-<div>
-      <div class="post-form">
-          <% if user_signed_in? %>
-              <%= render 'posts/form', community: @community, post: @post %>
-            </div>
-          <% end %>
-</div>
+  </div>
 
   <div data-controller="test">
 
-    <%# <h2> Posts </h2> %>
-
-  <div>
-    <% @posts_profiles_likes.reverse.each do |post_profile_likes|%>
-      <p>
-        <div>
-          <%= render "posts/post", post_profile_likes: post_profile_likes, community: @community %>
-        </div>
-      </p>
+    <%# POST FORM %>
+    <%# If user is member, show Post Form %>
+    <% if @joined %>
+      <div class="post-form">
+        <%= render 'posts/form', community: @community, post: @post %>
+      </div>
     <% end %>
+
+    <%# POSTS %>
+    <%# If user is signed in the app (in general), show Post Form %>
+    <% if user_signed_in? %>
+    <div data-test-target="items">
+      <% @posts_profiles_likes.reverse.each do |post_profile_likes|%>
+        <p>
+          <%= render "posts/post", post_profile_likes: post_profile_likes, community: @community %>
+        </p>
+      <% end %>
+    </div>
+    <% end %>
+
   </div>
+
 </div>
-
-
-
-<%# <p>Created %>
-<%#= time_ago_in_words(@community.created_at) %>
-<%# ago</p> %>
-<%# style="background-image: url('https://i.pinimg.com/564x/b9/94/ee/b994ee33ee04246c85d4e7ca30f93981.jpg')"> %>

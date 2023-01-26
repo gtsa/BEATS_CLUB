@@ -8,7 +8,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
     @disable_bottom = true
     @disable_nav = true
-    @alt_nav = true
     super
   end
 
@@ -22,7 +21,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def edit
     @disable_bottom = true
     @disable_nav = true
-    @alt_nav = true
     super
   end
 

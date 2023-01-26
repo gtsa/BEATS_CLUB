@@ -1,13 +1,13 @@
-
-<div class="container m-3">
+<%- title "Sign In" %>
+<div class="container container_non_responsive extra-margin-top">
   <div class="create-profile-title">
-    <h1 class="create-profile-title", style= "width:91%">Log in</h1>
+    <h1 class="create-profile-title">Good to see you again</h1>
   </div>
   <br>
   <div class="profile-form">
     <%= simple_form_for resource, as: resource_name, url: session_path(resource_name), html: { data: { turbo: false} }  do |f| %>
-      <div class="form-inputs", style= "width:91%">
-        <%= f.input :email, label: false, style:"padding-right: 30px", required: true, autofocus: true, input_html: { autocomplete: "email" }, placeholder: "Email" %>
+      <div class="form-inputs">
+        <%= f.input :email, label: false, required: true, autofocus: true, input_html: { autocomplete: "email" }, placeholder: "Email" %>
         <%= f.input :password, required: false, label: false,
                     hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                     input_html: { autocomplete: "current-password"},
@@ -15,14 +15,10 @@
       </div>
       <div class="wrapper">
         <div class="form-actions">
-          <%= f.button :submit, "Login", class: "btn btn-flat btn-form", style: "left:30%", id: 'round-btn' %>
+          <%= f.button :submit, "Sing in", class: "btn btn-flat btn-form round-btn", style: "position: static" %>
         </div>
       </div>
+      <div style="text-align:center; margin-top:10px;"><%= render "devise/shared/links" %></div>
     <% end %>
   </div>
-
-  <div style="position: absolute; left:150px; bottom:50%; color: #C702A7">
-<%= render "devise/shared/links" %>
-</div>
-
 </div>

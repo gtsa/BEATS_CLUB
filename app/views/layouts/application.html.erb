@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BEATSClub</title>
+    <title><%= content_for?(:title) ? "BEATSClub | #{content_for(:title)}" : "BEATSClub" %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -14,7 +14,6 @@
   </head>
   <body>
     <%= render 'shared/navbar' unless @disable_nav %>
-    <%= render 'shared/navbar_sign_up' if @alt_nav %>
     <%= yield %>
     <%= render "shared/flashes" %>
     <%= render 'shared/bottom_bar'  unless @disable_bottom%>

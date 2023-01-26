@@ -1,13 +1,14 @@
-<% if @joined == true %>
-<%= simple_form_for [community, post],
-    data: {test_target: "form"} do |f| %>
-  <%#= f.input :title, label: false, placeholder: "Your Title..." %>
-<div class="post-form">
-  <div  style="position: relative;">
-    <%= f.input :content, label: false, placeholder: "Write a post here", class: "form-control-com" %>
-  <%= f.input :photo, label: false, as: :file, placeholder: "Add your photo here..." %>
-    <%= f.submit "Post", class:"btn btn-primary" %>
+<%= simple_form_for([community, post],
+  data: {
+    test_target: "form",
+    action:"submit->test#send"
+  }) do |f|
+%>
+  <div class="post-form">
+    <div  style="position: relative;">
+      <%= f.input :content, label: false, placeholder: "Write a post here", class: "form-control-com" %>
+      <%= f.input :photo, label: false, as: :file, placeholder: "Add your photo here..." %>
+      <%= f.submit "Post", class:"btn btn-primary" %>
+    </div>
   </div>
-</div>
-<% end %>
 <% end %>
