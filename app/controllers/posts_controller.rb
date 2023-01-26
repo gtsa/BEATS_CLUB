@@ -1,13 +1,17 @@
 class PostsController < ApplicationController
   def create
-    @post = Post.new(post_params)
     @community = Community.find(params[:community_id])
+    @post = Post.new(post_params)
     @post.community = @community
     @post.profile_id = current_user.profiles.last.id
-    if @post.save!
-      redirect_to community_path(@community)
-    else
-      render 'communities/show', status: :unprocessable_entity
+    respond_to do |format|
+      if @post.save!
+        format.html { redirect_to community_path(@community) }
+        format.json # Follow the classic Rails flow and look for a create.json view
+      else
+        format.html { render 'communities/show', status: :unprocessable_entity }
+        format.json # Follow the classic Rails flow and look for a create.json view
+      end
     end
   end
 
