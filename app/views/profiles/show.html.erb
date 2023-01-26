@@ -1,6 +1,7 @@
 <% if @user_check %>
   <script>window.location.href = '/myprofile'</script>
 <% else %>
+  <%- title "Member's Profile" %>
   <div class="container_non_responsive">
     <div class="container-mb" data-controller="tabs">
       <%= cl_image_tag @profile.photo.key, class:"avatar-bordered" %>

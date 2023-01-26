@@ -1,3 +1,4 @@
+<%- title @community.name %>
 <div class="container_non_responsive">
   <div class="banner-com">
     <% if @community.photo.key? %>
@@ -12,13 +13,13 @@
       <%# NAME - GENRE %>
       <div class="name-genre">
         <h5><%= @community.name %> </h5>
-        <h5>Genre: <%= @community.genre.name %></h5>
+        <h5>Genre: <%= link_to @community.genre.name, genre_path(@community.genre), class:"community-genre-link" %></h5>
       </div>
       <%# DESCRIPTION %>
       <p><%= @community.description %> </p>
       <%# MEMBERS BURGER %>
       <button id="btn-login" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#friendsSupportedContent" aria-controls="friendsSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <p class="member"><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %></p>
+        <p class="member"><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %><span id="accordion-symbol">+</span></p>
       </button>
       <div class="collapse navbar-collapse" id="friendsSupportedContent">
         <% @profiles.each do |profile| %>
