@@ -105,11 +105,26 @@
     font-family: inter;
   }
 
- p.member {
+  .members-toggler {
+    width: 100%
+  }
+
+  #accordion-symbol {
+    margin-right: 0.5em;
+    opacity: 0.4
+  }
+
+  .caret-tranparent {
+    display: none;
+  }
+
+ p.members {
     color: #a9a9a8;
-    display: inline;
+    display: flex;
+    justify-content: space-between;
     font-size: 15px;
     font-weight: 300;
+    width: 100%;
   }
 
   p {
