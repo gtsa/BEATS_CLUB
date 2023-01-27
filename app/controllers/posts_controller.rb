@@ -37,10 +37,7 @@ class PostsController < ApplicationController
       profile_id: current_user.profiles.last.id,
       post_id: @post.id
     )
-    respond_to do |format|
-      format.html { redirect_to(community_path(@community)) }
-      format.json  # Follow the classic Rails flow and look for a like.json view
-    end
+    redirect_to(community_path(@community))
   end
 
   def unlike
@@ -48,10 +45,7 @@ class PostsController < ApplicationController
     @community = Community.find(params[:id])
     like = Like.where(profile_id: current_user.profiles.last.id).where(post_id: @post.id).first
     like.destroy
-    respond_to do |format|
-      format.html {redirect_to(community_path(@community))}
-      format.json  # Follow the classic Rails flow and look for a create.json view
-    end
+    redirect_to(community_path(@community))
   end
 
   private

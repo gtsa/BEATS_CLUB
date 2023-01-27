@@ -18,8 +18,8 @@
       <%# DESCRIPTION %>
       <p><%= @community.description %> </p>
       <%# MEMBERS BURGER %>
-      <button id="btn-login" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#friendsSupportedContent" aria-controls="friendsSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <p class="member"><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %><span id="accordion-symbol">+</span></p>
+      <button class="navbar-toggler members-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#friendsSupportedContent" aria-controls="friendsSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <p class="members"><span><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %></span><span id="accordion-symbol"><span id="up-caret" class="caret-tranparent">&#9650;</span><span id="down-caret">&#9660;<span></span></p>
       </button>
       <div class="collapse navbar-collapse" id="friendsSupportedContent">
         <% @profiles.each do |profile| %>
@@ -75,3 +75,11 @@
   </div>
 
 </div>
+
+<script>
+const button = document.getElementsByClassName("navbar-toggler members-toggler")[0]
+button.addEventListener('click', (event) => {
+  document.getElementById("up-caret").classList.toggle("caret-tranparent")
+  document.getElementById("down-caret").classList.toggle("caret-tranparent")
+})
+</script>
