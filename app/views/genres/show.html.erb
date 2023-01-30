@@ -4,9 +4,9 @@
   <%# FOLLOW GENRE %>
   <% if user_signed_in?  %>
     <% if !@joined  %>
-    <%= link_to "Follow #{@genre.name}", genre_join_genres_path(@genre), data: { turbo_method: :post }, class:"btn btn-primary"%>
+    <%= link_to "Follow #{@genre.name}", genre_join_genres_path(@genre), data: { turbo_method: :post }, class:"btn btn-primary btn-main-color"%>
     <% else %>
-    <%= link_to "Unfollow #{@genre.name}", genre_join_genre_path(@genre, current_user.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-primary"%>
+    <%= link_to "Unfollow #{@genre.name}", genre_join_genre_path(@genre, current_user.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:"btn btn-primary btn-main-color"%>
     <% end %>
   <% end %>
   <h3><%= "#{@genre.name} Clubs" %></h3>

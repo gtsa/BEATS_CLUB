@@ -18,8 +18,8 @@
       <%# DESCRIPTION %>
       <p><%= @community.description %> </p>
       <%# MEMBERS BURGER %>
-      <button id="btn-login" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#friendsSupportedContent" aria-controls="friendsSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <p class="member"><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %><span id="accordion-symbol">+</span></p>
+      <button class="navbar-toggler members-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#friendsSupportedContent" aria-controls="friendsSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <p class="members"><span><%= pluralize(@profiles.nil? ? 0 : @profiles.length, 'Member') %></span><span id="accordion-symbol"><span id="up-caret" class="caret-tranparent">&#9650;</span><span id="down-caret">&#9660;<span></span></p>
       </button>
       <div class="collapse navbar-collapse" id="friendsSupportedContent">
         <% @profiles.each do |profile| %>
@@ -40,17 +40,17 @@
           <% end %>
         <% elsif @user_check && !@joined  %>
           <p>You are the creator of this community</p>
-          <%= link_to "Rejoin Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-show"%>
+          <%= link_to "Rejoin Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-show btn-main-color"%>
         <% elsif !@user_check && @joined  %>
           <p><%= "You have been a member since #{@community.created_at.strftime("%B  %Y")}" %></p>
         <% elsif !@user_check && !@joined  %>
-          <%= link_to "Join Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-show"%>
+          <%= link_to "Join Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-show btn-main-color"%>
         <% end %>
       <% end %>
     </div>
   </div>
 
-  <div data-controller="test">
+  <div data-controller="insert-post">
 
     <%# POST FORM %>
     <%# If user is member, show Post Form %>
@@ -63,15 +63,23 @@
     <%# POSTS %>
     <%# If user is signed in the app (in general), show Post Form %>
     <% if user_signed_in? %>
-    <div data-test-target="items">
-      <% @posts_profiles_likes.reverse.each do |post_profile_likes|%>
-        <p>
-          <%= render "posts/post", post_profile_likes: post_profile_likes, community: @community %>
-        </p>
-      <% end %>
-    </div>
+      <div data-insert-post-target="items">
+        <% @posts_profiles_likes.reverse.each do |post_profile_likes|%>
+          <p>
+            <%= render "posts/post", post_profile_likes: post_profile_likes, community: @community %>
+          </p>
+        <% end %>
+      </div>
     <% end %>
 
   </div>
 
 </div>
+
+<script>
+document.getElementsByClassName("navbar-toggler members-toggler")[0]
+.addEventListener('click', (event) => {
+  document.getElementById("up-caret").classList.toggle("caret-tranparent")
+  document.getElementById("down-caret").classList.toggle("caret-tranparent")
+})
+</script>

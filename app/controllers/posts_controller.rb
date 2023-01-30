@@ -33,6 +33,9 @@ class PostsController < ApplicationController
   def like
     @post = Post.find(params[:community_id].split('/').last)
     @community = Community.find(params[:id])
+    likes = Like.where(profile_id: current_user.profiles.last.id).where(post_id: @post.id)
+    return unless likes.length.zero?
+
     Like.create(
       profile_id: current_user.profiles.last.id,
       post_id: @post.id
@@ -43,7 +46,10 @@ class PostsController < ApplicationController
   def unlike
     @post = Post.find(params[:community_id].split('/').first)
     @community = Community.find(params[:id])
-    like = Like.where(profile_id: current_user.profiles.last.id).where(post_id: @post.id).first
+    likes = Like.where(profile_id: current_user.profiles.last.id).where(post_id: @post.id)
+    return if likes.length.zero?
+
+    like = likes.first
     like.destroy
     redirect_to(community_path(@community))
   end

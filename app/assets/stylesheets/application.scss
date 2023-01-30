@@ -7,13 +7,19 @@
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome";
 
+$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/brands';
+@import '@fortawesome/fontawesome-free/scss/solid';
+@import '@fortawesome/fontawesome-free/scss/regular';
+@import '@fortawesome/fontawesome-free/scss/v4-shims';
+
 // Your CSS partials
 
 @import "pages/index";
 @import "components/index";
 @import "pages/communities";
 @import "pages/devise";
-
 
 body {
   background-color: #1b191f;
@@ -45,4 +51,15 @@ a {
 
 .card-trip a:hover {
   color: #c702a7;
+}
+
+.btn-main-color:hover {
+  background-color: #c702a6cb !important;
+  color: white !important;
+}
+
+.btn-main-color:active {
+  background-color: #1b191f !important;
+  color: #c574b8 !important;
+  border: 1px solid #c574b8 !important;
 }

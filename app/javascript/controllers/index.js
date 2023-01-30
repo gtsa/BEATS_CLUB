@@ -7,11 +7,11 @@ import { application } from "./application"
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-// import InsertInListController from "./insert_in_list_controller"
-// application.register("insert-in-list", InsertInListController)
+import InsertPostController from "./insert_post_controller"
+application.register("insert-post", InsertPostController)
+
+import LikeWithoutReloadController from "./like_without_reload_controller"
+application.register("like-without-reload", LikeWithoutReloadController)
 
 import TabsController from "./tabs_controller"
 application.register("tabs", TabsController)
-
-import TestController from "./test_controller"
-application.register("test", TestController)
