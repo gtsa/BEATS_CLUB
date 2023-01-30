@@ -1,3 +1,0 @@
-- Like AJAX
-- Page titles (with a semi-dymamic way) mainl for the browsers back&forth pages and history
-- Loading screens
