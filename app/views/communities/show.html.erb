@@ -40,11 +40,11 @@
           <% end %>
         <% elsif @user_check && !@joined  %>
           <p>You are the creator of this community</p>
-          <%= link_to "Rejoin Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-show"%>
+          <%= link_to "Rejoin Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-show btn-main-color"%>
         <% elsif !@user_check && @joined  %>
           <p><%= "You have been a member since #{@community.created_at.strftime("%B  %Y")}" %></p>
         <% elsif !@user_check && !@joined  %>
-          <%= link_to "Join Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-show"%>
+          <%= link_to "Join Club", community_join_communities_path(@community), data: { turbo_method: :post }, class:"btn btn-show btn-main-color"%>
         <% end %>
       <% end %>
     </div>

@@ -3,7 +3,7 @@
   <% if current_user.profiles.last.join_communities.empty? %>
     <h2 class="feed-heading">Join a Club to see your feed...</h2>
     <div>
-    <%= link_to "Explore Clubs", communities_path, id:"btn-show-home"%>
+    <%= link_to "Explore Clubs", communities_path, id:"btn-show-home", class:"btn-main-color"%>
     </div>
   <% else %>
 

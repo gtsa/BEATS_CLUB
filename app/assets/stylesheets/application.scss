@@ -53,3 +53,14 @@ a {
 .card-trip a:hover {
   color: #c702a7;
 }
+
+.btn-main-color:hover {
+  background-color: #c702a6cb !important;
+  color: white !important;
+}
+
+.btn-main-color:active {
+  background-color: #1b191f !important;
+  color: #c574b8 !important;
+  border: 1px solid #c574b8 !important;
+}
