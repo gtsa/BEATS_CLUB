@@ -112,9 +112,13 @@ end
 # Communities
 puts "Creating Communities..."
 
-
+i=0
 # Community 01
+p i
+i += 1
 file = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Transmission_Prague_2018.jpg/1200px-Transmission_Prague_2018.jpg")
+p i
+i += 1
 community = Community.new(
   name: "Electronic Fan Club",
   description: "placeholder",
@@ -122,11 +126,19 @@ community = Community.new(
   genre: Genre.find_by(name: "Electronic"),
   profile_id: 1
 )
+p i
+i += 1
 community.photo.attach(io: file, filename: "club.png", content_type: "image/png")
+p i
+i += 1
 community.save
+p i
+i += 1
 
 # Community 02
 file = URI.open("https://images.prismic.io/soundcharts/9b20aa4fe11af1b0a64c79dcf4f0c066449a7df6_artists-audience-band-1763075.jpg")
+p i
+i += 1
 community = Community.new(
   name:  "Rock Ultras",
   description: "A club for rock lovers! post your favourite bands and songs on here. We meet every Friday at the Shacklewell arms for a live band night, where local rock artists play their sets.",
@@ -134,8 +146,14 @@ community = Community.new(
   genre: Genre.find_by(name: "Rock"),
   profile_id: 2
 )
+p i
+i += 1
 community.photo.attach(io: file, filename: "club.png", content_type: "image/png")
+p i
+i += 1
 community.save
+p i
+i += 1
 
 # Community 03
 file = URI.open("https://www.billboard.com/wp-content/uploads/media/pop-streaming-photo-illo-bb30-yim-2019-billboard-1500.jpg")
