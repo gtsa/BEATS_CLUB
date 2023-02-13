@@ -22,15 +22,20 @@
     <%= render 'shared/bottom_bar'  unless @disable_bottom%>
     <%# Loading spin JS %>
     <script>
-      document.onreadystatechange = function() {
-        if (document.readyState !== "complete") {
-            document.querySelector("body").style.visibility = "hidden";
-            document.querySelector("#loader").style.visibility = "visible";
-        } else {
-            document.querySelector("#loader").style.visibility = "hidden";
-            document.querySelector("body").style.visibility = "visible";
-        }
-      };
+      setInterval(
+        document.onreadystatechange = function() {
+          if (document.readyState !== "complete") {
+              document.querySelector("body").style.visibility = "hidden";
+              document.querySelector("#loader").style.visibility = "visible";
+              console.log(document.readyState)
+          } else {
+              document.querySelector("#loader").style.visibility = "hidden";
+              document.querySelector("body").style.visibility = "visible";
+              console.log(document.readyState)
+          }
+        },
+        1
+      );
     </script>
   </body>
 </html>
