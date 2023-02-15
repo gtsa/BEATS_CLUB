@@ -1,11 +1,12 @@
 #loader {
-    border: 12px solid #f3f3f3;
+    border: 8px solid #ff00d6;
     border-radius: 50%;
-    border-top: 12px solid #444444;
+    border-top: 12px solid #1b191f;
     width: 70px;
     height: 70px;
     animation: spin 1s linear infinite;
 }
+
 
 @keyframes spin {
     100% {
@@ -29,7 +30,7 @@
   bottom: 0;
   right: 0;
   overflow: hidden;
-  background: #c702a7;
+  background: #1b191f;
   opacity: 0.5;
   transition: opacity 1s ease-in-out;
   z-index: -1;
