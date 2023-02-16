@@ -6,7 +6,7 @@
     <h1 class="hazy-glow">BEATS CLUB</h1>
     <p>Building bonds around music</p>
     <div class="wrapper">
-    <% first_step_path = user_signed_in? ? home_path : new_user_registration_path %>
+    <% first_step_path = user_signed_in? ? (!current_user.profiles.last.nil? ? home_path : new_user_registration_path) : new_user_registration_path %>
       <%= link_to "LET'S ROCK!", first_step_path, class: "btn btn-flat btn-main-color" %>
       <%# <a class="btn btn-flat" href="#">Create Profile</a> %>
       <%# <div style= "color: white; position: absolute; margin-top: 100px;"> %>
